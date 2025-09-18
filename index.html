@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Coding Workbench</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Fix for media bus preview to ensure content fits the container */
+    #media-bus-preview img, 
+    #media-bus-preview video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Main libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+  <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+
+  <!-- Tool modules -->
+  <script src="tools/gridArchitect.js"></script>
+  <script src="tools/posterComposer.js"></script>
+  <script src="tools/bauhausAssembler.js"></script>
+  <script src="tools/kineticTypeEngine.js"></script>
+  <script src="tools/glyphDeconstructor.js"></script>
+  <script src="tools/waveformSynthesizer.js"></script>
+  <script src="tools/universalRasterizer.js"></script>
+  <script src="tools/videoSampler.js"></script>
+  <script src="tools/colorSystemAnalyzer.js"></script>
+  <script src="tools/pixelSorter.js"></script>
+  <script src="tools/truchetTiler.js"></script>
+  <script src="tools/particleEngine.js"></script>
+  <script src="tools/rhythmSequencer.js"></script>
+  <script src="tools/objectRasterizer3D.js"></script>
+  <script src="tools/generativeComposer.js"></script>
+
+</head>
+<body>
+
+  <div class="workspace-container">
+    <!-- ================================================================== -->
+    <!-- == THE LIBRARY (Left Column)                                    == -->
+    <!-- ================================================================== -->
+  <aside class="library-column">
+      <header class="column-header">TMM-OS / VISUAL-LAB / LIBRARY</header>
+      <div class="library-content">
+        <input type="text" class="search-bar" placeholder="SEARCH...">
+        <nav class="tutorial-list">
+          <h4 class="tool-category-header">Category A: Systematic Grids & Layouts</h4>
+          <button class="tutorial-item active" data-tool="gridArchitect">
+            <span class="tutorial-title">The Universal Grid Architect</span>
+            <span class="tutorial-meta">Grid, Axonometric, Isometric</span>
+          </button>
+          <button class="tutorial-item" data-tool="posterComposer">
+            <span class="tutorial-title">The Poster Composer</span>
+            <span class="tutorial-meta">Swiss, Layout, Composition</span>
+          </button>
+          <button class="tutorial-item" data-tool="bauhausAssembler">
+            <span class="tutorial-title">The Bauhaus Assembler</span>
+            <span class="tutorial-meta">Generative, Form, Color</span>
+          </button>
+
+          <h4 class="tool-category-header">Category B: Poetic Engines (Typography & Form)</h4>
+          <button class="tutorial-item" data-tool="kineticTypeEngine">
+            <span class="tutorial-title">The Kinetic Type Engine</span>
+            <span class="tutorial-meta">Animation, Text, Motion</span>
+          </button>
+          <button class="tutorial-item" data-tool="glyphDeconstructor">
+            <span class="tutorial-title">The Glyph Deconstructor</span>
+            <span class="tutorial-meta">Experimental, Typography, Glitch</span>
+          </button>
+          <button class="tutorial-item" data-tool="waveformSynthesizer">
+            <span class="tutorial-title">The Waveform Synthesizer</span>
+            <span class="tutorial-meta">Waves, Lissajous, Perlin</span>
+          </button>
+
+          <h4 class="tool-category-header">Category C: The Lens (Image, Video & Pixel Manipulation)</h4>
+          <button class="tutorial-item" data-tool="universalRasterizer">
+            <span class="tutorial-title">The Universal Rasterizer</span>
+            <span class="tutorial-meta">Halftone, ASCII, Raster</span>
+          </button>
+          <button class="tutorial-item" data-tool="videoSampler">
+            <span class="tutorial-title">The Video Sampler & Glitch Tool</span>
+            <span class="tutorial-meta">Slit-Scan, Time, Glitch</span>
+          </button>
+          <button class="tutorial-item" data-tool="colorSystemAnalyzer">
+            <span class="tutorial-title">The Color System Analyzer</span>
+            <span class="tutorial-meta">Palette, K-Means, Utility</span>
+          </button>
+          <button class="tutorial-item" data-tool="pixelSorter">
+            <span class="tutorial-title">The Pixel Sorter</span>
+            <span class="tutorial-meta">Glitch, Sort, Image</span>
+          </button>
+
+          <h4 class="tool-category-header">Category D: Generative Systems & Algorithms</h4>
+          <button class="tutorial-item" data-tool="truchetTiler">
+            <span class="tutorial-title">The Truchet Tiler</span>
+            <span class="tutorial-meta">Pattern, Tiles, Emergence</span>
+          </button>
+          <button class="tutorial-item" data-tool="particleEngine">
+            <span class="tutorial-title">The Particle Engine</span>
+            <span class="tutorial-meta">Particles, Swarm, Forces</span>
+          </button>
+          <button class="tutorial-item" data-tool="rhythmSequencer">
+            <span class="tutorial-title">The Rhythm Sequencer</span>
+            <span class="tutorial-meta">Rhythm, Sequencer, Visual</span>
+          </button>
+          <button class="tutorial-item" data-tool="generativeComposer">
+            <span class="tutorial-title">The Generative Composer</span>
+            <span class="tutorial-meta">Composition, Random, Aesthetic</span>
+          </button>
+
+          <h4 class="tool-category-header">WEBGL</h4>
+          <button class="tutorial-item" data-tool="objectRasterizer3D">
+            <span class="tutorial-title">The 3D Object Rasterizer</span>
+            <span class="tutorial-meta">3D, WEBGL, Render</span>
+          </button>
+        </nav>
+        <div class="notes-panel">
+          <label class="panel-label">NOTES</label>
+          <textarea class="notes-textarea"></textarea>
+        </div>
+      </div>
+      <footer class="column-footer">ACK: p5.js, T. Rodenbroeker</footer>
+    </aside>
+
+    <!-- ================================================================== -->
+    <!-- == THE CANVAS (Center Column)                                    == -->
+    <!-- ================================================================== -->
+    <main id="canvas-wrapper" class="canvas-column">
+      <div id="canvas-overlay" style="position:absolute;top:8px;left:8px;z-index:20;color:#fff;font-family:monospace;font-size:12px;">
+        <div id="canvas-size-display">[ARTBOARD: 1080x1080px]</div>
+        <div id="canvas-framerate-display">[FRAMERATE: -- FPS]</div>
+      </div>
+    </main>
+
+    <!-- ================================================================== -->
+    <!-- == THE TOOLKIT (Right Column)                                   == -->
+    <!-- ================================================================== -->
+    <aside class="toolkit-column">
+      <header class="column-header">TMM-OS / VISUAL-LAB / TOOLKIT</header>
+      <div class="toolkit-content">
+        <div class="artboard-settings-panel">
+          <h4 class="control-group-header">ARTBOARD SETTINGS</h4>
+          <div class="control-group">
+            <label for="artboard-size">PRESET SIZE</label>
+            <select id="artboard-size">
+              <option value="1080x1080">Square (1080x1080)</option>
+              <option value="1080x1350">Portrait (1080x1350)</option>
+              <option value="1440x1080">Portrait 4:3 (1440x1080)</option>
+              <option value="1920x1080">Landscape (1920x1080)</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="artboard-bg-color">CANVAS BACKGROUND</label>
+            <input type="color" id="artboard-bg-color" value="#000000">
+          </div>
+        </div>
+
+        <div class="global-view-panel">
+            <h4 class="control-group-header">GLOBAL VIEW CONTROLS</h4>
+            <div class="control-group">
+                <label for="global-view-zoom">GLOBAL ZOOM</label>
+                <input type="range" id="global-view-zoom" min="0.2" max="5" value="1" step="0.1">
+                <p class="control-hint">Affects 2D isometric views (Grid, Waveform).</p>
+            </div>
+        </div>
+
+          <!-- Universal Grid Architect Controls -->
+          <div id="gridArchitect-controls" class="tool-controls active">
+            <h4 class="control-group-header">GRID</h4>
+            <div class="control-group">
+              <label for="ga-layout-type">LAYOUT TYPE</label>
+              <select id="ga-layout-type">
+                <option value="cartesian" selected>Cartesian</option>
+                <option value="isometric">Isometric</option>
+                <option value="polar">Polar</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="ga-cols">COLUMNS</label>
+              <input type="range" id="ga-cols" min="1" max="200" value="10">
+            </div>
+            <div class="control-group">
+              <label for="ga-rows">ROWS</label>
+              <input type="range" id="ga-rows" min="1" max="200" value="10">
+            </div>
+            <h4 class="control-group-header">SPACING</h4>
+            <div class="control-group horizontal">
+              <div class="input-group">
+                <label for="ga-margin-x">MARGIN X</label>
+                <input type="number" id="ga-margin-x" value="50">
+              </div>
+              <div class="input-group">
+                <label for="ga-margin-y">MARGIN Y</label>
+                <input type="number" id="ga-margin-y" value="50">
+              </div>
+            </div>
+            <div class="control-group horizontal">
+              <div class="input-group">
+                <label for="ga-gutter-x">GUTTER X</label>
+                <input type="number" id="ga-gutter-x" value="0">
+              </div>
+              <div class="input-group">
+                <label for="ga-gutter-y">GUTTER Y</label>
+                <input type="number" id="ga-gutter-y" value="0">
+              </div>
+            </div>
+            <h4 class="control-group-header">CELL</h4>
+            <div class="control-group">
+              <label for="ga-cell-shape">CELL SHAPE</label>
+              <select id="ga-cell-shape">
+                <option value="rectangle">Rectangle</option>
+                <option value="ellipse">Ellipse</option>
+                <option value="triangle">Triangle</option>
+              </select>
+            </div>
+            <h4 class="control-group-header">TEXT IN CELL</h4>
+            <div class="control-group">
+                <label for="ga-cell-text">TEXT (SINGLE CHAR)</label>
+                <input type="text" id="ga-cell-text" value="" maxlength="1">
+            </div>
+            <div class="control-group">
+                <label for="ga-text-color">TEXT COLOR</label>
+                <input type="color" id="ga-text-color" value="#FFF8E7">
+            </div>
+            <div class="control-group">
+                <label for="ga-text-size">TEXT SIZE (%)</label>
+                <input type="range" id="ga-text-size" min="10" max="150" value="80">
+            </div>
+
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group">
+              <label for="ga-line-weight">LINE WEIGHT</label>
+              <input type="range" id="ga-line-weight" min="0.1" max="10" value="1" step="0.1">
+            </div>
+            <div class="control-group">
+              <label for="ga-line-color">LINE COLOR</label>
+              <input type="color" id="ga-line-color" value="#333333">
+            </div>
+            <div class="control-group">
+              <label for="ga-fill-color">FILL COLOR</label>
+              <input type="color" id="ga-fill-color" value="#111111">
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="ga-show-grid" checked>
+              <label for="ga-show-grid">SHOW GRID</label>
+            </div>
+          </div>
+
+          <!-- Placeholder divs for all other tool controls -->
+          <div id="posterComposer-controls" class="tool-controls">
+            <h4 class="control-group-header">COMPOSITION</h4>
+            <div class="control-group">
+              <label for="pc-preset">PRESET</label>
+              <select id="pc-preset">
+                <option value="generative">Generative</option>
+                <option value="molnar">Molnar</option>
+                <option value="brockmann">Müller-Brockmann</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="pc-image-blocks">IMAGE BLOCKS</label>
+              <input type="range" id="pc-image-blocks" min="0" max="10" value="2">
+            </div>
+            <div class="control-group">
+              <label for="pc-text-blocks">TEXT BLOCKS</label>
+              <input type="range" id="pc-text-blocks" min="0" max="10" value="3">
+            </div>
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group">
+              <label for="pc-image-color">IMAGE BLOCK COLOR</label>
+              <input type="color" id="pc-image-color" value="#232323">
+            </div>
+            <div class="control-group">
+              <label for="pc-text-color">TEXT BLOCK COLOR</label>
+              <input type="color" id="pc-text-color" value="#3C3C3C">
+            </div>
+            <div class="control-group">
+              <label for="pc-block-scale">BLOCK SCALE</label>
+              <input type="range" id="pc-block-scale" min="0.5" max="2.0" value="1.0" step="0.1">
+            </div>
+            <button id="pc-regenerate-btn" class="action-button">REGENERATE</button>
+          </div>
+          <div id="bauhausAssembler-controls" class="tool-controls">
+            <h4 class="control-group-header">ELEMENTS</h4>
+            <div class="control-group">
+              <label for="ba-element-count">ELEMENT COUNT</label>
+              <input type="range" id="ba-element-count" min="1" max="200" value="15">
+            </div>
+            <div class="control-group">
+              <label for="ba-max-size">MAX ELEMENT SIZE (%)</label>
+              <input type="range" id="ba-max-size" min="5" max="50" value="20">
+            </div>
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group"> 
+              <label for="ba-color-palette">COLOR PALETTE</label>
+              <select id="ba-color-palette">
+                <option value="primary">Primary</option>
+                <option value="destijl">De Stijl</option>
+                <option value="pastel">Pastel</option>
+                <option value="muted">Muted</option>
+              </select>
+            </div>
+            <h4 class="control-group-header">BEHAVIOR</h4>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="ba-allow-overlap" checked>
+              <label for="ba-allow-overlap">ALLOW OVERLAP</label>
+            </div>
+            <button id="ba-regenerate-btn" class="action-button">REGENERATE</button>
+          </div>
+          <div id="kineticTypeEngine-controls" class="tool-controls">
+            <h4 class="control-group-header">CONTENT</h4>
+            <div class="control-group">
+              <label for="kte-text">TEXT SOURCE</label>
+              <textarea id="kte-text">KINETIC TYPE ENGINE</textarea>
+            </div>
+            <div class="control-group">
+              <label for="kte-repetitions">REPETITIONS</label>
+              <input type="range" id="kte-repetitions" min="1" max="10" value="1">
+            </div>
+            <div class="control-group">
+              <label for="kte-line-count">LINE COUNT</label>
+              <input type="range" id="kte-line-count" min="1" max="20" value="1">
+            </div>
+            <div class="control-group">
+              <label for="kte-font-size">FONT SIZE</label>
+              <input type="range" id="kte-font-size" min="8" max="500" value="64">
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="kte-uppercase" checked>
+              <label for="kte-uppercase">UPPERCASE</label>
+            </div>
+            <h4 class="control-group-header">MOTION</h4>
+            <div class="control-group">
+              <label for="kte-algorithm">ALGORITHM</label>
+              <select id="kte-algorithm">
+                <option value="ticker">Ticker Tape</option>
+                <option value="wave">Wave</option>
+                <option value="wave-ticker">Wave Ticker</option>
+                <option value="circle">Circle</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="kte-speed">SPEED</label>
+              <input type="range" id="kte-speed" min="0.1" max="10" value="2" step="0.1">
+            </div>
+            <div class="control-group">
+              <label for="kte-amplitude">AMPLITUDE (WAVE)</label>
+              <input type="range" id="kte-amplitude" min="0" max="200" value="50">
+            </div>
+            <div class="control-group">
+              <label for="kte-tracking">LETTER SPACING</label>
+              <input type="range" id="kte-tracking" min="0" max="100" value="0">
+            </div>
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group">
+              <label for="kte-color">COLOR</label>
+              <input type="color" id="kte-color" value="#FFF8E7">
+            </div>
+          </div>
+          <div id="glyphDeconstructor-controls" class="tool-controls">
+            <h4 class="control-group-header">CONTENT</h4>
+            <div class="control-group">
+              <label for="gd-text">TEXT INPUT</label>
+              <input type="text" id="gd-text" value="GLYPH">
+            </div>
+            <div class="control-group">
+              <label for="gd-line-count">LINE COUNT</label>
+              <input type="range" id="gd-line-count" min="1" max="20" value="1">
+            </div>
+            <h4 class="control-group-header">MANIPULATION</h4>
+            <div class="control-group">
+              <label for="gd-scale">GLYPH SCALE</label>
+              <input type="range" id="gd-scale" min="0.1" max="5" value="1" step="0.1">
+            </div>
+            <div class="control-group">
+              <label for="gd-jitter">POSITION JITTER</label>
+              <input type="range" id="gd-jitter" min="0" max="200" value="20">
+            </div>
+            <div class="control-group">
+              <label for="gd-rotation">ROTATION JITTER</label>
+              <input type="range" id="gd-rotation" min="0" max="180" value="10">
+            </div>
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group">
+              <label for="gd-color">COLOR</label>
+              <input type="color" id="gd-color" value="#FFF8E7">
+            </div>
+            <button id="gd-deconstruct-btn" class="action-button">DECONSTRUCT</button>
+          </div>
+          <div id="waveformSynthesizer-controls" class="tool-controls">
+            <h4 class="control-group-header">FORM</h4>
+            <div class="control-group">
+              <label for="ws-mode">MODE</label>
+              <select id="ws-mode">
+                <option value="line" selected>Line</option>
+                <option value="field">Isometric Field</option>
+                <option value="isometric-line">Isometric Line</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="ws-waveform">WAVEFORM</label>
+              <select id="ws-waveform">
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="triangle">Triangle</option>
+                <option value="sawtooth">Sawtooth</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="ws-amp">AMPLITUDE</label>
+              <input type="range" id="ws-amp" min="1" max="200" value="100">
+            </div>
+            <div class="control-group">
+              <label for="ws-freq">FREQUENCY</label>
+              <input type="range" id="ws-freq" min="1" max="20" value="4">
+            </div>
+            <div class="control-group">
+              <label for="ws-line-count">LINE COUNT</label>
+              <input type="range" id="ws-line-count" min="1" max="20" value="1">
+            </div>
+            <h4 class="control-group-header">ANIMATION</h4>
+            <div class="control-group">
+              <label for="ws-time">TIME (SPEED)</label>
+              <input type="range" id="ws-time" min="0" max="0.1" value="0.05" step="0.001">
+            </div>
+            <div class="control-group">
+              <label for="ws-phase">PHASE</label>
+              <input type="range" id="ws-phase" min="0" max="360" value="0">
+            </div>
+            <div class="control-group">
+              <label for="ws-noise-amount">NOISE AMOUNT</label>
+              <input type="range" id="ws-noise-amount" min="0" max="100" value="0" step="1">
+            </div>
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group">
+              <label for="ws-color">COLOR</label>
+              <input type="color" id="ws-color" value="#FFF8E7">
+            </div>
+            <div class="control-group">
+              <label for="ws-line-weight">LINE WEIGHT</label>
+              <input type="range" id="ws-line-weight" min="1" max="20" value="3">
+            </div>
+          </div>
+          <div id="universalRasterizer-controls" class="tool-controls">
+            <p class="placeholder-text">Upload an image or video via the MEDIA BUS panel above.</p>
+            <div class="control-group">
+              <label for="ur-cell-size">CELL SIZE</label>
+              <input type="range" id="ur-cell-size" min="5" max="50" value="10">
+            </div>
+            <div class="control-group">
+              <label for="ur-mode">MODE</label>
+              <select id="ur-mode">
+                <option value="shape">Shape</option>
+                <option value="ascii">ASCII</option>
+                <option value="bitmap">Bitmap</option>
+              </select>
+            </div>
+            <div class="control-group ur-shape-settings">
+              <label for="ur-shape">SHAPE TYPE</label>
+              <select id="ur-shape" >
+                <option value="ellipse">Dot</option>
+                <option value="rect">Square</option>
+                <option value="triangle">Triangle</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="ur-threshold">BITMAP THRESHOLD</label>
+              <input type="range" id="ur-threshold" min="0" max="255" value="128">
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="ur-invert">
+              <label for="ur-invert">INVERT BRIGHTNESS</label>
+            </div>
+            <div class="control-group">
+              <label for="ur-raster-color">RASTER COLOR</label>
+              <input type="color" id="ur-raster-color" value="#FFF8E7">
+            </div>
+            <h4 class="control-group-header ur-shape-settings">TEXT OVERLAY (SHAPE MODE)</h4>
+            <div class="control-group ur-shape-settings">
+              <label for="ur-text">TEXT</label>
+              <input type="text" id="ur-text" value="A" maxlength="1">
+            </div>
+            <div class="control-group ur-shape-settings">
+              <label for="ur-text-color">TEXT COLOR</label>
+              <input type="color" id="ur-text-color" value="#111111">
+            </div>
+          </div>
+          <div id="videoSampler-controls" class="tool-controls">
+            <p class="placeholder-text">Upload an image or video via the MEDIA BUS panel above.</p>
+            <div class="control-group">
+              <label for="vs-mode">MODE</label>
+              <select id="vs-mode">
+                <option value="grid">Grid</option>
+                <option value="slit-scan">Slit-Scan</option>
+              </select>
+            </div>
+            <div class="control-group slit-scan-settings">
+              <label for="vs-slit-position">SLIT POSITION (%)</label>
+              <input type="range" id="vs-slit-position" min="0" max="100" value="50">
+            </div>
+            <div class="control-group slit-scan-settings">
+              <label for="vs-slit-direction">SLIT DIRECTION</label>
+              <select id="vs-slit-direction">
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="vs-cols">GRID COLUMNS</label>
+              <input type="range" id="vs-cols" min="2" max="64" value="16">
+            </div>
+          </div>
+          <div id="colorSystemAnalyzer-controls" class="tool-controls">
+            <p class="placeholder-text">Upload an image via the MEDIA BUS panel above.</p>
+            <div class="control-group">
+              <label for="csa-palette-size">PALETTE SIZE</label>
+              <input type="range" id="csa-palette-size" min="2" max="16" value="8">
+            </div>
+            <button id="csa-analyze-btn" class="action-button" disabled>ANALYZE IMAGE</button>
+            <div id="csa-palette-output"></div>
+          </div>
+          <div id="pixelSorter-controls" class="tool-controls">
+            <p class="placeholder-text">Upload an image via the MEDIA BUS panel above.</p>
+            <div class="control-group">
+              <label for="ps-sort-mode">SORT BY</label>
+              <select id="ps-sort-mode">
+                <option value="brightness">Brightness</option>
+                <option value="hue">Hue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="ps-direction">DIRECTION</label>
+              <select id="ps-direction">
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="ps-threshold">SORT THRESHOLD</label>
+              <input type="range" id="ps-threshold" min="0" max="255" value="80" step="1">
+            </div>
+            <button id="ps-sort-btn" class="action-button" disabled>SORT IMAGE</button>
+          </div>
+          <div id="truchetTiler-controls" class="tool-controls">
+            <h4 class="control-group-header">SYSTEM</h4>
+            <div class="control-group">
+              <label for="tt-tile-size">TILE SIZE</label>
+              <input type="range" id="tt-tile-size" min="20" max="200" value="80">
+            </div>
+            <div class="control-group">
+              <label for="tt-density">DENSITY (MULTIPLIER)</label>
+              <input type="range" id="tt-density" min="1" max="5" value="1">
+            </div>
+            <h4 class="control-group-header">ANIMATION</h4>
+            <div class="control-group">
+              <label for="tt-anim-speed">ANIMATION SPEED</label>
+              <input type="range" id="tt-anim-speed" min="0" max="30" value="0">
+            </div>
+            <h4 class="control-group-header">STYLE</h4>
+            <div class="control-group">
+              <label for="tt-line-weight">LINE WEIGHT</label>
+              <input type="range" id="tt-line-weight" min="1" max="20" value="2">
+            </div>
+            <div class="control-group">
+              <label for="tt-stroke-color">STROKE COLOR</label>
+              <input type="color" id="tt-stroke-color" value="#FFF8E7">
+            </div>
+            <h4 class="control-group-header">ACTION</h4>
+            <button id="tt-regenerate-btn" class="action-button">REGENERATE</button>
+          </div>
+          <div id="particleEngine-controls" class="tool-controls">
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="pe-bounce">
+              <label for="pe-bounce">BOUNCE ON EDGES</label>
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="pe-emit-from-mouse">
+              <label for="pe-emit-from-mouse">EMIT FROM MOUSE</label>
+            </div>
+            <h4 class="control-group-header">EMITTER</h4>
+            <div class="control-group">
+              <label for="pe-rate">EMISSION RATE</label>
+              <input type="range" id="pe-rate" min="1" max="50" value="5">
+            </div>
+            <div class="control-group">
+              <label for="pe-lifespan">LIFESPAN</label>
+              <input type="range" id="pe-lifespan" min="20" max="500" value="100">
+            </div>
+            <div class="control-group">
+              <label for="pe-size">PARTICLE SIZE</label>
+              <input type="range" id="pe-size" min="1" max="50" value="5">
+            </div>
+            <div class="control-group">
+              <label for="pe-color">PARTICLE COLOR</label>
+              <input type="color" id="pe-color" value="#FFF8E7">
+            </div>
+            <h4 class="control-group-header">PHYSICS</h4>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="pe-noise-field">
+              <label for="pe-noise-field">NOISE FIELD</label>
+            </div>
+            <div class="control-group">
+              <label for="pe-gravity">GRAVITY</label>
+              <input type="range" id="pe-gravity" min="-0.5" max="0.5" value="0" step="0.01">
+            </div>
+          </div>
+          <div id="rhythmSequencer-controls" class="tool-controls">
+            <h4 class="control-group-header">SYSTEM</h4>
+            <div class="control-group">
+              <label for="rs-bpm">BPM</label>
+              <input type="range" id="rs-bpm" min="60" max="240" value="120">
+            </div>
+            <div class="control-group">
+              <label for="rs-steps">STEPS</label>
+              <select id="rs-steps">
+                <option value="8">8</option>
+                <option value="16" selected>16</option>
+                <option value="32">32</option>
+              </select>
+            </div>
+            <h4 class="control-group-header">AUDIO</h4>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="rs-audio-toggle">
+              <label for="rs-audio-toggle">AUDIO ON/OFF</label>
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="rs-detect-bpm">
+              <label for="rs-detect-bpm">DETECT BPM FROM MIC</label>
+            </div>
+            <div class="control-group">
+              <label for="rs-master-volume">MASTER VOLUME</label>
+              <input type="range" id="rs-master-volume" min="0" max="1" value="0.5" step="0.05">
+            </div>
+            <h4 class="control-group-header">PATTERN</h4>
+            <div id="rs-sequencer-grid">
+              <!-- Grid will be generated by script.js -->
+            </div>
+            <style>
+              #rs-sequencer-grid { display: grid; grid-template-columns: repeat(var(--rs-grid-cols, 16), 1fr); gap: 5px; }
+              .rs-step { width: 100%; height: 30px; background-color: var(--c-border); cursor: pointer; }
+              .rs-step.active { background-color: var(--c-accent-primary); }
+              .rs-step.current { outline: 2px solid var(--c-text); }
+            </style>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="rs-show-viz">
+              <label for="rs-show-viz">SHOW VISUALIZER</label>
+            </div>
+          </div>
+          <div id="objectRasterizer3D-controls" class="tool-controls">
+            <h4 class="control-group-header">OBJECT</h4>
+            <div class="control-group">
+              <label for="or-shape">SHAPE TYPE</label>
+              <select id="or-shape">
+                <option value="text" selected>3D Text</option>
+                <option value="box">Box</option>
+                <option value="sphere">Sphere</option>
+                <option value="torus">Torus</option>
+              </select>
+            </div>
+            
+            <div class="text-settings">
+              <div class="control-group">
+                <label for="or-text">TEXT</label>
+                <input type="text" id="or-text" value="TMM" maxlength="20">
+              </div>
+              <div class="control-group">
+                <label for="or-font-size">FONT SIZE</label>
+                <input type="range" id="or-font-size" min="50" max="300" value="120">
+              </div>
+              <div class="control-group">
+                <label for="or-extrude">EXTRUDE</label>
+                <input type="range" id="or-extrude" min="0" max="50" value="5">
+              </div>
+            </div>
+
+            <h4 class="control-group-header">APPEARANCE</h4>
+            <div class="control-group">
+              <label for="or-render-mode">RENDER MODE</label>
+              <select id="or-render-mode">
+                <option value="solid" selected>Solid</option>
+                <option value="wireframe">Wireframe</option>
+                <option value="points">Points</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="or-material">MATERIAL</label>
+              <select id="or-material">
+                <option value="basic" selected>Basic</option>
+                <option value="normal">Normal Map</option>
+                <option value="warped">Warped</option>
+                <option value="raster">Raster</option>
+                <option value="shiny">Shiny Metal</option>
+              </select>
+            </div>
+            <div class="raster-settings" style="display: none;">
+              <div class="control-group">
+                  <label for="or-pixel-size">PIXEL SIZE</label>
+                  <input type="range" id="or-pixel-size" min="2" max="32" value="8" step="1">
+              </div>
+              <div class="control-group">
+                  <label for="or-raster-palette">RASTER PALETTE</label>
+                  <select id="or-raster-palette">
+                      <option value="famicube" selected>Famicube</option>
+                      <option value="gameboy">Gameboy</option>
+                      <option value="monochrome">Monochrome</option>
+                  </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="or-color-theme">COLOR THEME</label>
+              <select id="or-color-theme">
+                <option value="custom" selected>Custom</option>
+                <option value="monochrome">Monochrome</option>
+                <option value="complementary">Complementary</option>
+                <option value="pastel">Pastel</option>
+                <option value="neon">Neon</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="or-warp">WARP AMOUNT</label>
+              <input type="range" id="or-warp" min="0" max="10" value="1" step="0.1">
+            </div>
+            <div class="control-group">
+              <label for="or-color">COLOR</label>
+              <input type="color" id="or-color" value="#FFF8E7">
+            </div>
+            
+            <h4 class="control-group-header">INTEGRATIONS</h4>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="or-particles-enabled">
+              <label for="or-particles-enabled">ENABLE PARTICLES</label>
+            </div>
+            
+            <div class="particle-settings" style="display: none;">
+                <h4 class="control-group-header">PARTICLE SYSTEM</h4>
+                <div class="control-group">
+                    <label for="or-particle-rate">PARTICLE RATE</label>
+                    <input type="range" id="or-particle-rate" min="0" max="50" value="5" step="1">
+                </div>
+                <div class="control-group">
+                    <label for="or-particle-gravity">PARTICLE GRAVITY</label>
+                    <input type="range" id="or-particle-gravity" min="-0.5" max="0.5" value="-0.05" step="0.01">
+                </div>
+                <div class="control-group">
+                    <label for="or-particle-color">PARTICLE COLOR</label>
+                    <input type="color" id="or-particle-color" value="#FFF8E7">
+                </div>
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="or-rhythm-enabled">
+              <label for="or-rhythm-enabled">ENABLE RHYTHM</label>
+            </div>
+
+            <h4 class="control-group-header">CAMERA</h4>
+            <div class="control-group">
+              <label for="or-camera">CAMERA TYPE</label>
+              <select id="or-camera">
+                <option value="perspective" selected>Perspective</option>
+                <option value="orthographic">Orthographic</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="or-zoom">ZOOM</label>
+              <input type="range" id="or-zoom" min="200" max="1000" value="800">
+            </div>
+
+            <h4 class="control-group-header">TRANSFORM</h4>
+            <div class="control-group">
+              <label for="or-rotation-x">ROTATION X</label>
+              <input type="range" id="or-rotation-x" min="0" max="360" value="0">
+            </div>
+            <div class="control-group">
+              <label for="or-rotation-y">ROTATION Y</label>
+              <input type="range" id="or-rotation-y" min="0" max="360" value="0">
+            </div>
+            <div class="control-group">
+              <label for="or-rotation-z">ROTATION Z</label>
+              <input type="range" id="or-rotation-z" min="0" max="360" value="0">
+            </div>
+            
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="or-auto-rotate" checked>
+              <label for="or-auto-rotate">AUTO ROTATE</label>
+            </div>
+
+            <h4 class="control-group-header">ENVIRONMENT</h4>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="or-grid">
+              <label for="or-grid">SHOW GRID</label>
+            </div>
+            <div class="control-group checkbox-group">
+              <input type="checkbox" id="or-shadows" checked>
+              <label for="or-shadows">ENABLE SHADOWS</label>
+            </div>
+            <div class="control-group">
+              <label for="or-grid-size">GRID SIZE</label>
+              <input type="range" id="or-grid-size" min="100" max="1000" value="500">
+            </div>
+          </div>
+          <div id="generativeComposer-controls" class="tool-controls">
+            <h4 class="control-group-header">SYSTEM</h4>
+            <div class="control-group">
+              <label for="gc-elements">ELEMENT COUNT</label>
+              <input type="range" id="gc-elements" min="10" max="1000" value="100">
+            </div>
+            <div class="control-group">
+              <label for="gc-brush-size">BRUSH SIZE</label>
+              <input type="range" id="gc-brush-size" min="1" max="50" value="10">
+            </div>
+            <div class="control-group">
+              <label for="gc-step-size">STEP SIZE</label>
+              <input type="range" id="gc-step-size" min="0.5" max="10" value="2" step="0.5">
+            </div>
+            <button id="gc-regenerate-btn" class="action-button">REGENERATE</button>
+          </div>
+
+        <div class="media-bus-panel">
+          <h4 class="control-group-header">MEDIA BUS</h4>
+          <div id="media-bus-preview">
+            <p class="placeholder-text">NO MEDIA LOADED</p>
+          </div>
+          <div id="media-bus-info">
+            <span id="media-bus-filename">NO MEDIA LOADED</span>
+          </div>
+          <div id="media-upload-container">
+            <label for="media-file-input">UPLOAD FILE</label>
+            <input type="file" id="media-file-input" style="display: none;">
+          </div>
+          <div id="media-clear-container" style="display: none;">
+            <button id="media-clear-btn" class="action-button secondary">CLEAR MEDIA</button>
+            <button id="media-match-ratio-btn" class="action-button secondary" style="display: none;">MATCH RATIO</button>
+          </div>
+          <p class="drop-hint" style="display: none;">Or drag & drop a file onto the canvas.</p>
+        </div>
+        <div class="global-fx-panel">
+          <h4 class="control-group-header">GLOBAL FX</h4>
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="fx-game-of-life-toggle">
+            <label for="fx-game-of-life-toggle">ENABLE GAME OF LIFE</label>
+          </div>
+
+          <h4 class="control-group-header">SIMULATION</h4>
+          <div class="control-group">
+            <label for="fx-game-of-life-mode">MODE</label>
+            <select id="fx-game-of-life-mode">
+              <option value="classic">Classic (Conway)</option>
+              <option value="highlife">HighLife</option>
+              <option value="daynight">Day & Night</option>
+              <option value="seeds">Seeds</option>
+              <option value="maze">Maze</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="fx-game-of-life-cell-size">SIMULATION RESOLUTION (CELL SIZE)</label>
+            <input type="range" id="fx-game-of-life-cell-size" min="5" max="40" value="10">
+          </div>
+          <div class="control-group">
+            <label for="fx-game-of-life-speed">UPDATE SPEED (FRAMES)</label>
+            <input type="range" id="fx-game-of-life-speed" min="1" max="30" value="5">
+          </div>
+
+          <h4 class="control-group-header">SEEDING (PATTERN GENERATION)</h4>
+          <div class="control-group">
+            <label for="fx-game-of-life-threshold">BRIGHTNESS THRESHOLD</label>
+            <input type="range" id="fx-game-of-life-threshold" min="0" max="255" value="128">
+          </div>
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="fx-game-of-life-audio-seed-toggle">
+            <label for="fx-game-of-life-audio-seed-toggle">RE-SEED ON AUDIO PEAK</label>
+          </div>
+          <div class="control-group">
+            <button id="fx-game-of-life-clear" class="action-button secondary">CLEAR GRID</button>
+            <button id="fx-game-of-life-random" class="action-button secondary">RANDOM FILL</button>
+          </div>
+
+          <h4 class="control-group-header">INTEGRATION</h4>
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="fx-game-of-life-link-toggle">
+            <label for="fx-game-of-life-link-toggle">LINK CONTROLS TO GOL</label>
+          </div>
+
+          <h4 class="control-group-header">AUDIO REACTIVITY</h4>
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="global-audio-reactivity-toggle">
+            <label for="global-audio-reactivity-toggle">ENABLE MIC INPUT</label>
+          </div>
+          <div class="control-group">
+            <label for="global-audio-sensitivity">MIC SENSITIVITY</label>
+            <input type="range" id="global-audio-sensitivity" min="1" max="20" value="1" step="0.5">
+          </div>
+        </div>
+
+        <!-- Persistent Export Panel -->
+        <div class="export-panel">
+          <h4 class="control-group-header">EXPORT</h4>
+          <div class="control-group">
+            <label for="global-export-filename">FILENAME</label>
+            <input type="text" id="global-export-filename" placeholder="artwork">
+          </div>
+          
+          <div class="control-group horizontal">
+            <button class="action-button" id="global-export-png">PNG</button>
+            <button class="action-button" id="global-export-gif">RECORD GIF</button>
+            <button class="action-button" id="global-export-svg">SVG</button>
+          </div>
+
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="global-export-transparent-bg">
+            <label for="global-export-transparent-bg">TRANSPARENT BACKGROUND (PNG)</label>
+          </div>
+          <div class="control-group">
+            <button class="action-button" id="global-export-video">RECORD VIDEO</button>
+          </div>
+          <div class="control-group" style="display: none;">
+            <label for="global-export-fps">FRAMERATE (FPS)</label>
+            <input type="number" id="global-export-fps" min="1" max="60" value="30">
+          </div>
+          <div class="control-group">
+            <label for="global-export-duration">DURATION (seconds)</label>
+            <input type="number" id="global-export-duration" min="1" max="600" value="5">
+          </div>
+          <div class="control-group">
+            <label for="global-export-quality">QUALITY</label>
+            <select id="global-export-quality">
+              <option value="1">High</option>
+              <option value="0.8" selected>Good</option>
+              <option value="0.5">Medium</option>
+              <option value="0.2">Low (240p)</option>
+            </select>
+            <p class="control-hint" style="font-size: 11px; color: #888; margin-top: 5px;">Outputs .webm video. For .mp4, convert using a tool like Handbrake or ffmpeg.</p>
+          </div>
+
+          <div class="export-status" id="global-export-status"></div>
+        </div>
+      </div>
+      <footer class="column-footer" id="toolkit-footer">TOOL: THE UNIVERSAL GRID ARCHITECT</footer>
+    </aside>
+  </div>
+  
+  <!-- Core application scripts (load last) -->
+  <script src="sketch.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

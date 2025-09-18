@@ -1,0 +1,11 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore VS Code specific settings
+.vscode/
+
+# Ignore exported artwork files.
+# It's generally better to not commit generated output to the repository.
+*.png
+*.svg
+*.gif
