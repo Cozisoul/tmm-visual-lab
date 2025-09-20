@@ -14,40 +14,46 @@ class PosterComposer {
     this.blockScale = 1.0;
     this.margin = 50;
     this.layout = [];
-    this.regenerate(); // Generate an initial layout
+    // Text properties for text blocks
+    this.text = "Creative Coding"; // Default text
+    this.textFont = "Arial";
+    this.textSize = 24;
+    this.textAlignment = "center"; // center, left, right
+    // Regeneration is now triggered by script.js after the tool is loaded.
   }
 
-  regenerate() {
+  regenerate(width, height) {
+    if (!width || !height) {
+      console.error("PosterComposer.regenerate() requires width and height.");
+      return;
+    }
     this.layout = [];
     switch (this.preset) {
       case 'molnar':
-        this.generateMolnarLayout();
+        this.generateMolnarLayout(width, height);
         break;
       case 'brockmann':
-        this.generateBrockmannLayout();
+        this.generateBrockmannLayout(width, height);
         break;
       default: // generative
-        this.generateGenerativeLayout();
+        this.generateGenerativeLayout(width, height);
         break;
     }
   }
 
-  generateGenerativeLayout() {
+  generateGenerativeLayout(width, height) {
     const areaX = this.margin;
     const areaY = this.margin;
-    const areaW = artboard.width - this.margin * 2;
-    const areaH = artboard.height - this.margin * 2;
+    const areaW = width - this.margin * 2;
+    const areaH = height - this.margin * 2;
     
-    // Create a grid system for better organization
     const gridCols = 6;
     const gridRows = 6;
     const cellW = areaW / gridCols;
     const cellH = areaH / gridRows;
     
-    // Track occupied cells to prevent overlaps
     const occupiedCells = new Set();
     
-    // Helper function to check if a cell region is available
     const isCellRegionAvailable = (startCol, startRow, spanCols, spanRows) => {
       for (let col = startCol; col < startCol + spanCols; col++) {
         for (let row = startRow; row < startRow + spanRows; row++) {
@@ -58,7 +64,6 @@ class PosterComposer {
       return true;
     };
     
-    // Helper function to mark cells as occupied
     const occupyCellRegion = (startCol, startRow, spanCols, spanRows) => {
       for (let col = startCol; col < startCol + spanCols; col++) {
         for (let row = startRow; row < startRow + spanRows; row++) {
@@ -67,7 +72,6 @@ class PosterComposer {
       }
     };
     
-    // Helper function to find available space for a block
     const findAvailableSpace = (minCols, minRows) => {
       const maxAttempts = 50;
       for (let attempt = 0; attempt < maxAttempts; attempt++) {
@@ -83,14 +87,12 @@ class PosterComposer {
       return null;
     };
     
-    // Place image blocks in larger spaces
     for (let i = 0; i < this.imageBlocks; i++) {
       const space = findAvailableSpace(2, 2);
       if (space) {
         const { startCol, startRow, spanCols, spanRows } = space;
         occupyCellRegion(startCol, startRow, spanCols, spanRows);
         
-        // Add some randomness to the exact position within the grid cells
         const jitterX = random(-cellW * 0.1, cellW * 0.1);
         const jitterY = random(-cellH * 0.1, cellH * 0.1);
         
@@ -99,19 +101,18 @@ class PosterComposer {
           x: areaX + startCol * cellW + jitterX,
           y: areaY + startRow * cellH + jitterY,
           w: spanCols * cellW * this.blockScale * random(0.8, 1),
-          h: spanRows * cellH * this.blockScale * random(0.8, 1)
+          h: spanRows * cellH * this.blockScale * random(0.8, 1),
+          imageIndex: this.layout.filter(b => b.type === 'image').length // Assign a unique index
         });
       }
     }
     
-    // Place text blocks in remaining spaces, preferring horizontal arrangements
     for (let i = 0; i < this.textBlocks; i++) {
       const space = findAvailableSpace(2, 1);
       if (space) {
         const { startCol, startRow, spanCols, spanRows } = space;
         occupyCellRegion(startCol, startRow, spanCols, spanRows);
         
-        // Add some randomness to the exact position
         const jitterX = random(-cellW * 0.05, cellW * 0.05);
         const jitterY = random(-cellH * 0.05, cellH * 0.05);
         
@@ -120,17 +121,18 @@ class PosterComposer {
           x: areaX + startCol * cellW + jitterX,
           y: areaY + startRow * cellH + jitterY,
           w: spanCols * cellW * this.blockScale * random(0.9, 1),
-          h: spanRows * cellH * this.blockScale * random(0.3, 0.4)
+          h: spanRows * cellH * this.blockScale * random(0.3, 0.4),
+          text: "Text Block " + (this.layout.filter(b => b.type === 'text').length + 1)
         });
       }
     }
   }
 
-  generateMolnarLayout() {
+  generateMolnarLayout(width, height) {
     const cols = 5;
     const rows = 5;
-    const areaW = artboard.width - this.margin * 2;
-    const areaH = artboard.height - this.margin * 2;
+    const areaW = width - this.margin * 2;
+    const areaH = height - this.margin * 2;
     const cellW = areaW / cols;
     const cellH = areaH / rows;
     const totalBlocks = this.imageBlocks + this.textBlocks;
@@ -145,15 +147,17 @@ class PosterComposer {
         x: xPos + random(-cellW / 4, cellW / 4),
         y: yPos + random(-cellH / 4, cellH / 4),
         w: random(cellW * 0.5, cellW * 1.5) * this.blockScale,
-        h: random(cellH * 0.5, cellH * 1.5) * this.blockScale
+        h: random(cellH * 0.5, cellH * 1.5) * this.blockScale,
+        imageIndex: i < this.imageBlocks ? this.layout.filter(b => b.type === 'image').length : undefined,
+        text: i >= this.imageBlocks ? "Text Block " + (this.layout.filter(b => b.type === 'text').length + 1) : undefined
       });
     }
   }
 
-  generateBrockmannLayout() {
+  generateBrockmannLayout(width, height) {
     const cols = 8;
-    const areaW = artboard.width - this.margin * 2;
-    const areaH = artboard.height - this.margin * 2;
+    const areaW = width - this.margin * 2;
+    const areaH = height - this.margin * 2;
     const cellW = areaW / cols;
     const totalBlocks = this.imageBlocks + this.textBlocks;
 
@@ -165,63 +169,103 @@ class PosterComposer {
         x: this.margin + startCol * cellW,
         y: this.margin + random(areaH * 0.8),
         w: colSpan * cellW * this.blockScale,
-        h: random(areaH * 0.1, areaH * 0.5) * this.blockScale
+        h: random(areaH * 0.1, areaH * 0.5) * this.blockScale,
+        imageIndex: i < this.imageBlocks ? this.layout.filter(b => b.type === 'image').length : undefined,
+        text: i >= this.imageBlocks ? "Text Block " + (this.layout.filter(b => b.type === 'text').length + 1) : undefined
       });
     }
   }
 
   draw(buffer, media = null, golGrid = null, options = {}) {
-    if (!options.noBackground) {
-      buffer.background(17, 17, 17); // Clear the artboard
-    }
     buffer.noStroke();
 
     if (golGrid) {
-      // --- START GOL INTEGRATION ---
-      // When GOL is active, ignore the pre-generated layout and draw blocks on living cells.
-      const w = gameOfLifeCellSize;
-      const h = gameOfLifeCellSize;
-      let liveCellCount = 0;
-      
-      // First, count live cells to determine total blocks
-      for (let i = 0; i < golGrid.length; i++) {
-        for (let j = 0; j < golGrid[i].length; j++) {
-          if (golGrid[i][j] === 1) {
-            liveCellCount++;
-          }
-        }
+      // Create an off-screen buffer to draw the entire composition
+      const offscreenBuffer = createGraphics(buffer.width, buffer.height);
+      if (!options.noBackground) {
+        offscreenBuffer.background(options.backgroundColor || color(17, 17, 17));
       }
-      
-      // Determine how many image blocks to draw based on the ratio set by the user
-      const totalBlocks = this.imageBlocks + this.textBlocks;
-      const imageBlockProportion = totalBlocks > 0 ? this.imageBlocks / totalBlocks : 0;
-      const imageBlockCutoff = floor(liveCellCount * imageBlockProportion);
+      offscreenBuffer.noStroke();
 
-      let blockCounter = 0;
-      for (let i = 0; i < golGrid.length; i++) {
-        for (let j = 0; j < golGrid[i].length; j++) {
-          if (golGrid[i][j] === 1) {
-            // Use blockScale for GOL mode size control
-            const sizeMultiplier = random(0.5, 1.5) * this.blockScale;
-            const w = gameOfLifeCellSize * sizeMultiplier;
-            const h = gameOfLifeCellSize * sizeMultiplier;
-            const x = i * gameOfLifeCellSize + (gameOfLifeCellSize - w) / 2;
-            const y = j * gameOfLifeCellSize + (gameOfLifeCellSize - h) / 2;
-            
-            // Use imageColor for the first N blocks, then textColor
-            const blockColor = (blockCounter < imageBlockCutoff) ? this.imageColor : this.textColor;
-            buffer.fill(blockColor);
-            buffer.rect(x, y, w, h);
-            blockCounter++;
+      // Draw all blocks to the off-screen buffer
+      for (const block of this.layout) {
+        if (block.type === 'image') {
+          let imgToDraw = null;
+          if (Array.isArray(media) && media.length > 0) {
+            imgToDraw = media[block.imageIndex % media.length];
+          } else if (media && media.width && media.height) {
+            imgToDraw = media;
+          }
+
+          if (imgToDraw) {
+            offscreenBuffer.image(imgToDraw, block.x, block.y, block.w, block.h);
+          } else {
+            offscreenBuffer.fill(this.imageColor);
+            offscreenBuffer.rect(block.x, block.y, block.w, block.h);
+          }
+        } else if (block.type === 'text') {
+          offscreenBuffer.fill(this.textColor);
+          offscreenBuffer.textFont(this.textFont);
+          offscreenBuffer.textSize(this.textSize);
+          offscreenBuffer.textAlign(CENTER, CENTER);
+          const textX = block.x + block.w / 2;
+          const textY = block.y + block.h / 2;
+          offscreenBuffer.text(block.text, textX, textY, block.w, block.h);
+        }
+      }
+
+      // Apply GOL mask
+      const golGridCols = golGrid.length;
+      const golGridRows = golGrid[0].length;
+      const cellW = buffer.width / golGridCols;
+      const cellH = buffer.height / golGridRows;
+
+      if (!options.noBackground) {
+        buffer.background(options.backgroundColor || color(17, 17, 17));
+      }
+
+      for (let i = 0; i < golGridCols; i++) {
+        for (let j = 0; j < golGridRows; j++) {
+          if (golGrid[i][j] === 1) { // If cell is alive
+            // Draw the corresponding portion from the off-screen buffer
+            buffer.image(offscreenBuffer,
+              i * cellW, j * cellH, cellW, cellH, // Destination: x, y, w, h
+              i * cellW, j * cellH, cellW, cellH  // Source: sx, sy, sw, sh
+            );
           }
         }
       }
-      // --- END GOL INTEGRATION ---
+      offscreenBuffer.remove(); // Clean up the off-screen buffer
     } else {
-      // Draw the pre-generated layout
+      // Original drawing logic if GOL is not active
+      if (!options.noBackground) {
+        buffer.background(options.backgroundColor || color(17, 17, 17));
+      }
+
       for (const block of this.layout) {
-        buffer.fill(block.type === 'image' ? this.imageColor : this.textColor);
-        buffer.rect(block.x, block.y, block.w, block.h);
+        if (block.type === 'image') {
+          let imgToDraw = null;
+          if (Array.isArray(media) && media.length > 0) {
+            imgToDraw = media[block.imageIndex % media.length];
+          } else if (media && media.width && media.height) {
+            imgToDraw = media;
+          }
+
+          if (imgToDraw) {
+            buffer.image(imgToDraw, block.x, block.y, block.w, block.h);
+          } else {
+            buffer.fill(this.imageColor);
+            buffer.rect(block.x, block.y, block.w, block.h);
+          }
+        } else if (block.type === 'text') {
+          buffer.fill(this.textColor);
+          buffer.textFont(this.textFont);
+          buffer.textSize(this.textSize);
+          buffer.textAlign(CENTER, CENTER);
+          const textX = block.x + block.w / 2;
+          const textY = block.y + block.h / 2;
+          buffer.text(block.text, textX, textY, block.w, block.h);
+        }
       }
     }
   }
