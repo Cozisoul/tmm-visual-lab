@@ -37,6 +37,10 @@ class GlyphDeconstructor {
       currentScale = this.scale * (1 + options.audioLevel * 1.5);
     }
 
+    // Get proper canvas dimensions for centering
+    const canvasWidth = options.canvasWidth || canvasWidth;
+    const canvasHeight = options.canvasHeight || canvasHeight;
+
     if (!options.noBackground) {
       buffer.background(17, 17, 17);
     }
@@ -76,11 +80,11 @@ class GlyphDeconstructor {
       buffer.textSize(fontSize);
 
       const totalLineHeight = (this.glyphs.length > 0 ? fontSize : 0) * this.lineCount;
-      const startY = buffer.height / 2 - totalLineHeight / 2 + fontSize / 2;
+      const startY = canvasHeight / 2 - totalLineHeight / 2 + fontSize / 2;
 
       for (let line = 0; line < this.lineCount; line++) {
         const totalWidth = this.glyphs.reduce((w, glyph) => w + buffer.textWidth(glyph.char), 0);
-        let currentX = (buffer.width - totalWidth) / 2;
+        let currentX = (canvasWidth - totalWidth) / 2;
         const yPos = startY + line * fontSize;
 
         for (const glyph of this.glyphs) {

@@ -11,6 +11,12 @@ class ColorSystemAnalyzer {
     this.isAnalyzing = false;
   }
 
+  regenerate() {
+    // Reset analysis data
+    this.palette = [];
+    this.isAnalyzing = false;
+  }
+
   analyze(sourceMedia) {
     if (!sourceMedia || this.isAnalyzing) return;
 
@@ -68,17 +74,22 @@ class ColorSystemAnalyzer {
     if (!options.noBackground) {
       buffer.background(17, 17, 17);
     }
+
+    // Get proper canvas dimensions for centering
+    const canvasWidth = options.canvasWidth || buffer.width;
+    const canvasHeight = options.canvasHeight || buffer.height;
+
     if (this.palette.length > 0) {
-      const barHeight = buffer.height / this.palette.length;
+      const barHeight = canvasHeight / this.palette.length;
       buffer.noStroke();
       for (let i = 0; i < this.palette.length; i++) {
         buffer.fill(this.palette[i]);
-        buffer.rect(0, i * barHeight, buffer.width, barHeight);
+        buffer.rect(0, i * barHeight, canvasWidth, barHeight);
       }
     } else {
       buffer.fill(128);
       buffer.textAlign(CENTER, CENTER);
-      buffer.text('UPLOAD AN IMAGE AND CLICK "ANALYZE"', buffer.width / 2, buffer.height / 2);
+      buffer.text('UPLOAD AN IMAGE AND CLICK "ANALYZE"', canvasWidth / 2, canvasHeight / 2);
     }
   }
 }

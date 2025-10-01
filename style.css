@@ -124,6 +124,7 @@ body {
   /* This is a critical fix for CSS Grid. It prevents the center column
      from expanding beyond its designated space if its content is too wide. */
   min-width: 0;
+  overflow: hidden; /* Prevent canvas overflow */
 }
 
 /* --- Column Components --- */
@@ -278,6 +279,11 @@ body {
   width: auto;
   height: auto;
   border: var(--border-style);
+  /* Ensure canvas fits properly within its container */
+  object-fit: contain;
+  /* Center the canvas within its wrapper */
+  margin: 0 auto;
+  position: relative;
 }
 
 /* --- Drag and Drop Highlighting --- */
@@ -363,13 +369,16 @@ body {
 
 .control-group.horizontal {
   flex-direction: row;
+  align-items: center;
   gap: 10px;
 }
 .control-group.horizontal .input-group {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 5px;
+  min-width: 0;
 }
 .control-group.horizontal .input-group input {
   flex-grow: 1;
@@ -389,18 +398,28 @@ body {
 .control-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
 .control-group-header {
-  font-family: var(--ff-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  color: var(--c-text-meta);
-  margin-top: 24px;
-  margin-bottom: 0px;
-  padding-bottom: 8px;
-  border-bottom: var(--border-style);
+  cursor: pointer;
+  position: relative;
+  user-select: none; /* Prevent text selection on click */
+}
+
+.control-group-header::before {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  transition: transform 0.2s;
+}
+
+.control-group-header.active::before {
+  transform: translateY(-50%) rotate(-90deg);
 }
 .tool-controls.active > .control-group-header:first-child {
   margin-top: 0;

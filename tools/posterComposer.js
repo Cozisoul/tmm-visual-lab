@@ -3,8 +3,9 @@
  * @description A layout tool for generating poster compositions based on different design
  * principles, including generative, Molnar-style, and Müller-Brockmann-style layouts.
  */
-class PosterComposer {
+class PosterComposer extends ToolBase {
   constructor() {
+    super();
     console.log("Poster Composer loaded.");
     this.imageBlocks = 2;
     this.preset = 'generative';
@@ -177,71 +178,60 @@ class PosterComposer {
   }
 
   draw(buffer, media = null, golGrid = null, options = {}) {
+    buffer.push();
+    
+    // Ensure proper canvas sizing for tools
+    const canvasWidth = options.canvasWidth || buffer.width;
+    const canvasHeight = options.canvasHeight || buffer.height;
+    
+    buffer.translate(-canvasWidth / 2, -canvasHeight / 2);
     buffer.noStroke();
 
+    const audioScale = options.isAudioReactive ? 1 + options.audioLevel * 0.5 : 1; // Subtle scaling effect
+
+    if (!options.noBackground) {
+      buffer.background(options.backgroundColor || color(17, 17, 17));
+    }
+
     if (golGrid) {
-      // Create an off-screen buffer to draw the entire composition
-      const offscreenBuffer = createGraphics(buffer.width, buffer.height);
-      if (!options.noBackground) {
-        offscreenBuffer.background(options.backgroundColor || color(17, 17, 17));
-      }
-      offscreenBuffer.noStroke();
-
-      // Draw all blocks to the off-screen buffer
-      for (const block of this.layout) {
-        if (block.type === 'image') {
-          let imgToDraw = null;
-          if (Array.isArray(media) && media.length > 0) {
-            imgToDraw = media[block.imageIndex % media.length];
-          } else if (media && media.width && media.height) {
-            imgToDraw = media;
-          }
-
-          if (imgToDraw) {
-            offscreenBuffer.image(imgToDraw, block.x, block.y, block.w, block.h);
-          } else {
-            offscreenBuffer.fill(this.imageColor);
-            offscreenBuffer.rect(block.x, block.y, block.w, block.h);
-          }
-        } else if (block.type === 'text') {
-          offscreenBuffer.fill(this.textColor);
-          offscreenBuffer.textFont(this.textFont);
-          offscreenBuffer.textSize(this.textSize);
-          offscreenBuffer.textAlign(CENTER, CENTER);
-          const textX = block.x + block.w / 2;
-          const textY = block.y + block.h / 2;
-          offscreenBuffer.text(block.text, textX, textY, block.w, block.h);
-        }
-      }
-
-      // Apply GOL mask
       const golGridCols = golGrid.length;
       const golGridRows = golGrid[0].length;
-      const cellW = buffer.width / golGridCols;
-      const cellH = buffer.height / golGridRows;
-
-      if (!options.noBackground) {
-        buffer.background(options.backgroundColor || color(17, 17, 17));
-      }
+      const cellW = canvasWidth / golGridCols;
+      const cellH = canvasHeight / golGridRows;
 
       for (let i = 0; i < golGridCols; i++) {
         for (let j = 0; j < golGridRows; j++) {
           if (golGrid[i][j] === 1) { // If cell is alive
-            // Draw the corresponding portion from the off-screen buffer
-            buffer.image(offscreenBuffer,
-              i * cellW, j * cellH, cellW, cellH, // Destination: x, y, w, h
-              i * cellW, j * cellH, cellW, cellH  // Source: sx, sy, sw, sh
-            );
+            const cellX = i * cellW;
+            const cellY = j * cellH;
+
+            // Randomly decide between image and text block
+            const blockType = random() > 0.5 ? 'image' : 'text';
+
+            if (blockType === 'image') {
+              let imgToDraw = null;
+              if (Array.isArray(media) && media.length > 0) {
+                imgToDraw = random(media); // Pick a random image if multiple are provided
+              } else if (media && media.width && media.height) {
+                imgToDraw = media;
+              }
+
+              if (imgToDraw) {
+                buffer.image(imgToDraw, cellX, cellY, cellW * audioScale, cellH * audioScale);
+              } else {
+                buffer.fill(this.imageColor);
+                buffer.rect(cellX, cellY, cellW * audioScale, cellH * audioScale);
+              }
+            } else if (blockType === 'text') {
+              buffer.fill(this.textColor);
+              // Instead of rendering text, just draw a rectangle
+              buffer.rect(cellX, cellY, cellW * audioScale, cellH * audioScale);
+            }
           }
         }
       }
-      offscreenBuffer.remove(); // Clean up the off-screen buffer
     } else {
       // Original drawing logic if GOL is not active
-      if (!options.noBackground) {
-        buffer.background(options.backgroundColor || color(17, 17, 17));
-      }
-
       for (const block of this.layout) {
         if (block.type === 'image') {
           let imgToDraw = null;
@@ -268,6 +258,7 @@ class PosterComposer {
         }
       }
     }
+    buffer.pop();
   }
 }
 

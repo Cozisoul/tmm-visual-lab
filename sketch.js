@@ -5,49 +5,8 @@
 // of the application. It manages the active tool, the off-screen artboard buffer,
 // global effects like Game of Life, and the rendering pipeline.
 
-/**
- * @class AudioAnalyzer
- * @description A helper class to manage microphone input and provide a normalized
- * audio level for reactive animations across different tools.
- * This is included directly in sketch.js to prevent file loading race conditions.
- */
-class AudioAnalyzer {
-  constructor() {
-    this.mic = null;
-    this.amplitude = null;
-    this.level = 0;
-    this.isInitialized = false;
-    this.isEnabled = false;
-  }
 
-  init() {
-    if (this.isInitialized) return Promise.resolve();
-    return new Promise(async (resolve, reject) => {
-      try {
-        await userStartAudio();
-        this.mic = new p5.AudioIn();
-        this.mic.start(() => {
-          this.amplitude = new p5.Amplitude();
-          this.amplitude.setInput(this.mic);
-          this.isInitialized = true;
-          console.log("Audio Analyzer initialized successfully.");
-          resolve();
-        }, (err) => {
-          console.error("Audio Analyzer mic.start() failed:", err);
-          this.isInitialized = false;
-          reject(err);
-        });
-      } catch (e) {
-        console.error("Audio Analyzer failed to initialize:", e);
-        this.isInitialized = false;
-        reject(e);
-      }
-    });
-  }
-  update() { if (this.isInitialized && this.isEnabled && this.amplitude) { this.level = this.amplitude.getLevel(); } else { this.level = 0; } }
-  getLevel() { return this.level; }
-  setEnabled(enabled) { this.isEnabled = enabled; }
-}
+
 
 let activeTool = null;
 let canvas;
@@ -70,6 +29,15 @@ const toolClasses = {
   rhythmSequencer: 'RhythmSequencer',
   objectRasterizer3D: 'ObjectRasterizer3D',
   generativeComposer: 'GenerativeComposer',
+  generativeCompositionLab: 'GenerativeCompositionLab',
+  vectorFieldModulator: 'VectorFieldModulator',
+  lSystemArchitect: 'LSystemArchitect',
+  designOffice: 'DesignOffice',
+  generativeGraphicsEngine: 'GenerativeGraphicsEngine',
+  ideaGenerator: 'IdeaGenerator',
+  creativeCodingWorkbench: 'CreativeCodingWorkbench',
+  brandSystemTool: 'BrandSystemTool',
+  libraryNotes: 'LibraryNotes'
 };
 
 const MEDIA_TOOL_CLASSES = [
@@ -83,7 +51,17 @@ const MEDIA_TOOL_CLASSES = [
 let artboardWidth = 1080;
 let artboardHeight = 1080;
 let artboardBackgroundColor = '#000000';
-let globalViewZoom = 1.0;
+let globalViewZoom = 0.8; // Start with a more reasonable zoom level
+
+// Canvas sizing utilities for tools
+let currentCanvasSize = { width: 0, height: 0 };
+let currentArtboardSize = { width: 0, height: 0 };
+let currentScale = 1.0;
+
+// Simple position control (joystick-like)
+let positionOffset = { x: 0, y: 0 };
+let positionSpeed = 2;
+let joystickEnabled = false;
 
 
 // Game of Life FX
@@ -141,6 +119,8 @@ let golMetrics = {
   averagePosition: { x: 0.5, y: 0.5 } // Normalized 0-1
 };
 
+let isDisplayScaled = true;
+
 // GIF Recording
 let capturer;
 let isRecording = false;
@@ -171,10 +151,23 @@ function setup() {
     canvas.drop(handleFileDrop, unhighlightDropZone);
 
     // Initialize helpers
-    audioAnalyzer = new AudioAnalyzer();
+    // Use the globally available audioAnalyzer instance
+    audioAnalyzer = window.audioAnalyzer;
 
     console.log("Loading default tool...");
     loadTool('gridArchitect');
+    
+    // Add window resize handler
+    window.addEventListener('resize', () => {
+      const wrapper = document.getElementById('canvas-wrapper');
+      if (wrapper && canvas) {
+        // Add a small delay to ensure proper resizing
+        setTimeout(() => {
+        resizeCanvas(wrapper.offsetWidth, wrapper.offsetHeight);
+        }, 10);
+      }
+    });
+    
     console.log("Application setup complete.");
   } catch (e) {
     console.error("Critical setup failed:", e);
@@ -188,10 +181,9 @@ function setup() {
  */
 function draw() {
   try {
-    if (isAudioReactive) {
-      audioAnalyzer.update();
-    }
+    if (isRecording && !capturer) return;
 
+    // --- GOL & Audio Logic ---
     if (gameOfLifeEnabled && frameCount % gameOfLifeSpeed === 0) {
       if (!justEnabledGOL) {
         updateGOLGrid();
@@ -200,72 +192,90 @@ function draw() {
         justEnabledGOL = false;
       }
     }
-
-    // --- Audio Processing & GOL Trigger ---
-    const rawAudioLevel = isAudioReactive ? audioAnalyzer.getLevel() : 0;
+    const rawAudioLevel = isAudioReactive ? audioAnalyzer.getAmplitude() : 0;
     const adjustedAudioLevel = constrain(rawAudioLevel * audioSensitivity, 0, 1.0);
+    if (gameOfLifeEnabled && golAudioSeedEnabled && isAudioReactive && adjustedAudioLevel > 0.3 && lastAudioLevelForGOL <= 0.3) {
+      seedGameOfLifeFromArtboard();
+    }
+    lastAudioLevelForGOL = adjustedAudioLevel;
 
-    // If GOL audio seeding is on, check for a sound peak to re-seed the grid.
-    if (gameOfLifeEnabled && golAudioSeedEnabled && isAudioReactive) {
-      // A "peak" is when the audio level crosses a threshold.
-      if (adjustedAudioLevel > 0.3 && lastAudioLevelForGOL <= 0.3) {
-        seedGameOfLifeFromArtboard();
+    // --- Drawing to Artboard ---
+    if (activeTool && typeof activeTool.draw === 'function' && artboard) {
+      const isTransparent = document.getElementById('global-export-transparent-bg')?.checked || false;
+      
+      // Determine if the background should be drawn. Additive tools manage their own background.
+      const shouldDrawBackground = !isTransparent && !['GenerativeComposer', 'ParticleEngine'].includes(activeTool.constructor.name);
+
+      artboard.push();
+      if (shouldDrawBackground) {
+        artboard.background(artboardBackgroundColor);
+      } else if (isTransparent) {
+        artboard.clear(); // Ensure transparency is fresh
       }
-      lastAudioLevelForGOL = adjustedAudioLevel;
+      
+      // Pass the artboard as the graphics context for the tool to draw on
+      activeTool.draw(artboard, mediaBusContent, gameOfLifeEnabled ? gameOfLifeGrid : null, {
+        noBackground: !shouldDrawBackground,
+        isAudioReactive: isAudioReactive,
+        audioLevel: adjustedAudioLevel,
+        backgroundColor: artboardBackgroundColor,
+        zoom: globalViewZoom,
+        canvasWidth: artboard.width,
+        canvasHeight: artboard.height,
+        scale: 1.0 
+      });
+      artboard.pop();
     }
 
-    const drawOptions = {
-      noBackground: false,
-      isAudioReactive: isAudioReactive,
-      audioLevel: adjustedAudioLevel,
-      backgroundColor: artboardBackgroundColor, // Pass the global BG color to all tools
-      zoom: globalViewZoom
-    };
+    // --- Displaying Artboard on Main Canvas ---
+    background(20); // Clear main canvas with a dark background
+    
+    if (artboard) {
+      const scaleX = width / artboard.width;
+      const scaleY = height / artboard.height;
+      const scale = Math.min(scaleX, scaleY) * globalViewZoom;
+      const drawW = artboard.width * scale;
+      const drawH = artboard.height * scale;
+      const drawX = (width - drawW) / 2 + positionOffset.x;
+      const drawY = (height - drawH) / 2 + positionOffset.y;
 
-    if (activeTool && typeof activeTool.draw === 'function') {
-      // Let the tool draw its own background unless it's an additive tool that needs trails
-      if (activeTool.constructor.name !== 'GenerativeComposer' && activeTool.constructor.name !== 'ParticleEngine') {
-        artboard.background(17);
-      }
-      activeTool.draw(artboard, mediaBusContent, gameOfLifeEnabled ? gameOfLifeGrid : null, drawOptions);
-    } else {
-      artboard.background(20);
+      image(artboard, drawX, drawY, drawW, drawH);
+      
+      // Update mouse coordinates relative to the scaled and centered artboard
+      artboardMouseX = (mouseX - drawX) / scale;
+      artboardMouseY = (mouseY - drawY) / scale;
     }
 
-    background(color(artboardBackgroundColor));
-    const canvasRatio = width / height;
-    const artboardRatio = artboard.width / artboard.height;
-    let drawW, drawH, x, y;
-    if (canvasRatio > artboardRatio) {
-      drawH = height * 0.95;
-      drawW = drawH * artboardRatio;
-    } else {
-      drawW = width * 0.95;
-      drawH = drawW / artboardRatio;
-    }
-    x = (width - drawW) / 2;
-    y = (height - drawH) / 2;
-    image(artboard, x, y, drawW, drawH);
-
-    // Calculate mouse coordinates relative to the artboard for tools that need it
-    artboardMouseX = map(mouseX, x, x + drawW, 0, artboard.width);
-    artboardMouseY = map(mouseY, y, y + drawH, 0, artboard.height);
-
+    // --- Overlays and UI ---
     if (activeTool && typeof activeTool.drawOverlay === 'function') {
-      activeTool.drawOverlay();
+      activeTool.drawOverlay(this); // Draw overlay on the main canvas
+    }
+    
+    if (joystickEnabled) {
+      fill(0, 255, 0, 150);
+      textAlign(LEFT, TOP);
+      textSize(12);
+      text(`Position Joystick: ON (WASD/Arrows to move, Space to reset)`, 10, 10);
+      text(`Offset: X:${positionOffset.x.toFixed(1)}, Y:${positionOffset.y.toFixed(1)}`, 10, 25);
     }
 
     const frDisplay = document.getElementById('canvas-framerate-display');
-    if (frDisplay && frameCount % 10 === 0) {
+    if (frDisplay && frameCount % 30 === 0) {
       frDisplay.textContent = `[FRAMERATE: ${frameRate().toFixed(0)} FPS]`;
     }
 
+    // --- Recording ---
     if (isRecording && capturer) {
-      capturer.capture(artboard.elt);
+      capturer.capture(artboard.elt); // Capture the artboard element directly
     }
+
   } catch (error) {
     console.error("Critical error in draw loop:", error);
+    if (activeTool?.cleanup) activeTool.cleanup();
+    activeTool = null;
     noLoop();
+    const wrapper = document.getElementById('canvas-wrapper');
+    if (wrapper) wrapper.innerHTML = '<div class="error-message">An error occurred. Please refresh.</div>';
   }
 }
 
@@ -277,10 +287,11 @@ function resizeArtboard(w, h) {
   artboardWidth = w;
   artboardHeight = h;
   if (artboard) artboard.remove();
+  // Create a 2D buffer for better text support - WEBGL has font loading issues
   artboard = createGraphics(w, h);
   artboard.colorMode(RGB, 255);
   artboard.drawingContext.canvas.willReadFrequently = true;
-  console.log("Artboard resized and created.");
+  console.log("Artboard resized and created as 2D buffer.");
 
   const sizeDisplay = document.getElementById('canvas-size-display');
   if (sizeDisplay) sizeDisplay.textContent = `[ARTBOARD: ${w}x${h}px]`;
@@ -288,9 +299,20 @@ function resizeArtboard(w, h) {
   reinitializeGOLGrid();
 
   if (activeTool && typeof activeTool.regenerate === 'function') {
-    activeTool.regenerate();
+    // Pass the new dimensions to the regenerate function if it accepts them
+    if (activeTool.regenerate.length === 2) {
+        activeTool.regenerate(w, h);
+    } else {
+        activeTool.regenerate();
+    }
+  }
+
+  if (activeTool && typeof activeTool.onResize === 'function') {
+    activeTool.onResize(w, h);
   }
 }
+
+// Artboard system removed - working directly on main canvas
 
 /**
  * Dynamically loads a tool.
@@ -325,6 +347,17 @@ async function loadTool(toolName) {
   } catch (e) {
     console.error(`Error initializing ${className}:`, e);
     activeTool = null;
+    
+    // Show user-friendly error message
+    const statusEl = document.getElementById('global-export-status');
+    if (statusEl) {
+      statusEl.textContent = `Error loading tool: ${toolName}. Check console for details.`;
+      statusEl.style.display = 'block';
+      statusEl.style.color = 'red';
+      setTimeout(() => {
+        statusEl.style.display = 'none';
+      }, 5000);
+    }
   }
   console.log(`--- Tool loading finished ---`);
 }
@@ -374,11 +407,76 @@ function modulateActiveToolWithGOL() {
   if (typeof tool.jitter !== 'undefined') tool.jitter = map(golMetrics.chaos, 0, 0.1, 0, 100);
   if (typeof tool.speed !== 'undefined') tool.speed = map(golMetrics.chaos, 0, 0.1, 0.5, 10);
   if (typeof tool.marginX !== 'undefined') tool.marginX = map(golMetrics.averagePosition.x, 0, 1, 0, 200);
+
+  if (tool.constructor.name === 'ObjectRasterizer3D') {
+    if (golMetrics.density > 0.01) {
+      tool.shape = 'gol';
+      tool.cameraType = 'ortho';
+      tool.rotationX = 35;
+      tool.rotationY = -45;
+      tool.autoRotate = false;
+      tool.gridEnabled = true;
+    }
+  }
+}
+
+function resizeCanvas(w, h) {
+  if (canvas) {
+    canvas.resize(w, h);
+  }
 }
 
 function windowResized() {
   const wrapper = document.getElementById('canvas-wrapper');
-  if (wrapper) resizeCanvas(wrapper.offsetWidth, wrapper.offsetHeight);
+  if (wrapper) {
+    // Add a small delay to ensure the wrapper has finished resizing
+    setTimeout(() => {
+      resizeCanvas(wrapper.offsetWidth, wrapper.offsetHeight);
+    }, 10);
+  }
+}
+
+function keyPressed() {
+  if (key === 's' || key === 'S') {
+    saveCanvas('tmm-visual-lab-' + new Date().toISOString().slice(0, 19), 'png');
+  } else if (key === 'g' || key === 'G') {
+    gameOfLifeEnabled = !gameOfLifeEnabled;
+    console.log('Game of Life:', gameOfLifeEnabled ? 'enabled' : 'disabled');
+  } else if (key === 'l' || key === 'L') {
+    golLinkEnabled = !golLinkEnabled;
+    console.log('GOL Link:', golLinkEnabled ? 'enabled' : 'disabled');
+  } else if (key === 'r' || key === 'R') {
+    if (activeTool && typeof activeTool.regenerate === 'function') {
+      activeTool.regenerate();
+    }
+  } else if (key === 'j' || key === 'J') {
+    joystickEnabled = !joystickEnabled;
+    console.log('Position Joystick:', joystickEnabled ? 'enabled' : 'disabled');
+    console.log('Use WASD or Arrow Keys to move, Space to reset position');
+    
+    // Update HTML status
+    const joystickStatus = document.getElementById('joystick-status');
+    if (joystickStatus) {
+      joystickStatus.style.display = joystickEnabled ? 'block' : 'none';
+    }
+  } else if (key === ' ') {
+    // Reset position
+    positionOffset = { x: 0, y: 0 };
+    console.log('Position reset to center');
+  }
+  
+  // Position controls (joystick)
+  if (joystickEnabled) {
+    if (key === 'w' || key === 'W' || keyCode === UP_ARROW) {
+      positionOffset.y -= positionSpeed;
+    } else if (key === 's' || key === 'S' || keyCode === DOWN_ARROW) {
+      positionOffset.y += positionSpeed;
+    } else if (key === 'a' || key === 'A' || keyCode === LEFT_ARROW) {
+      positionOffset.x -= positionSpeed;
+    } else if (key === 'd' || key === 'D' || keyCode === RIGHT_ARROW) {
+      positionOffset.x += positionSpeed;
+    }
+  }
 }
 
 function reinitializeGOLGrid() {
@@ -386,6 +484,33 @@ function reinitializeGOLGrid() {
   gameOfLifeCols = floor(artboardWidth / gameOfLifeCellSize);
   gameOfLifeRows = floor(artboardHeight / gameOfLifeCellSize);
   gameOfLifeGrid = new Array(gameOfLifeCols).fill(0).map(() => new Array(gameOfLifeRows).fill(0));
+}
+
+// Utility functions for tools to get proper canvas sizing
+function getCanvasSize() {
+  return { ...currentCanvasSize };
+}
+
+function getArtboardSize() {
+  return { ...currentArtboardSize };
+}
+
+function getCanvasScale() {
+  return currentScale;
+}
+
+function getOptimalCanvasSize() {
+  // Return the optimal canvas size that tools should use
+  const canvas = getCanvasSize();
+  const artboard = getArtboardSize();
+  const scale = getCanvasScale();
+  
+  return {
+    width: Math.floor(canvas.width * scale),
+    height: Math.floor(canvas.height * scale),
+    scale: scale,
+    centered: true
+  };
 }
 
 function handleFileInput(file) {

@@ -3,8 +3,9 @@
  * @description A tool for creating systematic grid layouts, including Cartesian, isometric, and polar grids.
  * It allows for detailed control over columns, rows, margins, gutters, and cell appearance.
  */
-class GridArchitect {
+class GridArchitect extends ToolBase {
   constructor() {
+    super();
     this.cols = 10;
     this.layoutType = 'cartesian';
     this.rows = 10;
@@ -31,27 +32,50 @@ class GridArchitect {
     this.lineColor = '#333333';
     this.fillColor = '#111111';
     this.showGrid = true;
+    this.showBackground = true; // New property
+    this.backgroundColor = '#000000'; // New property
+
+    // State for animations
+    this.cellStates = [];
+    this.lastCols = 0;
+    this.lastRows = 0;
+    this.easingFactor = 0.2; // How quickly cells pop, higher is faster
+    this.popHeightMultiplier = 1.5; // How high cells pop, relative to their height
   }
 
   draw(buffer, media = null, golGrid = null, options = {}) {
-    if (!options.noBackground) {
-      buffer.background(17, 17, 17); // #111111
-    }
-
+    // Ensure proper canvas sizing for tools
+    const canvasWidth = options.canvasWidth || buffer.width;
+    const canvasHeight = options.canvasHeight || buffer.height;
+    
+    // Performance optimization: Skip drawing if not visible
     if (!this.showGrid) {
+      if (!options.noBackground && this.showBackground) {
+        buffer.background(this.backgroundColor);
+      }
       return;
     }
 
+    if (!options.noBackground && this.showBackground) {
+      buffer.background(this.backgroundColor);
+    }
+
+    // Performance optimization: Cache expensive calculations
     if (this.layoutType === 'cartesian') {
-      this.drawCartesianGrid(buffer, golGrid);
+      this.drawCartesianGrid(buffer, golGrid, canvasWidth, canvasHeight);
     } else if (this.layoutType === 'isometric') {
-      this.drawIsometricGrid(buffer, golGrid, options);
+      this.drawIsometricGrid(buffer, golGrid, options, canvasWidth, canvasHeight);
     } else if (this.layoutType === 'polar') {
-      this.drawPolarGrid(buffer, golGrid, options);
+      this.drawPolarGrid(buffer, golGrid, options, canvasWidth, canvasHeight);
     }
   }
 
-  drawCartesianGrid(buffer, golGrid = null) {
+  drawCartesianGrid(buffer, golGrid = null, canvasWidth, canvasHeight) {
+    buffer.push();
+    
+    // Center the grid within the buffer
+    buffer.translate(canvasWidth / 2, canvasHeight / 2);
+    
     // If background is transparent, we should probably still fill the shapes
     buffer.fill(this.fillColor);
     buffer.stroke(this.lineColor);
@@ -60,14 +84,24 @@ class GridArchitect {
     const totalGutterW = this.gutterX * (this.cols - 1);
     const totalGutterH = this.gutterY * (this.rows - 1);
 
-    const gridW = buffer.width - this.marginX * 2 - totalGutterW;
-    const gridH = buffer.height - this.marginY * 2 - totalGutterH;
+    // Ensure grid fits within canvas bounds with proper margins
+    const availableW = canvasWidth - this.marginX * 2;
+    const availableH = canvasHeight - this.marginY * 2;
+    const gridW = Math.max(100, availableW - totalGutterW);
+    const gridH = Math.max(100, availableH - totalGutterH);
     
     const cellW = gridW / this.cols;
     const cellH = gridH / this.rows;
+    
+    // Center the grid within the available space - WEBGL coordinates
+    const startX = -gridW / 2;
+    const startY = -gridH / 2;
 
     // If cells have no size (e.g., margins are too large), don't try to draw anything.
-    if (cellW <= 0 || cellH <= 0) return;
+    if (cellW <= 0 || cellH <= 0) {
+        buffer.pop(); // Make sure to pop before returning
+        return;
+    }
 
     // Draw the grid
     for (let i = 0; i < this.cols; i++) {
@@ -87,10 +121,19 @@ class GridArchitect {
         }
         // --- END GOL INTEGRATION ---
 
-        const x = this.marginX + i * (cellW + this.gutterX);
-        const y = this.marginY + j * (cellH + this.gutterY);
+        const x = startX + i * (cellW + this.gutterX);
+        const y = startY + j * (cellH + this.gutterY);
+        
+        // Cell positioning
+        
         if (this.cellShape === 'rectangle') {
+          // Draw cell with stroke to make individual cells visible
+          buffer.push();
+          buffer.fill(this.fillColor);
+          buffer.stroke(this.lineColor);
+          buffer.strokeWeight(this.lineWeight);
           buffer.rect(x, y, cellW, cellH);
+          buffer.pop();
         } else if (this.cellShape === 'ellipse') {
           buffer.ellipse(x + cellW / 2, y + cellH / 2, cellW, cellH);
         } else if (this.cellShape === 'triangle') {
@@ -106,21 +149,57 @@ class GridArchitect {
         this.drawCellText(buffer, x, y, cellW, cellH, i * this.rows + j);
       }
     }
+    buffer.pop();
   }
 
-  drawIsometricGrid(buffer, golGrid = null, options = {}) {
+  drawIsometricGrid(buffer, golGrid = null, options = {}, canvasWidth, canvasHeight) {
+    buffer.push();
+    
+    // Center the grid within the buffer
+    buffer.translate(canvasWidth / 2, canvasHeight / 2);
+    
     buffer.fill(this.fillColor);
-    buffer.stroke(this.lineColor); 
+    buffer.stroke(this.lineColor);
     buffer.strokeWeight(this.lineWeight);
 
-    const step = (buffer.width - this.marginX * 2) / this.cols;
+    // Calculate proper scaling to fit canvas for isometric grid
+    const availableWidth = canvasWidth - this.marginX * 2;
+    const availableHeight = canvasHeight - this.marginY * 2;
+    
+    // For isometric grids, we need to calculate based on the diagonal span
+    // The isometric grid spans diagonally, so we need to account for both dimensions
+    const maxSpan = Math.min(availableWidth, availableHeight);
+    
+    // Calculate step size based on the maximum diagonal span of the grid
+    // For isometric, the total span is roughly (cols + rows) * step
+    const totalGridSpan = Math.max(this.cols, this.rows) * 1.5; // 1.5 accounts for isometric projection
+    const step = Math.max(10, (maxSpan / totalGridSpan) * 0.7); // Increased padding and minimum step size
+    
+    // Debug logging (removed to reduce console spam)
+    
+    // Safety check: ensure step is reasonable
+    if (step < 8) {
+      console.warn('Isometric grid step too small, adjusting...');
+      // Don't return, just use a minimum step size
+    }
+    
     const angle = 30;
     const cellW = step * cos(radians(angle)) * 2;
     const cellH = step * sin(radians(angle)) * 2;
 
     buffer.push();
-    buffer.translate(buffer.width / 2, this.marginY * 1.5);
-    buffer.scale(options.zoom || 1.0);
+    // Center the isometric grid within the buffer - already centered above
+    // Don't apply zoom scaling here as it's handled by the main canvas scaling
+    // buffer.scale(options.zoom || 1.0);
+    
+    // Debug: Draw bounds to verify centering
+    if (frameCount < 120) { // Show for 2 seconds
+      buffer.stroke(255, 0, 0);
+      buffer.strokeWeight(2);
+      buffer.noFill();
+      const debugSize = Math.min(canvasWidth, canvasHeight) * 0.4;
+      buffer.rect(-debugSize/2, -debugSize/2, debugSize, debugSize);
+    }
 
     for (let i = 0; i < this.cols; i++) {
       for (let j = 0; j < this.rows; j++) {
@@ -228,15 +307,21 @@ class GridArchitect {
     buffer.pop();
   }
 
-  drawPolarGrid(buffer, golGrid = null, options = {}) {
+  drawPolarGrid(buffer, golGrid = null, options = {}, canvasWidth, canvasHeight) {
     buffer.fill(this.fillColor);
     buffer.stroke(this.lineColor);
     buffer.strokeWeight(this.lineWeight);
 
     buffer.push();
-    buffer.translate(buffer.width / 2, buffer.height / 2);
+    // Center properly in WEBGL mode - origin is already at center
+    buffer.translate(0, 0);
+    // Don't apply zoom scaling here as it's handled by the main canvas scaling
+    // buffer.scale(options.zoom || 1.0);
 
-    const maxRadius = min(buffer.width, buffer.height) / 2 - this.marginX;
+    // Calculate proper scaling to fit canvas with margins
+    const availableWidth = canvasWidth - this.marginX * 2;
+    const availableHeight = canvasHeight - this.marginY * 2;
+    const maxRadius = min(availableWidth, availableHeight) / 2 * 0.6; // Reduced from 0.7 to 0.6 for better centering
     const radiusStep = maxRadius / this.rows;
     const angleStep = TWO_PI / this.cols;
 
@@ -258,7 +343,35 @@ class GridArchitect {
         // Draw text in the middle of the cell, rotated
         const midAngle = startAngle + angleStep / 2;
         const midRadius = innerRadius + radiusStep / 2;
-        this.drawCellText(buffer, cos(midAngle) * midRadius, sin(midAngle) * midRadius, radiusStep, angleStep * midRadius, i * this.rows + r);
+                // Draw text in the middle of the cell, rotated
+        if (this.textEnabled && this.cellText) {
+            const midAngle = startAngle + angleStep / 2;
+            const midRadius = innerRadius + radiusStep / 2;
+            const textX = cos(midAngle) * midRadius;
+            const textY = sin(midAngle) * midRadius;
+            
+            let displayText = this.cellText;
+            const cellIndex = i * this.rows + r;
+            if (this.textPattern === 'alternate' && this.alternateText) {
+              displayText = (cellIndex % 2 === 0) ? this.cellText : this.alternateText;
+            } else if (this.textPattern === 'random' && this.alternateText) {
+              displayText = (random() > 0.5) ? this.cellText : this.alternateText;
+            }
+
+            buffer.push();
+            buffer.fill(this.textColor);
+            buffer.noStroke();
+            buffer.textFont(this.textFont);
+            buffer.textSize(radiusStep * this.textSizeRatio);
+            buffer.textAlign(CENTER, CENTER);
+            buffer.translate(textX, textY);
+            buffer.rotate(midAngle);
+            if (this.textRotation !== 0) {
+                buffer.rotate(radians(this.textRotation));
+            }
+            buffer.text(displayText, 0, 0);
+            buffer.pop();
+        }
       }
     }
     buffer.pop();
@@ -266,3 +379,4 @@ class GridArchitect {
 }
 
 window.GridArchitect = GridArchitect;
+

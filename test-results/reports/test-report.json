@@ -1,0 +1,5227 @@
+{
+  "timestamp": "2025-09-21T11:07:10.065Z",
+  "environment": {
+    "nodeVersion": "v22.15.0",
+    "platform": "win32",
+    "arch": "x64",
+    "timestamp": "2025-09-21T11:07:10.067Z"
+  },
+  "tools": {
+    "gridArchitect": {
+      "name": "gridArchitect",
+      "tests": [
+        {
+          "testName": "gridArchitect_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/gridArchitect_square_png.png",
+            "size": 583,
+            "downloadTime": 479.78266228411184,
+            "renderTime": 539.7797526213025
+          },
+          "timestamp": "2025-09-21T11:07:10.632Z"
+        },
+        {
+          "testName": "gridArchitect_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/gridArchitect_square_jpg.jpg",
+            "size": 174,
+            "downloadTime": 804.0968857673103,
+            "renderTime": 366.695049500016
+          },
+          "timestamp": "2025-09-21T11:07:10.914Z"
+        },
+        {
+          "testName": "gridArchitect_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/gridArchitect_square_svg.svg",
+            "size": 58,
+            "downloadTime": 169.3348974027994,
+            "renderTime": 138.74476410282097
+          },
+          "timestamp": "2025-09-21T11:07:11.365Z"
+        },
+        {
+          "testName": "gridArchitect_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/gridArchitect_square_pdf.pdf",
+            "size": 1166,
+            "downloadTime": 487.58157707336704,
+            "renderTime": 305.7382189893365
+          },
+          "timestamp": "2025-09-21T11:07:11.697Z"
+        },
+        {
+          "testName": "gridArchitect_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/gridArchitect_landscape_png.png",
+            "size": 1036,
+            "downloadTime": 218.67411848180188,
+            "renderTime": 165.93895486245356
+          },
+          "timestamp": "2025-09-21T11:07:12.132Z"
+        },
+        {
+          "testName": "gridArchitect_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/gridArchitect_landscape_jpg.jpg",
+            "size": 311,
+            "downloadTime": 1002.0434801155806,
+            "renderTime": 247.83966761926186
+          },
+          "timestamp": "2025-09-21T11:07:12.631Z"
+        },
+        {
+          "testName": "gridArchitect_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/gridArchitect_landscape_svg.svg",
+            "size": 103,
+            "downloadTime": 274.8471054751164,
+            "renderTime": 231.04028757610257
+          },
+          "timestamp": "2025-09-21T11:07:13.113Z"
+        },
+        {
+          "testName": "gridArchitect_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/gridArchitect_landscape_pdf.pdf",
+            "size": 2073,
+            "downloadTime": 529.7094554184262,
+            "renderTime": 357.33142880531506
+          },
+          "timestamp": "2025-09-21T11:07:13.547Z"
+        },
+        {
+          "testName": "gridArchitect_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/gridArchitect_portrait_png.png",
+            "size": 1036,
+            "downloadTime": 783.4864616924572,
+            "renderTime": 127.41677968065363
+          },
+          "timestamp": "2025-09-21T11:07:13.847Z"
+        },
+        {
+          "testName": "gridArchitect_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/gridArchitect_portrait_jpg.jpg",
+            "size": 311,
+            "downloadTime": 235.20707084811522,
+            "renderTime": 71.71856348333435
+          },
+          "timestamp": "2025-09-21T11:07:14.096Z"
+        },
+        {
+          "testName": "gridArchitect_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/gridArchitect_portrait_svg.svg",
+            "size": 103,
+            "downloadTime": 841.6426417117555,
+            "renderTime": 197.35042270858412
+          },
+          "timestamp": "2025-09-21T11:07:14.765Z"
+        },
+        {
+          "testName": "gridArchitect_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/gridArchitect_portrait_pdf.pdf",
+            "size": 2073,
+            "downloadTime": 312.45135113032984,
+            "renderTime": 543.5479788730055
+          },
+          "timestamp": "2025-09-21T11:07:15.431Z"
+        },
+        {
+          "testName": "gridArchitect_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/gridArchitect_small_png.png",
+            "size": 131,
+            "downloadTime": 940.3286658185472,
+            "renderTime": 131.19243111192054
+          },
+          "timestamp": "2025-09-21T11:07:15.694Z"
+        },
+        {
+          "testName": "gridArchitect_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/gridArchitect_small_jpg.jpg",
+            "size": 39,
+            "downloadTime": 201.80204054631315,
+            "renderTime": 121.2174743641899
+          },
+          "timestamp": "2025-09-21T11:07:16.281Z"
+        },
+        {
+          "testName": "gridArchitect_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/gridArchitect_small_svg.svg",
+            "size": 13,
+            "downloadTime": 775.5191239105163,
+            "renderTime": 380.7737071627453
+          },
+          "timestamp": "2025-09-21T11:07:16.697Z"
+        },
+        {
+          "testName": "gridArchitect_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/gridArchitect_small_pdf.pdf",
+            "size": 262,
+            "downloadTime": 956.7003192628681,
+            "renderTime": 303.37352935162653
+          },
+          "timestamp": "2025-09-21T11:07:17.294Z"
+        },
+        {
+          "testName": "gridArchitect_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/gridArchitect_large_png.png",
+            "size": 2097,
+            "downloadTime": 120.95955927591243,
+            "renderTime": 263.9718264884755
+          },
+          "timestamp": "2025-09-21T11:07:17.697Z"
+        },
+        {
+          "testName": "gridArchitect_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/gridArchitect_large_jpg.jpg",
+            "size": 629,
+            "downloadTime": 870.741244184746,
+            "renderTime": 325.46419334583913
+          },
+          "timestamp": "2025-09-21T11:07:18.346Z"
+        },
+        {
+          "testName": "gridArchitect_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/gridArchitect_large_svg.svg",
+            "size": 209,
+            "downloadTime": 647.0780336380902,
+            "renderTime": 341.9035597403333
+          },
+          "timestamp": "2025-09-21T11:07:18.897Z"
+        },
+        {
+          "testName": "gridArchitect_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/gridArchitect_large_pdf.pdf",
+            "size": 4194,
+            "downloadTime": 149.19081493391974,
+            "renderTime": 400.24267683751674
+          },
+          "timestamp": "2025-09-21T11:07:19.513Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 20,
+      "failed": 0,
+      "issues": []
+    },
+    "posterComposer": {
+      "name": "posterComposer",
+      "tests": [
+        {
+          "testName": "posterComposer_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/posterComposer_square_png.png",
+            "size": 1399,
+            "downloadTime": 677.4779548547538,
+            "renderTime": 64.75780339717903
+          },
+          "timestamp": "2025-09-21T11:07:20.181Z"
+        },
+        {
+          "testName": "posterComposer_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/posterComposer_square_jpg.jpg",
+            "size": 419,
+            "downloadTime": 1097.694070150228,
+            "renderTime": 336.18155911858054
+          },
+          "timestamp": "2025-09-21T11:07:20.481Z"
+        },
+        {
+          "testName": "posterComposer_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/posterComposer_square_svg.svg",
+            "size": 139,
+            "downloadTime": 908.7091890328504,
+            "renderTime": 400.87740741079756
+          },
+          "timestamp": "2025-09-21T11:07:21.131Z"
+        },
+        {
+          "testName": "posterComposer_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/posterComposer_square_pdf.pdf",
+            "size": 2799,
+            "downloadTime": 618.0472783480603,
+            "renderTime": 395.7656693449017
+          },
+          "timestamp": "2025-09-21T11:07:21.543Z"
+        },
+        {
+          "testName": "posterComposer_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/posterComposer_landscape_png.png",
+            "size": 2488,
+            "downloadTime": 160.15777667361056,
+            "renderTime": 428.4782086915914
+          },
+          "timestamp": "2025-09-21T11:07:21.948Z"
+        },
+        {
+          "testName": "posterComposer_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/posterComposer_landscape_jpg.jpg",
+            "size": 746,
+            "downloadTime": 337.8918295583883,
+            "renderTime": 176.98458149486925
+          },
+          "timestamp": "2025-09-21T11:07:22.561Z"
+        },
+        {
+          "testName": "posterComposer_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/posterComposer_landscape_svg.svg",
+            "size": 248,
+            "downloadTime": 748.7089598940516,
+            "renderTime": 65.25621562478885
+          },
+          "timestamp": "2025-09-21T11:07:23.262Z"
+        },
+        {
+          "testName": "posterComposer_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:07:23.644Z"
+        },
+        {
+          "testName": "posterComposer_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/posterComposer_portrait_png.png",
+            "size": 2488,
+            "downloadTime": 410.0292874591992,
+            "renderTime": 545.7448362822889
+          },
+          "timestamp": "2025-09-21T11:07:24.295Z"
+        },
+        {
+          "testName": "posterComposer_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/posterComposer_portrait_jpg.jpg",
+            "size": 746,
+            "downloadTime": 446.86794553223166,
+            "renderTime": 264.487351487836
+          },
+          "timestamp": "2025-09-21T11:07:24.980Z"
+        },
+        {
+          "testName": "posterComposer_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/posterComposer_portrait_svg.svg",
+            "size": 248,
+            "downloadTime": 834.8913451168233,
+            "renderTime": 196.26159258308812
+          },
+          "timestamp": "2025-09-21T11:07:25.412Z"
+        },
+        {
+          "testName": "posterComposer_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/posterComposer_portrait_pdf.pdf",
+            "size": 4976,
+            "downloadTime": 658.2901888848986,
+            "renderTime": 96.28073427087153
+          },
+          "timestamp": "2025-09-21T11:07:25.872Z"
+        },
+        {
+          "testName": "posterComposer_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:07:26.277Z"
+        },
+        {
+          "testName": "posterComposer_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/posterComposer_small_jpg.jpg",
+            "size": 94,
+            "downloadTime": 993.8897520795522,
+            "renderTime": 475.5319626716695
+          },
+          "timestamp": "2025-09-21T11:07:26.877Z"
+        },
+        {
+          "testName": "posterComposer_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/posterComposer_small_svg.svg",
+            "size": 31,
+            "downloadTime": 920.0166483507072,
+            "renderTime": 249.21735820460174
+          },
+          "timestamp": "2025-09-21T11:07:27.563Z"
+        },
+        {
+          "testName": "posterComposer_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/posterComposer_small_pdf.pdf",
+            "size": 629,
+            "downloadTime": 278.9782896855505,
+            "renderTime": 504.5333411073204
+          },
+          "timestamp": "2025-09-21T11:07:27.928Z"
+        },
+        {
+          "testName": "posterComposer_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/posterComposer_large_png.png",
+            "size": 5033,
+            "downloadTime": 194.93390344220586,
+            "renderTime": 519.6455290867945
+          },
+          "timestamp": "2025-09-21T11:07:28.509Z"
+        },
+        {
+          "testName": "posterComposer_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/posterComposer_large_jpg.jpg",
+            "size": 1509,
+            "downloadTime": 819.2547152423139,
+            "renderTime": 300.7839168622744
+          },
+          "timestamp": "2025-09-21T11:07:29.046Z"
+        },
+        {
+          "testName": "posterComposer_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/posterComposer_large_svg.svg",
+            "size": 503,
+            "downloadTime": 549.6014129889205,
+            "renderTime": 411.80511183482275
+          },
+          "timestamp": "2025-09-21T11:07:29.362Z"
+        },
+        {
+          "testName": "posterComposer_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/posterComposer_large_pdf.pdf",
+            "size": 10066,
+            "downloadTime": 800.9673392153188,
+            "renderTime": 513.1912057988825
+          },
+          "timestamp": "2025-09-21T11:07:29.695Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 18,
+      "failed": 2,
+      "issues": [
+        "Tool failed to initialize",
+        "Tool failed to initialize"
+      ]
+    },
+    "bauhausAssembler": {
+      "name": "bauhausAssembler",
+      "tests": [
+        {
+          "testName": "bauhausAssembler_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/bauhausAssembler_square_png.png",
+            "size": 933,
+            "downloadTime": 145.9576075156045,
+            "renderTime": 140.36788742837575
+          },
+          "timestamp": "2025-09-21T11:07:30.346Z"
+        },
+        {
+          "testName": "bauhausAssembler_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/bauhausAssembler_square_jpg.jpg",
+            "size": 279,
+            "downloadTime": 796.4238511179666,
+            "renderTime": 243.63541569487808
+          },
+          "timestamp": "2025-09-21T11:07:30.995Z"
+        },
+        {
+          "testName": "bauhausAssembler_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:07:31.495Z"
+        },
+        {
+          "testName": "bauhausAssembler_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/bauhausAssembler_square_pdf.pdf",
+            "size": 1866,
+            "downloadTime": 655.2799648638504,
+            "renderTime": 359.77863965066666
+          },
+          "timestamp": "2025-09-21T11:07:31.847Z"
+        },
+        {
+          "testName": "bauhausAssembler_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/bauhausAssembler_landscape_png.png",
+            "size": 1658,
+            "downloadTime": 850.643947204491,
+            "renderTime": 101.90222230783759
+          },
+          "timestamp": "2025-09-21T11:07:32.061Z"
+        },
+        {
+          "testName": "bauhausAssembler_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/bauhausAssembler_landscape_jpg.jpg",
+            "size": 497,
+            "downloadTime": 1084.9572574598487,
+            "renderTime": 326.46800074707744
+          },
+          "timestamp": "2025-09-21T11:07:32.552Z"
+        },
+        {
+          "testName": "bauhausAssembler_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/bauhausAssembler_landscape_svg.svg",
+            "size": 165,
+            "downloadTime": 157.93560624039662,
+            "renderTime": 530.1182839633864
+          },
+          "timestamp": "2025-09-21T11:07:33.149Z"
+        },
+        {
+          "testName": "bauhausAssembler_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/bauhausAssembler_landscape_pdf.pdf",
+            "size": 3317,
+            "downloadTime": 836.7742010560265,
+            "renderTime": 364.31035906661407
+          },
+          "timestamp": "2025-09-21T11:07:33.662Z"
+        },
+        {
+          "testName": "bauhausAssembler_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/bauhausAssembler_portrait_png.png",
+            "size": 1658,
+            "downloadTime": 848.7528810319175,
+            "renderTime": 364.6806123395297
+          },
+          "timestamp": "2025-09-21T11:07:33.893Z"
+        },
+        {
+          "testName": "bauhausAssembler_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/bauhausAssembler_portrait_jpg.jpg",
+            "size": 497,
+            "downloadTime": 1087.9794446388337,
+            "renderTime": 318.59080137077893
+          },
+          "timestamp": "2025-09-21T11:07:34.191Z"
+        },
+        {
+          "testName": "bauhausAssembler_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/bauhausAssembler_portrait_svg.svg",
+            "size": 165,
+            "downloadTime": 834.2933379118977,
+            "renderTime": 379.9500747367263
+          },
+          "timestamp": "2025-09-21T11:07:34.894Z"
+        },
+        {
+          "testName": "bauhausAssembler_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/bauhausAssembler_portrait_pdf.pdf",
+            "size": 3317,
+            "downloadTime": 968.0055554435709,
+            "renderTime": 327.21642173936476
+          },
+          "timestamp": "2025-09-21T11:07:35.161Z"
+        },
+        {
+          "testName": "bauhausAssembler_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/bauhausAssembler_small_png.png",
+            "size": 209,
+            "downloadTime": 847.4206871127572,
+            "renderTime": 114.571746270089
+          },
+          "timestamp": "2025-09-21T11:07:35.444Z"
+        },
+        {
+          "testName": "bauhausAssembler_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Canvas size not supported",
+            "suggestion": "Try a different canvas size or check browser compatibility"
+          },
+          "timestamp": "2025-09-21T11:07:35.944Z"
+        },
+        {
+          "testName": "bauhausAssembler_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/bauhausAssembler_small_svg.svg",
+            "size": 20,
+            "downloadTime": 167.2242179285456,
+            "renderTime": 81.2935894162213
+          },
+          "timestamp": "2025-09-21T11:07:36.527Z"
+        },
+        {
+          "testName": "bauhausAssembler_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/bauhausAssembler_small_pdf.pdf",
+            "size": 419,
+            "downloadTime": 762.0101334278552,
+            "renderTime": 292.6666015205685
+          },
+          "timestamp": "2025-09-21T11:07:36.743Z"
+        },
+        {
+          "testName": "bauhausAssembler_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/bauhausAssembler_large_png.png",
+            "size": 3355,
+            "downloadTime": 446.7463658476795,
+            "renderTime": 458.2492549664008
+          },
+          "timestamp": "2025-09-21T11:07:37.160Z"
+        },
+        {
+          "testName": "bauhausAssembler_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/bauhausAssembler_large_jpg.jpg",
+            "size": 1006,
+            "downloadTime": 450.82315348529903,
+            "renderTime": 540.1644274499201
+          },
+          "timestamp": "2025-09-21T11:07:37.577Z"
+        },
+        {
+          "testName": "bauhausAssembler_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/bauhausAssembler_large_svg.svg",
+            "size": 335,
+            "downloadTime": 804.118509207538,
+            "renderTime": 87.50560182141737
+          },
+          "timestamp": "2025-09-21T11:07:38.128Z"
+        },
+        {
+          "testName": "bauhausAssembler_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/bauhausAssembler_large_pdf.pdf",
+            "size": 6710,
+            "downloadTime": 1017.9241151540507,
+            "renderTime": 415.17643750939544
+          },
+          "timestamp": "2025-09-21T11:07:38.743Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 18,
+      "failed": 2,
+      "issues": [
+        "Memory allocation failed",
+        "Canvas size not supported"
+      ]
+    },
+    "kineticTypeEngine": {
+      "name": "kineticTypeEngine",
+      "tests": [
+        {
+          "testName": "kineticTypeEngine_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/kineticTypeEngine_square_png.png",
+            "size": 349,
+            "downloadTime": 475.5479240038493,
+            "renderTime": 536.8748186340472
+          },
+          "timestamp": "2025-09-21T11:07:39.127Z"
+        },
+        {
+          "testName": "kineticTypeEngine_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/kineticTypeEngine_square_jpg.jpg",
+            "size": 104,
+            "downloadTime": 190.66251135358107,
+            "renderTime": 426.6185420617717
+          },
+          "timestamp": "2025-09-21T11:07:39.410Z"
+        },
+        {
+          "testName": "kineticTypeEngine_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/kineticTypeEngine_square_svg.svg",
+            "size": 34,
+            "downloadTime": 786.3072936819567,
+            "renderTime": 207.3790306126366
+          },
+          "timestamp": "2025-09-21T11:07:39.852Z"
+        },
+        {
+          "testName": "kineticTypeEngine_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/kineticTypeEngine_square_pdf.pdf",
+            "size": 699,
+            "downloadTime": 760.1802455416716,
+            "renderTime": 177.47523539201165
+          },
+          "timestamp": "2025-09-21T11:07:40.327Z"
+        },
+        {
+          "testName": "kineticTypeEngine_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/kineticTypeEngine_landscape_png.png",
+            "size": 622,
+            "downloadTime": 1090.6895097125066,
+            "renderTime": 419.5747342230784
+          },
+          "timestamp": "2025-09-21T11:07:40.744Z"
+        },
+        {
+          "testName": "kineticTypeEngine_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:07:41.043Z"
+        },
+        {
+          "testName": "kineticTypeEngine_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/kineticTypeEngine_landscape_svg.svg",
+            "size": 62,
+            "downloadTime": 719.8535423593643,
+            "renderTime": 278.9320635699154
+          },
+          "timestamp": "2025-09-21T11:07:41.610Z"
+        },
+        {
+          "testName": "kineticTypeEngine_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/kineticTypeEngine_landscape_pdf.pdf",
+            "size": 1244,
+            "downloadTime": 266.60942994954416,
+            "renderTime": 429.968199923833
+          },
+          "timestamp": "2025-09-21T11:07:42.009Z"
+        },
+        {
+          "testName": "kineticTypeEngine_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:07:42.524Z"
+        },
+        {
+          "testName": "kineticTypeEngine_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/kineticTypeEngine_portrait_jpg.jpg",
+            "size": 186,
+            "downloadTime": 174.20776940913964,
+            "renderTime": 251.42482300740284
+          },
+          "timestamp": "2025-09-21T11:07:42.876Z"
+        },
+        {
+          "testName": "kineticTypeEngine_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:07:43.109Z"
+        },
+        {
+          "testName": "kineticTypeEngine_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/kineticTypeEngine_portrait_pdf.pdf",
+            "size": 1244,
+            "downloadTime": 297.3505883186102,
+            "renderTime": 106.80526945634811
+          },
+          "timestamp": "2025-09-21T11:07:43.752Z"
+        },
+        {
+          "testName": "kineticTypeEngine_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/kineticTypeEngine_small_png.png",
+            "size": 78,
+            "downloadTime": 718.7541602370854,
+            "renderTime": 437.0980388690991
+          },
+          "timestamp": "2025-09-21T11:07:44.310Z"
+        },
+        {
+          "testName": "kineticTypeEngine_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/kineticTypeEngine_small_jpg.jpg",
+            "size": 23,
+            "downloadTime": 937.6446882426267,
+            "renderTime": 66.54983241563602
+          },
+          "timestamp": "2025-09-21T11:07:45.009Z"
+        },
+        {
+          "testName": "kineticTypeEngine_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/kineticTypeEngine_small_svg.svg",
+            "size": 7,
+            "downloadTime": 974.1686911644655,
+            "renderTime": 202.0099077498156
+          },
+          "timestamp": "2025-09-21T11:07:45.326Z"
+        },
+        {
+          "testName": "kineticTypeEngine_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/kineticTypeEngine_small_pdf.pdf",
+            "size": 157,
+            "downloadTime": 167.86985295509874,
+            "renderTime": 427.6841778468595
+          },
+          "timestamp": "2025-09-21T11:07:45.725Z"
+        },
+        {
+          "testName": "kineticTypeEngine_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/kineticTypeEngine_large_png.png",
+            "size": 1258,
+            "downloadTime": 132.83176273113207,
+            "renderTime": 178.28392827952695
+          },
+          "timestamp": "2025-09-21T11:07:46.258Z"
+        },
+        {
+          "testName": "kineticTypeEngine_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/kineticTypeEngine_large_jpg.jpg",
+            "size": 377,
+            "downloadTime": 168.22152444506168,
+            "renderTime": 70.65498684796974
+          },
+          "timestamp": "2025-09-21T11:07:46.739Z"
+        },
+        {
+          "testName": "kineticTypeEngine_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/kineticTypeEngine_large_svg.svg",
+            "size": 125,
+            "downloadTime": 964.5202566540027,
+            "renderTime": 171.50320005542548
+          },
+          "timestamp": "2025-09-21T11:07:47.375Z"
+        },
+        {
+          "testName": "kineticTypeEngine_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/kineticTypeEngine_large_pdf.pdf",
+            "size": 2516,
+            "downloadTime": 524.5580891890013,
+            "renderTime": 363.9543807013069
+          },
+          "timestamp": "2025-09-21T11:07:47.945Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 17,
+      "failed": 3,
+      "issues": [
+        "Rendering timeout",
+        "Rendering timeout",
+        "Memory allocation failed"
+      ]
+    },
+    "glyphDeconstructor": {
+      "name": "glyphDeconstructor",
+      "tests": [
+        {
+          "testName": "glyphDeconstructor_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/glyphDeconstructor_square_png.png",
+            "size": 349,
+            "downloadTime": 332.87714404616986,
+            "renderTime": 228.74936200268465
+          },
+          "timestamp": "2025-09-21T11:07:48.692Z"
+        },
+        {
+          "testName": "glyphDeconstructor_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/glyphDeconstructor_square_jpg.jpg",
+            "size": 104,
+            "downloadTime": 244.56364190812954,
+            "renderTime": 351.3990387522667
+          },
+          "timestamp": "2025-09-21T11:07:49.158Z"
+        },
+        {
+          "testName": "glyphDeconstructor_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/glyphDeconstructor_square_svg.svg",
+            "size": 34,
+            "downloadTime": 969.7056839513319,
+            "renderTime": 51.50271618365305
+          },
+          "timestamp": "2025-09-21T11:07:49.572Z"
+        },
+        {
+          "testName": "glyphDeconstructor_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/glyphDeconstructor_square_pdf.pdf",
+            "size": 699,
+            "downloadTime": 200.32513919486718,
+            "renderTime": 496.32463602344194
+          },
+          "timestamp": "2025-09-21T11:07:50.009Z"
+        },
+        {
+          "testName": "glyphDeconstructor_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/glyphDeconstructor_landscape_png.png",
+            "size": 622,
+            "downloadTime": 667.8717139801843,
+            "renderTime": 211.4275244886738
+          },
+          "timestamp": "2025-09-21T11:07:50.260Z"
+        },
+        {
+          "testName": "glyphDeconstructor_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/glyphDeconstructor_landscape_jpg.jpg",
+            "size": 186,
+            "downloadTime": 909.4647369193941,
+            "renderTime": 160.9440031988912
+          },
+          "timestamp": "2025-09-21T11:07:50.923Z"
+        },
+        {
+          "testName": "glyphDeconstructor_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/glyphDeconstructor_landscape_svg.svg",
+            "size": 62,
+            "downloadTime": 163.9302824630572,
+            "renderTime": 509.0189811597113
+          },
+          "timestamp": "2025-09-21T11:07:51.325Z"
+        },
+        {
+          "testName": "glyphDeconstructor_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/glyphDeconstructor_landscape_pdf.pdf",
+            "size": 1244,
+            "downloadTime": 604.9007962946208,
+            "renderTime": 530.2323051980316
+          },
+          "timestamp": "2025-09-21T11:07:51.627Z"
+        },
+        {
+          "testName": "glyphDeconstructor_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/glyphDeconstructor_portrait_png.png",
+            "size": 622,
+            "downloadTime": 909.9026730583568,
+            "renderTime": 60.71857816710198
+          },
+          "timestamp": "2025-09-21T11:07:52.289Z"
+        },
+        {
+          "testName": "glyphDeconstructor_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/glyphDeconstructor_portrait_jpg.jpg",
+            "size": 186,
+            "downloadTime": 964.0522331451692,
+            "renderTime": 358.16450121093396
+          },
+          "timestamp": "2025-09-21T11:07:52.758Z"
+        },
+        {
+          "testName": "glyphDeconstructor_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/glyphDeconstructor_portrait_svg.svg",
+            "size": 62,
+            "downloadTime": 941.3674340158857,
+            "renderTime": 191.6628847355924
+          },
+          "timestamp": "2025-09-21T11:07:52.990Z"
+        },
+        {
+          "testName": "glyphDeconstructor_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/glyphDeconstructor_portrait_pdf.pdf",
+            "size": 1244,
+            "downloadTime": 1076.8780801972998,
+            "renderTime": 362.9727164063788
+          },
+          "timestamp": "2025-09-21T11:07:53.307Z"
+        },
+        {
+          "testName": "glyphDeconstructor_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/glyphDeconstructor_small_png.png",
+            "size": 78,
+            "downloadTime": 246.149415281275,
+            "renderTime": 442.16581016870134
+          },
+          "timestamp": "2025-09-21T11:07:53.738Z"
+        },
+        {
+          "testName": "glyphDeconstructor_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/glyphDeconstructor_small_jpg.jpg",
+            "size": 23,
+            "downloadTime": 689.992159298433,
+            "renderTime": 414.44762551507847
+          },
+          "timestamp": "2025-09-21T11:07:54.324Z"
+        },
+        {
+          "testName": "glyphDeconstructor_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Canvas size not supported",
+            "suggestion": "Try a different canvas size or check browser compatibility"
+          },
+          "timestamp": "2025-09-21T11:07:54.624Z"
+        },
+        {
+          "testName": "glyphDeconstructor_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/glyphDeconstructor_small_pdf.pdf",
+            "size": 157,
+            "downloadTime": 868.6278253663468,
+            "renderTime": 159.7050089918189
+          },
+          "timestamp": "2025-09-21T11:07:54.889Z"
+        },
+        {
+          "testName": "glyphDeconstructor_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/glyphDeconstructor_large_png.png",
+            "size": 1258,
+            "downloadTime": 322.8177129888513,
+            "renderTime": 166.53927235422913
+          },
+          "timestamp": "2025-09-21T11:07:55.474Z"
+        },
+        {
+          "testName": "glyphDeconstructor_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/glyphDeconstructor_large_jpg.jpg",
+            "size": 377,
+            "downloadTime": 707.6835565481165,
+            "renderTime": 55.14007650081649
+          },
+          "timestamp": "2025-09-21T11:07:55.707Z"
+        },
+        {
+          "testName": "glyphDeconstructor_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/glyphDeconstructor_large_svg.svg",
+            "size": 125,
+            "downloadTime": 415.43519608123717,
+            "renderTime": 349.8124402070829
+          },
+          "timestamp": "2025-09-21T11:07:56.291Z"
+        },
+        {
+          "testName": "glyphDeconstructor_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/glyphDeconstructor_large_pdf.pdf",
+            "size": 2516,
+            "downloadTime": 643.3075003947467,
+            "renderTime": 392.57001681003806
+          },
+          "timestamp": "2025-09-21T11:07:56.571Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 19,
+      "failed": 1,
+      "issues": [
+        "Canvas size not supported"
+      ]
+    },
+    "waveformSynthesizer": {
+      "name": "waveformSynthesizer",
+      "tests": [
+        {
+          "testName": "waveformSynthesizer_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/waveformSynthesizer_square_png.png",
+            "size": 466,
+            "downloadTime": 533.3259554366566,
+            "renderTime": 110.120033455347
+          },
+          "timestamp": "2025-09-21T11:07:56.908Z"
+        },
+        {
+          "testName": "waveformSynthesizer_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/waveformSynthesizer_square_jpg.jpg",
+            "size": 139,
+            "downloadTime": 194.19173183510043,
+            "renderTime": 177.61253573769426
+          },
+          "timestamp": "2025-09-21T11:07:57.522Z"
+        },
+        {
+          "testName": "waveformSynthesizer_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:07:57.841Z"
+        },
+        {
+          "testName": "waveformSynthesizer_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/waveformSynthesizer_square_pdf.pdf",
+            "size": 933,
+            "downloadTime": 130.72414067252606,
+            "renderTime": 469.67093811682753
+          },
+          "timestamp": "2025-09-21T11:07:58.507Z"
+        },
+        {
+          "testName": "waveformSynthesizer_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/waveformSynthesizer_landscape_png.png",
+            "size": 829,
+            "downloadTime": 427.9699122516062,
+            "renderTime": 114.61080094692184
+          },
+          "timestamp": "2025-09-21T11:07:58.957Z"
+        },
+        {
+          "testName": "waveformSynthesizer_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/waveformSynthesizer_landscape_jpg.jpg",
+            "size": 248,
+            "downloadTime": 470.3772037991784,
+            "renderTime": 316.02308638198656
+          },
+          "timestamp": "2025-09-21T11:07:59.353Z"
+        },
+        {
+          "testName": "waveformSynthesizer_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/waveformSynthesizer_landscape_svg.svg",
+            "size": 82,
+            "downloadTime": 295.2023051051792,
+            "renderTime": 269.33792920116923
+          },
+          "timestamp": "2025-09-21T11:07:59.690Z"
+        },
+        {
+          "testName": "waveformSynthesizer_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/waveformSynthesizer_landscape_pdf.pdf",
+            "size": 1658,
+            "downloadTime": 185.19161649301356,
+            "renderTime": 363.82725963430033
+          },
+          "timestamp": "2025-09-21T11:07:59.923Z"
+        },
+        {
+          "testName": "waveformSynthesizer_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/waveformSynthesizer_portrait_png.png",
+            "size": 829,
+            "downloadTime": 906.3901602855907,
+            "renderTime": 450.95267370727714
+          },
+          "timestamp": "2025-09-21T11:08:00.457Z"
+        },
+        {
+          "testName": "waveformSynthesizer_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/waveformSynthesizer_portrait_jpg.jpg",
+            "size": 248,
+            "downloadTime": 806.921172025166,
+            "renderTime": 274.2287783756042
+          },
+          "timestamp": "2025-09-21T11:08:00.823Z"
+        },
+        {
+          "testName": "waveformSynthesizer_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/waveformSynthesizer_portrait_svg.svg",
+            "size": 82,
+            "downloadTime": 154.68707357704173,
+            "renderTime": 112.8907315554752
+          },
+          "timestamp": "2025-09-21T11:08:01.141Z"
+        },
+        {
+          "testName": "waveformSynthesizer_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/waveformSynthesizer_portrait_pdf.pdf",
+            "size": 1658,
+            "downloadTime": 993.2469546362951,
+            "renderTime": 173.71073464654637
+          },
+          "timestamp": "2025-09-21T11:08:01.357Z"
+        },
+        {
+          "testName": "waveformSynthesizer_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Buffer underrun",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:08:01.789Z"
+        },
+        {
+          "testName": "waveformSynthesizer_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/waveformSynthesizer_small_jpg.jpg",
+            "size": 31,
+            "downloadTime": 918.3031868744353,
+            "renderTime": 406.6599549182515
+          },
+          "timestamp": "2025-09-21T11:08:02.006Z"
+        },
+        {
+          "testName": "waveformSynthesizer_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/waveformSynthesizer_small_svg.svg",
+            "size": 10,
+            "downloadTime": 328.3787180108226,
+            "renderTime": 360.6623746654946
+          },
+          "timestamp": "2025-09-21T11:08:02.441Z"
+        },
+        {
+          "testName": "waveformSynthesizer_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Audio context not available",
+            "suggestion": "Check microphone permissions and audio settings"
+          },
+          "timestamp": "2025-09-21T11:08:02.774Z"
+        },
+        {
+          "testName": "waveformSynthesizer_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Buffer underrun",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:08:03.039Z"
+        },
+        {
+          "testName": "waveformSynthesizer_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/waveformSynthesizer_large_jpg.jpg",
+            "size": 503,
+            "downloadTime": 849.5699935312945,
+            "renderTime": 469.4964467702059
+          },
+          "timestamp": "2025-09-21T11:08:03.472Z"
+        },
+        {
+          "testName": "waveformSynthesizer_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/waveformSynthesizer_large_svg.svg",
+            "size": 167,
+            "downloadTime": 961.3180854649077,
+            "renderTime": 540.9722321902652
+          },
+          "timestamp": "2025-09-21T11:08:03.689Z"
+        },
+        {
+          "testName": "waveformSynthesizer_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/waveformSynthesizer_large_pdf.pdf",
+            "size": 3355,
+            "downloadTime": 1085.2686586873265,
+            "renderTime": 371.6665927705537
+          },
+          "timestamp": "2025-09-21T11:08:04.272Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 16,
+      "failed": 4,
+      "issues": [
+        "Memory allocation failed",
+        "Buffer underrun",
+        "Audio context not available",
+        "Buffer underrun"
+      ]
+    },
+    "universalRasterizer": {
+      "name": "universalRasterizer",
+      "tests": [
+        {
+          "testName": "universalRasterizer_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:08:04.506Z"
+        },
+        {
+          "testName": "universalRasterizer_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/universalRasterizer_square_jpg.jpg",
+            "size": 524,
+            "downloadTime": 900.3692793692147,
+            "renderTime": 243.1312803120092
+          },
+          "timestamp": "2025-09-21T11:08:04.951Z"
+        },
+        {
+          "testName": "universalRasterizer_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:08:05.338Z"
+        },
+        {
+          "testName": "universalRasterizer_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/universalRasterizer_square_pdf.pdf",
+            "size": 3499,
+            "downloadTime": 819.216531959209,
+            "renderTime": 499.3599048619792
+          },
+          "timestamp": "2025-09-21T11:08:05.672Z"
+        },
+        {
+          "testName": "universalRasterizer_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/universalRasterizer_landscape_png.png",
+            "size": 3110,
+            "downloadTime": 544.5869241749501,
+            "renderTime": 355.8362992408719
+          },
+          "timestamp": "2025-09-21T11:08:06.056Z"
+        },
+        {
+          "testName": "universalRasterizer_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/universalRasterizer_landscape_jpg.jpg",
+            "size": 933,
+            "downloadTime": 134.3790472703216,
+            "renderTime": 129.69518476807724
+          },
+          "timestamp": "2025-09-21T11:08:06.335Z"
+        },
+        {
+          "testName": "universalRasterizer_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/universalRasterizer_landscape_svg.svg",
+            "size": 311,
+            "downloadTime": 978.312765876067,
+            "renderTime": 196.7843760201403
+          },
+          "timestamp": "2025-09-21T11:08:06.589Z"
+        },
+        {
+          "testName": "universalRasterizer_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/universalRasterizer_landscape_pdf.pdf",
+            "size": 6220,
+            "downloadTime": 390.4214016643536,
+            "renderTime": 298.03938049292015
+          },
+          "timestamp": "2025-09-21T11:08:07.022Z"
+        },
+        {
+          "testName": "universalRasterizer_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/universalRasterizer_portrait_png.png",
+            "size": 3110,
+            "downloadTime": 1043.8805090180733,
+            "renderTime": 280.043804049506
+          },
+          "timestamp": "2025-09-21T11:08:07.455Z"
+        },
+        {
+          "testName": "universalRasterizer_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/universalRasterizer_portrait_jpg.jpg",
+            "size": 933,
+            "downloadTime": 419.6957843749724,
+            "renderTime": 295.469599547382
+          },
+          "timestamp": "2025-09-21T11:08:07.972Z"
+        },
+        {
+          "testName": "universalRasterizer_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/universalRasterizer_portrait_svg.svg",
+            "size": 311,
+            "downloadTime": 630.6645865172109,
+            "renderTime": 375.09948538553124
+          },
+          "timestamp": "2025-09-21T11:08:08.606Z"
+        },
+        {
+          "testName": "universalRasterizer_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/universalRasterizer_portrait_pdf.pdf",
+            "size": 6220,
+            "downloadTime": 1006.9933730128796,
+            "renderTime": 217.03430646750382
+          },
+          "timestamp": "2025-09-21T11:08:09.055Z"
+        },
+        {
+          "testName": "universalRasterizer_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/universalRasterizer_small_png.png",
+            "size": 393,
+            "downloadTime": 475.9119802522972,
+            "renderTime": 253.3335920393592
+          },
+          "timestamp": "2025-09-21T11:08:09.638Z"
+        },
+        {
+          "testName": "universalRasterizer_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/universalRasterizer_small_jpg.jpg",
+            "size": 117,
+            "downloadTime": 720.6531399877578,
+            "renderTime": 345.1283496688454
+          },
+          "timestamp": "2025-09-21T11:08:10.039Z"
+        },
+        {
+          "testName": "universalRasterizer_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/universalRasterizer_small_svg.svg",
+            "size": 39,
+            "downloadTime": 704.0236508819747,
+            "renderTime": 83.03218236211747
+          },
+          "timestamp": "2025-09-21T11:08:10.630Z"
+        },
+        {
+          "testName": "universalRasterizer_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/universalRasterizer_small_pdf.pdf",
+            "size": 786,
+            "downloadTime": 800.2470716244325,
+            "renderTime": 526.0894066499077
+          },
+          "timestamp": "2025-09-21T11:08:10.873Z"
+        },
+        {
+          "testName": "universalRasterizer_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Canvas size not supported",
+            "suggestion": "Try a different canvas size or check browser compatibility"
+          },
+          "timestamp": "2025-09-21T11:08:11.339Z"
+        },
+        {
+          "testName": "universalRasterizer_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/universalRasterizer_large_jpg.jpg",
+            "size": 1887,
+            "downloadTime": 753.9893599816695,
+            "renderTime": 530.8904148532995
+          },
+          "timestamp": "2025-09-21T11:08:11.951Z"
+        },
+        {
+          "testName": "universalRasterizer_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/universalRasterizer_large_svg.svg",
+            "size": 629,
+            "downloadTime": 984.8266154825328,
+            "renderTime": 167.11918387599374
+          },
+          "timestamp": "2025-09-21T11:08:12.288Z"
+        },
+        {
+          "testName": "universalRasterizer_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/universalRasterizer_large_pdf.pdf",
+            "size": 12582,
+            "downloadTime": 850.7759162513372,
+            "renderTime": 387.0373943808748
+          },
+          "timestamp": "2025-09-21T11:08:12.673Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 17,
+      "failed": 3,
+      "issues": [
+        "Memory allocation failed",
+        "Invalid parameters",
+        "Canvas size not supported"
+      ]
+    },
+    "videoSampler": {
+      "name": "videoSampler",
+      "tests": [
+        {
+          "testName": "videoSampler_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/videoSampler_square_png.png",
+            "size": 2332,
+            "downloadTime": 439.2528937719774,
+            "renderTime": 130.47988898389525
+          },
+          "timestamp": "2025-09-21T11:08:13.319Z"
+        },
+        {
+          "testName": "videoSampler_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/videoSampler_square_jpg.jpg",
+            "size": 699,
+            "downloadTime": 330.8894754942477,
+            "renderTime": 359.3719199535887
+          },
+          "timestamp": "2025-09-21T11:08:13.689Z"
+        },
+        {
+          "testName": "videoSampler_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Codec error",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:08:13.990Z"
+        },
+        {
+          "testName": "videoSampler_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/videoSampler_square_pdf.pdf",
+            "size": 4665,
+            "downloadTime": 834.1379332673597,
+            "renderTime": 406.60829497782265
+          },
+          "timestamp": "2025-09-21T11:08:14.456Z"
+        },
+        {
+          "testName": "videoSampler_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:08:15.154Z"
+        },
+        {
+          "testName": "videoSampler_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Codec error",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:08:15.755Z"
+        },
+        {
+          "testName": "videoSampler_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/videoSampler_landscape_svg.svg",
+            "size": 414,
+            "downloadTime": 652.9988475517354,
+            "renderTime": 325.7466183027224
+          },
+          "timestamp": "2025-09-21T11:08:16.248Z"
+        },
+        {
+          "testName": "videoSampler_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/videoSampler_landscape_pdf.pdf",
+            "size": 8294,
+            "downloadTime": 667.9851265774913,
+            "renderTime": 277.78670981307914
+          },
+          "timestamp": "2025-09-21T11:08:16.554Z"
+        },
+        {
+          "testName": "videoSampler_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/videoSampler_portrait_png.png",
+            "size": 4147,
+            "downloadTime": 477.75282381165607,
+            "renderTime": 247.96031237367762
+          },
+          "timestamp": "2025-09-21T11:08:17.172Z"
+        },
+        {
+          "testName": "videoSampler_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/videoSampler_portrait_jpg.jpg",
+            "size": 1244,
+            "downloadTime": 1092.8712685627847,
+            "renderTime": 391.087476085639
+          },
+          "timestamp": "2025-09-21T11:08:17.470Z"
+        },
+        {
+          "testName": "videoSampler_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:08:17.905Z"
+        },
+        {
+          "testName": "videoSampler_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/videoSampler_portrait_pdf.pdf",
+            "size": 8294,
+            "downloadTime": 631.7466320193987,
+            "renderTime": 257.546450087541
+          },
+          "timestamp": "2025-09-21T11:08:18.604Z"
+        },
+        {
+          "testName": "videoSampler_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/videoSampler_small_png.png",
+            "size": 524,
+            "downloadTime": 180.27622039175463,
+            "renderTime": 308.35782889349457
+          },
+          "timestamp": "2025-09-21T11:08:18.887Z"
+        },
+        {
+          "testName": "videoSampler_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/videoSampler_small_jpg.jpg",
+            "size": 157,
+            "downloadTime": 636.6072447694976,
+            "renderTime": 90.81297455811173
+          },
+          "timestamp": "2025-09-21T11:08:19.504Z"
+        },
+        {
+          "testName": "videoSampler_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/videoSampler_small_svg.svg",
+            "size": 52,
+            "downloadTime": 103.26116936357357,
+            "renderTime": 369.5445543911245
+          },
+          "timestamp": "2025-09-21T11:08:19.738Z"
+        },
+        {
+          "testName": "videoSampler_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/videoSampler_small_pdf.pdf",
+            "size": 1048,
+            "downloadTime": 316.9501554719619,
+            "renderTime": 480.67788981185186
+          },
+          "timestamp": "2025-09-21T11:08:20.403Z"
+        },
+        {
+          "testName": "videoSampler_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/videoSampler_large_png.png",
+            "size": 8388,
+            "downloadTime": 560.5609427036892,
+            "renderTime": 474.71612901969837
+          },
+          "timestamp": "2025-09-21T11:08:21.021Z"
+        },
+        {
+          "testName": "videoSampler_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/videoSampler_large_jpg.jpg",
+            "size": 2516,
+            "downloadTime": 232.39837969004387,
+            "renderTime": 148.79697640270837
+          },
+          "timestamp": "2025-09-21T11:08:21.288Z"
+        },
+        {
+          "testName": "videoSampler_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Video format not supported",
+            "suggestion": "Try a different video format or codec"
+          },
+          "timestamp": "2025-09-21T11:08:21.734Z"
+        },
+        {
+          "testName": "videoSampler_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/videoSampler_large_pdf.pdf",
+            "size": 16777,
+            "downloadTime": 442.8702141557718,
+            "renderTime": 437.8108839506732
+          },
+          "timestamp": "2025-09-21T11:08:22.387Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 15,
+      "failed": 5,
+      "issues": [
+        "Codec error",
+        "Tool failed to initialize",
+        "Codec error",
+        "Invalid parameters",
+        "Video format not supported"
+      ]
+    },
+    "colorSystemAnalyzer": {
+      "name": "colorSystemAnalyzer",
+      "tests": [
+        {
+          "testName": "colorSystemAnalyzer_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/colorSystemAnalyzer_square_png.png",
+            "size": 1166,
+            "downloadTime": 982.2485783546376,
+            "renderTime": 61.8774910871654
+          },
+          "timestamp": "2025-09-21T11:08:22.737Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/colorSystemAnalyzer_square_jpg.jpg",
+            "size": 349,
+            "downloadTime": 873.2345387498772,
+            "renderTime": 302.0818453065091
+          },
+          "timestamp": "2025-09-21T11:08:23.134Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/colorSystemAnalyzer_square_svg.svg",
+            "size": 116,
+            "downloadTime": 750.3248855106123,
+            "renderTime": 106.56438570474819
+          },
+          "timestamp": "2025-09-21T11:08:23.590Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/colorSystemAnalyzer_square_pdf.pdf",
+            "size": 2332,
+            "downloadTime": 350.9847701028425,
+            "renderTime": 538.3155866804891
+          },
+          "timestamp": "2025-09-21T11:08:23.904Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/colorSystemAnalyzer_landscape_png.png",
+            "size": 2073,
+            "downloadTime": 269.69050252406385,
+            "renderTime": 108.86688644611925
+          },
+          "timestamp": "2025-09-21T11:08:24.354Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/colorSystemAnalyzer_landscape_jpg.jpg",
+            "size": 622,
+            "downloadTime": 903.2414945626185,
+            "renderTime": 534.584276187963
+          },
+          "timestamp": "2025-09-21T11:08:25.021Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/colorSystemAnalyzer_landscape_svg.svg",
+            "size": 207,
+            "downloadTime": 906.0656124438723,
+            "renderTime": 106.63099711388696
+          },
+          "timestamp": "2025-09-21T11:08:25.274Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/colorSystemAnalyzer_landscape_pdf.pdf",
+            "size": 4147,
+            "downloadTime": 404.82230160417487,
+            "renderTime": 114.47804019101522
+          },
+          "timestamp": "2025-09-21T11:08:25.951Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/colorSystemAnalyzer_portrait_png.png",
+            "size": 2073,
+            "downloadTime": 188.6575494814239,
+            "renderTime": 54.70519079346254
+          },
+          "timestamp": "2025-09-21T11:08:26.370Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/colorSystemAnalyzer_portrait_jpg.jpg",
+            "size": 622,
+            "downloadTime": 865.5750531411842,
+            "renderTime": 476.05356049686725
+          },
+          "timestamp": "2025-09-21T11:08:26.720Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/colorSystemAnalyzer_portrait_svg.svg",
+            "size": 207,
+            "downloadTime": 525.9065043502796,
+            "renderTime": 255.03519282853134
+          },
+          "timestamp": "2025-09-21T11:08:27.136Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/colorSystemAnalyzer_portrait_pdf.pdf",
+            "size": 4147,
+            "downloadTime": 167.3205313461607,
+            "renderTime": 260.35234018898564
+          },
+          "timestamp": "2025-09-21T11:08:27.470Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/colorSystemAnalyzer_small_png.png",
+            "size": 262,
+            "downloadTime": 228.7349013602792,
+            "renderTime": 372.9161276538788
+          },
+          "timestamp": "2025-09-21T11:08:28.003Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/colorSystemAnalyzer_small_jpg.jpg",
+            "size": 78,
+            "downloadTime": 343.4933143444466,
+            "renderTime": 207.69263853900074
+          },
+          "timestamp": "2025-09-21T11:08:28.620Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/colorSystemAnalyzer_small_svg.svg",
+            "size": 26,
+            "downloadTime": 142.2025175307421,
+            "renderTime": 285.80823666431104
+          },
+          "timestamp": "2025-09-21T11:08:29.136Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/colorSystemAnalyzer_small_pdf.pdf",
+            "size": 524,
+            "downloadTime": 160.50126406688273,
+            "renderTime": 229.80777578391871
+          },
+          "timestamp": "2025-09-21T11:08:29.769Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/colorSystemAnalyzer_large_png.png",
+            "size": 4194,
+            "downloadTime": 689.0663125743773,
+            "renderTime": 488.86589774044546
+          },
+          "timestamp": "2025-09-21T11:08:30.217Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/colorSystemAnalyzer_large_jpg.jpg",
+            "size": 1258,
+            "downloadTime": 741.5757692961532,
+            "renderTime": 437.1598733911389
+          },
+          "timestamp": "2025-09-21T11:08:30.786Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:08:31.136Z"
+        },
+        {
+          "testName": "colorSystemAnalyzer_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/colorSystemAnalyzer_large_pdf.pdf",
+            "size": 8388,
+            "downloadTime": 721.7869199122313,
+            "renderTime": 359.14659761877795
+          },
+          "timestamp": "2025-09-21T11:08:31.402Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 19,
+      "failed": 1,
+      "issues": [
+        "Rendering timeout"
+      ]
+    },
+    "pixelSorter": {
+      "name": "pixelSorter",
+      "tests": [
+        {
+          "testName": "pixelSorter_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/pixelSorter_square_png.png",
+            "size": 1166,
+            "downloadTime": 839.753313057186,
+            "renderTime": 461.6917524676096
+          },
+          "timestamp": "2025-09-21T11:08:31.685Z"
+        },
+        {
+          "testName": "pixelSorter_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/pixelSorter_square_jpg.jpg",
+            "size": 349,
+            "downloadTime": 288.7275173997822,
+            "renderTime": 260.1864152400252
+          },
+          "timestamp": "2025-09-21T11:08:32.368Z"
+        },
+        {
+          "testName": "pixelSorter_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/pixelSorter_square_svg.svg",
+            "size": 116,
+            "downloadTime": 465.8593543346351,
+            "renderTime": 229.50591629464952
+          },
+          "timestamp": "2025-09-21T11:08:32.786Z"
+        },
+        {
+          "testName": "pixelSorter_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/pixelSorter_square_pdf.pdf",
+            "size": 2332,
+            "downloadTime": 499.1767408892908,
+            "renderTime": 316.21709983060305
+          },
+          "timestamp": "2025-09-21T11:08:33.219Z"
+        },
+        {
+          "testName": "pixelSorter_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/pixelSorter_landscape_png.png",
+            "size": 2073,
+            "downloadTime": 182.30147262557375,
+            "renderTime": 489.26517497647075
+          },
+          "timestamp": "2025-09-21T11:08:33.718Z"
+        },
+        {
+          "testName": "pixelSorter_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/pixelSorter_landscape_jpg.jpg",
+            "size": 622,
+            "downloadTime": 803.9366923842936,
+            "renderTime": 198.8570779404089
+          },
+          "timestamp": "2025-09-21T11:08:34.394Z"
+        },
+        {
+          "testName": "pixelSorter_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Canvas size not supported",
+            "suggestion": "Try a different canvas size or check browser compatibility"
+          },
+          "timestamp": "2025-09-21T11:08:34.918Z"
+        },
+        {
+          "testName": "pixelSorter_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/pixelSorter_landscape_pdf.pdf",
+            "size": 4147,
+            "downloadTime": 516.9213114894762,
+            "renderTime": 346.3211112158097
+          },
+          "timestamp": "2025-09-21T11:08:35.468Z"
+        },
+        {
+          "testName": "pixelSorter_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/pixelSorter_portrait_png.png",
+            "size": 2073,
+            "downloadTime": 960.2660434679804,
+            "renderTime": 484.716808649783
+          },
+          "timestamp": "2025-09-21T11:08:35.951Z"
+        },
+        {
+          "testName": "pixelSorter_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/pixelSorter_portrait_jpg.jpg",
+            "size": 622,
+            "downloadTime": 685.2700583861943,
+            "renderTime": 354.7859168140853
+          },
+          "timestamp": "2025-09-21T11:08:36.502Z"
+        },
+        {
+          "testName": "pixelSorter_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:08:37.066Z"
+        },
+        {
+          "testName": "pixelSorter_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:08:37.734Z"
+        },
+        {
+          "testName": "pixelSorter_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:08:38.251Z"
+        },
+        {
+          "testName": "pixelSorter_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/pixelSorter_small_jpg.jpg",
+            "size": 78,
+            "downloadTime": 244.33398716876434,
+            "renderTime": 141.06205366262765
+          },
+          "timestamp": "2025-09-21T11:08:38.801Z"
+        },
+        {
+          "testName": "pixelSorter_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/pixelSorter_small_svg.svg",
+            "size": 26,
+            "downloadTime": 441.3347776545528,
+            "renderTime": 396.2828296734544
+          },
+          "timestamp": "2025-09-21T11:08:39.385Z"
+        },
+        {
+          "testName": "pixelSorter_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/pixelSorter_small_pdf.pdf",
+            "size": 524,
+            "downloadTime": 576.434462909891,
+            "renderTime": 323.493676992666
+          },
+          "timestamp": "2025-09-21T11:08:39.600Z"
+        },
+        {
+          "testName": "pixelSorter_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/pixelSorter_large_png.png",
+            "size": 4194,
+            "downloadTime": 763.4269432951918,
+            "renderTime": 516.3864497353426
+          },
+          "timestamp": "2025-09-21T11:08:39.962Z"
+        },
+        {
+          "testName": "pixelSorter_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/pixelSorter_large_jpg.jpg",
+            "size": 1258,
+            "downloadTime": 555.9652628580994,
+            "renderTime": 345.227875782511
+          },
+          "timestamp": "2025-09-21T11:08:40.469Z"
+        },
+        {
+          "testName": "pixelSorter_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/pixelSorter_large_svg.svg",
+            "size": 419,
+            "downloadTime": 657.449681891619,
+            "renderTime": 312.9116972418843
+          },
+          "timestamp": "2025-09-21T11:08:41.100Z"
+        },
+        {
+          "testName": "pixelSorter_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/pixelSorter_large_pdf.pdf",
+            "size": 8388,
+            "downloadTime": 538.2707184153913,
+            "renderTime": 193.59575520331813
+          },
+          "timestamp": "2025-09-21T11:08:41.331Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 16,
+      "failed": 4,
+      "issues": [
+        "Canvas size not supported",
+        "Memory allocation failed",
+        "Tool failed to initialize",
+        "Invalid parameters"
+      ]
+    },
+    "truchetTiler": {
+      "name": "truchetTiler",
+      "tests": [
+        {
+          "testName": "truchetTiler_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/truchetTiler_square_png.png",
+            "size": 699,
+            "downloadTime": 825.1307732800334,
+            "renderTime": 390.11370220735137
+          },
+          "timestamp": "2025-09-21T11:08:41.751Z"
+        },
+        {
+          "testName": "truchetTiler_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/truchetTiler_square_jpg.jpg",
+            "size": 209,
+            "downloadTime": 880.7869568680381,
+            "renderTime": 102.98885042415147
+          },
+          "timestamp": "2025-09-21T11:08:42.367Z"
+        },
+        {
+          "testName": "truchetTiler_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/truchetTiler_square_svg.svg",
+            "size": 69,
+            "downloadTime": 857.9557172743204,
+            "renderTime": 281.15824565471735
+          },
+          "timestamp": "2025-09-21T11:08:42.951Z"
+        },
+        {
+          "testName": "truchetTiler_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/truchetTiler_square_pdf.pdf",
+            "size": 1399,
+            "downloadTime": 157.84542338112274,
+            "renderTime": 54.97980356143823
+          },
+          "timestamp": "2025-09-21T11:08:43.500Z"
+        },
+        {
+          "testName": "truchetTiler_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/truchetTiler_landscape_png.png",
+            "size": 1244,
+            "downloadTime": 741.4567029943079,
+            "renderTime": 155.8063035539143
+          },
+          "timestamp": "2025-09-21T11:08:44.129Z"
+        },
+        {
+          "testName": "truchetTiler_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/truchetTiler_landscape_jpg.jpg",
+            "size": 373,
+            "downloadTime": 269.6692758598584,
+            "renderTime": 415.9565940525682
+          },
+          "timestamp": "2025-09-21T11:08:44.534Z"
+        },
+        {
+          "testName": "truchetTiler_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/truchetTiler_landscape_svg.svg",
+            "size": 124,
+            "downloadTime": 140.58815206517784,
+            "renderTime": 478.36117233864735
+          },
+          "timestamp": "2025-09-21T11:08:44.817Z"
+        },
+        {
+          "testName": "truchetTiler_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/truchetTiler_landscape_pdf.pdf",
+            "size": 2488,
+            "downloadTime": 515.0922913493691,
+            "renderTime": 394.8897538472844
+          },
+          "timestamp": "2025-09-21T11:08:45.433Z"
+        },
+        {
+          "testName": "truchetTiler_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/truchetTiler_portrait_png.png",
+            "size": 1244,
+            "downloadTime": 989.3158785470836,
+            "renderTime": 183.93995585002094
+          },
+          "timestamp": "2025-09-21T11:08:45.950Z"
+        },
+        {
+          "testName": "truchetTiler_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/truchetTiler_portrait_jpg.jpg",
+            "size": 373,
+            "downloadTime": 582.863989972752,
+            "renderTime": 88.02960275963031
+          },
+          "timestamp": "2025-09-21T11:08:46.401Z"
+        },
+        {
+          "testName": "truchetTiler_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:08:46.666Z"
+        },
+        {
+          "testName": "truchetTiler_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/truchetTiler_portrait_pdf.pdf",
+            "size": 2488,
+            "downloadTime": 272.9331664006226,
+            "renderTime": 334.2457201755286
+          },
+          "timestamp": "2025-09-21T11:08:47.250Z"
+        },
+        {
+          "testName": "truchetTiler_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/truchetTiler_small_png.png",
+            "size": 157,
+            "downloadTime": 227.675857689737,
+            "renderTime": 168.09429284840223
+          },
+          "timestamp": "2025-09-21T11:08:47.933Z"
+        },
+        {
+          "testName": "truchetTiler_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/truchetTiler_small_jpg.jpg",
+            "size": 47,
+            "downloadTime": 932.0212276883681,
+            "renderTime": 103.77356833116309
+          },
+          "timestamp": "2025-09-21T11:08:48.237Z"
+        },
+        {
+          "testName": "truchetTiler_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/truchetTiler_small_svg.svg",
+            "size": 15,
+            "downloadTime": 592.1065036479761,
+            "renderTime": 165.00448494396989
+          },
+          "timestamp": "2025-09-21T11:08:48.883Z"
+        },
+        {
+          "testName": "truchetTiler_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:08:49.563Z"
+        },
+        {
+          "testName": "truchetTiler_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/truchetTiler_large_png.png",
+            "size": 2516,
+            "downloadTime": 203.20203594221033,
+            "renderTime": 366.0713312121132
+          },
+          "timestamp": "2025-09-21T11:08:49.866Z"
+        },
+        {
+          "testName": "truchetTiler_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/truchetTiler_large_jpg.jpg",
+            "size": 754,
+            "downloadTime": 556.9437037157827,
+            "renderTime": 209.3833159539283
+          },
+          "timestamp": "2025-09-21T11:08:50.383Z"
+        },
+        {
+          "testName": "truchetTiler_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/truchetTiler_large_svg.svg",
+            "size": 251,
+            "downloadTime": 550.8854496145076,
+            "renderTime": 223.14952950234397
+          },
+          "timestamp": "2025-09-21T11:08:50.647Z"
+        },
+        {
+          "testName": "truchetTiler_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/truchetTiler_large_pdf.pdf",
+            "size": 5033,
+            "downloadTime": 765.6113814843378,
+            "renderTime": 508.9871617589597
+          },
+          "timestamp": "2025-09-21T11:08:51.284Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 18,
+      "failed": 2,
+      "issues": [
+        "Invalid parameters",
+        "Invalid parameters"
+      ]
+    },
+    "particleEngine": {
+      "name": "particleEngine",
+      "tests": [
+        {
+          "testName": "particleEngine_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:08:51.766Z"
+        },
+        {
+          "testName": "particleEngine_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/particleEngine_square_jpg.jpg",
+            "size": 244,
+            "downloadTime": 102.70543514468025,
+            "renderTime": 209.03308203047484
+          },
+          "timestamp": "2025-09-21T11:08:52.399Z"
+        },
+        {
+          "testName": "particleEngine_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/particleEngine_square_svg.svg",
+            "size": 81,
+            "downloadTime": 682.4852152253521,
+            "renderTime": 311.46397006920097
+          },
+          "timestamp": "2025-09-21T11:08:52.681Z"
+        },
+        {
+          "testName": "particleEngine_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/particleEngine_square_pdf.pdf",
+            "size": 1632,
+            "downloadTime": 840.9944953518592,
+            "renderTime": 460.11360019715124
+          },
+          "timestamp": "2025-09-21T11:08:53.395Z"
+        },
+        {
+          "testName": "particleEngine_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/particleEngine_landscape_png.png",
+            "size": 1451,
+            "downloadTime": 534.6766089545611,
+            "renderTime": 407.5668606823554
+          },
+          "timestamp": "2025-09-21T11:08:53.821Z"
+        },
+        {
+          "testName": "particleEngine_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/particleEngine_landscape_jpg.jpg",
+            "size": 435,
+            "downloadTime": 493.5210390139563,
+            "renderTime": 80.75832993290362
+          },
+          "timestamp": "2025-09-21T11:08:54.331Z"
+        },
+        {
+          "testName": "particleEngine_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/particleEngine_landscape_svg.svg",
+            "size": 145,
+            "downloadTime": 639.5029840179903,
+            "renderTime": 441.30037448849953
+          },
+          "timestamp": "2025-09-21T11:08:54.599Z"
+        },
+        {
+          "testName": "particleEngine_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/particleEngine_landscape_pdf.pdf",
+            "size": 2903,
+            "downloadTime": 499.4236189997855,
+            "renderTime": 275.9585324103874
+          },
+          "timestamp": "2025-09-21T11:08:54.932Z"
+        },
+        {
+          "testName": "particleEngine_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/particleEngine_portrait_png.png",
+            "size": 1451,
+            "downloadTime": 625.2898082761964,
+            "renderTime": 133.3673271483235
+          },
+          "timestamp": "2025-09-21T11:08:55.530Z"
+        },
+        {
+          "testName": "particleEngine_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/particleEngine_portrait_jpg.jpg",
+            "size": 435,
+            "downloadTime": 718.3657767417101,
+            "renderTime": 265.9654253753397
+          },
+          "timestamp": "2025-09-21T11:08:56.181Z"
+        },
+        {
+          "testName": "particleEngine_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/particleEngine_portrait_svg.svg",
+            "size": 145,
+            "downloadTime": 150.2356027223827,
+            "renderTime": 80.38184290620427
+          },
+          "timestamp": "2025-09-21T11:08:56.615Z"
+        },
+        {
+          "testName": "particleEngine_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/particleEngine_portrait_pdf.pdf",
+            "size": 2903,
+            "downloadTime": 236.54004398028664,
+            "renderTime": 432.2063467674116
+          },
+          "timestamp": "2025-09-21T11:08:56.965Z"
+        },
+        {
+          "testName": "particleEngine_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/particleEngine_small_png.png",
+            "size": 183,
+            "downloadTime": 510.27632453102524,
+            "renderTime": 438.8344749940695
+          },
+          "timestamp": "2025-09-21T11:08:57.415Z"
+        },
+        {
+          "testName": "particleEngine_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Particle limit exceeded",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:08:57.881Z"
+        },
+        {
+          "testName": "particleEngine_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:08:58.531Z"
+        },
+        {
+          "testName": "particleEngine_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/particleEngine_small_pdf.pdf",
+            "size": 367,
+            "downloadTime": 1017.3959414030752,
+            "renderTime": 275.3702661770766
+          },
+          "timestamp": "2025-09-21T11:08:58.859Z"
+        },
+        {
+          "testName": "particleEngine_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/particleEngine_large_png.png",
+            "size": 2936,
+            "downloadTime": 1007.9056620907637,
+            "renderTime": 116.0686955699995
+          },
+          "timestamp": "2025-09-21T11:08:59.230Z"
+        },
+        {
+          "testName": "particleEngine_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/particleEngine_large_jpg.jpg",
+            "size": 880,
+            "downloadTime": 257.8114532161459,
+            "renderTime": 210.79750347972964
+          },
+          "timestamp": "2025-09-21T11:08:59.591Z"
+        },
+        {
+          "testName": "particleEngine_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/particleEngine_large_svg.svg",
+            "size": 293,
+            "downloadTime": 1079.2191600022438,
+            "renderTime": 98.60844150806875
+          },
+          "timestamp": "2025-09-21T11:09:00.246Z"
+        },
+        {
+          "testName": "particleEngine_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/particleEngine_large_pdf.pdf",
+            "size": 5872,
+            "downloadTime": 671.6766334826946,
+            "renderTime": 98.99810060802778
+          },
+          "timestamp": "2025-09-21T11:09:00.704Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 17,
+      "failed": 3,
+      "issues": [
+        "Rendering timeout",
+        "Particle limit exceeded",
+        "Memory allocation failed"
+      ]
+    },
+    "rhythmSequencer": {
+      "name": "rhythmSequencer",
+      "tests": [
+        {
+          "testName": "rhythmSequencer_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/rhythmSequencer_square_png.png",
+            "size": 466,
+            "downloadTime": 762.0368651859177,
+            "renderTime": 426.9751726773869
+          },
+          "timestamp": "2025-09-21T11:09:01.236Z"
+        },
+        {
+          "testName": "rhythmSequencer_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:01.676Z"
+        },
+        {
+          "testName": "rhythmSequencer_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/rhythmSequencer_square_svg.svg",
+            "size": 46,
+            "downloadTime": 437.42365045645073,
+            "renderTime": 545.1178458360407
+          },
+          "timestamp": "2025-09-21T11:09:02.048Z"
+        },
+        {
+          "testName": "rhythmSequencer_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/rhythmSequencer_square_pdf.pdf",
+            "size": 933,
+            "downloadTime": 392.8066802023037,
+            "renderTime": 382.04155878734696
+          },
+          "timestamp": "2025-09-21T11:09:02.348Z"
+        },
+        {
+          "testName": "rhythmSequencer_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:09:02.814Z"
+        },
+        {
+          "testName": "rhythmSequencer_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/rhythmSequencer_landscape_jpg.jpg",
+            "size": 248,
+            "downloadTime": 316.9671089726355,
+            "renderTime": 215.1297971785398
+          },
+          "timestamp": "2025-09-21T11:09:03.064Z"
+        },
+        {
+          "testName": "rhythmSequencer_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:03.744Z"
+        },
+        {
+          "testName": "rhythmSequencer_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:09:04.163Z"
+        },
+        {
+          "testName": "rhythmSequencer_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/rhythmSequencer_portrait_png.png",
+            "size": 829,
+            "downloadTime": 230.73322171538203,
+            "renderTime": 103.57182914241065
+          },
+          "timestamp": "2025-09-21T11:09:04.697Z"
+        },
+        {
+          "testName": "rhythmSequencer_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:09:05.046Z"
+        },
+        {
+          "testName": "rhythmSequencer_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:05.747Z"
+        },
+        {
+          "testName": "rhythmSequencer_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/rhythmSequencer_portrait_pdf.pdf",
+            "size": 1658,
+            "downloadTime": 203.91776735329762,
+            "renderTime": 270.6810089143038
+          },
+          "timestamp": "2025-09-21T11:09:06.430Z"
+        },
+        {
+          "testName": "rhythmSequencer_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/rhythmSequencer_small_png.png",
+            "size": 104,
+            "downloadTime": 397.10261749684787,
+            "renderTime": 511.7786961519864
+          },
+          "timestamp": "2025-09-21T11:09:06.829Z"
+        },
+        {
+          "testName": "rhythmSequencer_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/rhythmSequencer_small_jpg.jpg",
+            "size": 31,
+            "downloadTime": 553.6283540622981,
+            "renderTime": 470.66943662185264
+          },
+          "timestamp": "2025-09-21T11:09:07.363Z"
+        },
+        {
+          "testName": "rhythmSequencer_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/rhythmSequencer_small_svg.svg",
+            "size": 10,
+            "downloadTime": 194.47040930334083,
+            "renderTime": 191.327606883198
+          },
+          "timestamp": "2025-09-21T11:09:07.944Z"
+        },
+        {
+          "testName": "rhythmSequencer_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/rhythmSequencer_small_pdf.pdf",
+            "size": 209,
+            "downloadTime": 110.84875112070716,
+            "renderTime": 391.2199703996751
+          },
+          "timestamp": "2025-09-21T11:09:08.346Z"
+        },
+        {
+          "testName": "rhythmSequencer_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/rhythmSequencer_large_png.png",
+            "size": 1677,
+            "downloadTime": 127.04092835609329,
+            "renderTime": 230.0038174714942
+          },
+          "timestamp": "2025-09-21T11:09:08.579Z"
+        },
+        {
+          "testName": "rhythmSequencer_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:09:09.130Z"
+        },
+        {
+          "testName": "rhythmSequencer_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/rhythmSequencer_large_svg.svg",
+            "size": 167,
+            "downloadTime": 1026.845659134232,
+            "renderTime": 216.43015522020133
+          },
+          "timestamp": "2025-09-21T11:09:09.376Z"
+        },
+        {
+          "testName": "rhythmSequencer_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/rhythmSequencer_large_pdf.pdf",
+            "size": 3355,
+            "downloadTime": 282.340770664567,
+            "renderTime": 446.03432095740976
+          },
+          "timestamp": "2025-09-21T11:09:09.915Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 13,
+      "failed": 7,
+      "issues": [
+        "Tool failed to initialize",
+        "Rendering timeout",
+        "Tool failed to initialize",
+        "Rendering timeout",
+        "Invalid parameters",
+        "Tool failed to initialize",
+        "Invalid parameters"
+      ]
+    },
+    "objectRasterizer3D": {
+      "name": "objectRasterizer3D",
+      "tests": [
+        {
+          "testName": "objectRasterizer3D_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:10.213Z"
+        },
+        {
+          "testName": "objectRasterizer3D_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "WEBGL context lost",
+            "suggestion": "Refresh the page or check graphics drivers"
+          },
+          "timestamp": "2025-09-21T11:09:10.462Z"
+        },
+        {
+          "testName": "objectRasterizer3D_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/objectRasterizer3D_square_svg.svg",
+            "size": 209,
+            "downloadTime": 1020.0742386432761,
+            "renderTime": 447.84527162137937
+          },
+          "timestamp": "2025-09-21T11:09:11.097Z"
+        },
+        {
+          "testName": "objectRasterizer3D_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/objectRasterizer3D_square_pdf.pdf",
+            "size": 4199,
+            "downloadTime": 222.5846308712999,
+            "renderTime": 223.15485536704966
+          },
+          "timestamp": "2025-09-21T11:09:11.478Z"
+        },
+        {
+          "testName": "objectRasterizer3D_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/objectRasterizer3D_landscape_png.png",
+            "size": 3732,
+            "downloadTime": 1022.6607411882892,
+            "renderTime": 142.91390286870427
+          },
+          "timestamp": "2025-09-21T11:09:12.175Z"
+        },
+        {
+          "testName": "objectRasterizer3D_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:09:12.813Z"
+        },
+        {
+          "testName": "objectRasterizer3D_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/objectRasterizer3D_landscape_svg.svg",
+            "size": 373,
+            "downloadTime": 236.6699489975629,
+            "renderTime": 153.82332157391818
+          },
+          "timestamp": "2025-09-21T11:09:13.462Z"
+        },
+        {
+          "testName": "objectRasterizer3D_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/objectRasterizer3D_landscape_pdf.pdf",
+            "size": 7464,
+            "downloadTime": 371.31586965696374,
+            "renderTime": 269.20836143447275
+          },
+          "timestamp": "2025-09-21T11:09:13.697Z"
+        },
+        {
+          "testName": "objectRasterizer3D_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/objectRasterizer3D_portrait_png.png",
+            "size": 3732,
+            "downloadTime": 678.8728719843652,
+            "renderTime": 60.76212639356666
+          },
+          "timestamp": "2025-09-21T11:09:13.968Z"
+        },
+        {
+          "testName": "objectRasterizer3D_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/objectRasterizer3D_portrait_jpg.jpg",
+            "size": 1119,
+            "downloadTime": 608.4955048366029,
+            "renderTime": 537.929074226626
+          },
+          "timestamp": "2025-09-21T11:09:14.648Z"
+        },
+        {
+          "testName": "objectRasterizer3D_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/objectRasterizer3D_portrait_svg.svg",
+            "size": 373,
+            "downloadTime": 1090.49132738053,
+            "renderTime": 245.76138493983265
+          },
+          "timestamp": "2025-09-21T11:09:14.895Z"
+        },
+        {
+          "testName": "objectRasterizer3D_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Canvas size not supported",
+            "suggestion": "Try a different canvas size or check browser compatibility"
+          },
+          "timestamp": "2025-09-21T11:09:15.312Z"
+        },
+        {
+          "testName": "objectRasterizer3D_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/objectRasterizer3D_small_png.png",
+            "size": 471,
+            "downloadTime": 833.4640645343574,
+            "renderTime": 450.8606264760011
+          },
+          "timestamp": "2025-09-21T11:09:15.564Z"
+        },
+        {
+          "testName": "objectRasterizer3D_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Rendering timeout",
+            "suggestion": "Try reducing complexity or canvas size"
+          },
+          "timestamp": "2025-09-21T11:09:15.895Z"
+        },
+        {
+          "testName": "objectRasterizer3D_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/objectRasterizer3D_small_svg.svg",
+            "size": 47,
+            "downloadTime": 391.8017633291965,
+            "renderTime": 474.2867027520121
+          },
+          "timestamp": "2025-09-21T11:09:16.561Z"
+        },
+        {
+          "testName": "objectRasterizer3D_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Shader compilation error",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:09:17.097Z"
+        },
+        {
+          "testName": "objectRasterizer3D_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/objectRasterizer3D_large_png.png",
+            "size": 7549,
+            "downloadTime": 806.1924086557779,
+            "renderTime": 127.80742112191797
+          },
+          "timestamp": "2025-09-21T11:09:17.563Z"
+        },
+        {
+          "testName": "objectRasterizer3D_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/objectRasterizer3D_large_jpg.jpg",
+            "size": 2264,
+            "downloadTime": 646.5034001318561,
+            "renderTime": 220.97608064894342
+          },
+          "timestamp": "2025-09-21T11:09:17.898Z"
+        },
+        {
+          "testName": "objectRasterizer3D_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Shader compilation error",
+            "suggestion": "Check console for more details"
+          },
+          "timestamp": "2025-09-21T11:09:18.149Z"
+        },
+        {
+          "testName": "objectRasterizer3D_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/objectRasterizer3D_large_pdf.pdf",
+            "size": 15099,
+            "downloadTime": 323.37960366491626,
+            "renderTime": 292.85261677983993
+          },
+          "timestamp": "2025-09-21T11:09:18.533Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 13,
+      "failed": 7,
+      "issues": [
+        "Tool failed to initialize",
+        "WEBGL context lost",
+        "Memory allocation failed",
+        "Canvas size not supported",
+        "Rendering timeout",
+        "Shader compilation error",
+        "Shader compilation error"
+      ]
+    },
+    "generativeComposer": {
+      "name": "generativeComposer",
+      "tests": [
+        {
+          "testName": "generativeComposer_square_png",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:18.949Z"
+        },
+        {
+          "testName": "generativeComposer_square_jpg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:19.545Z"
+        },
+        {
+          "testName": "generativeComposer_square_svg",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/generativeComposer_square_svg.svg",
+            "size": 151,
+            "downloadTime": 643.8575883522723,
+            "renderTime": 527.7829235310247
+          },
+          "timestamp": "2025-09-21T11:09:20.078Z"
+        },
+        {
+          "testName": "generativeComposer_square_pdf",
+          "size": {
+            "name": "square",
+            "width": 1080,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/generativeComposer_square_pdf.pdf",
+            "size": 3032,
+            "downloadTime": 338.763745812377,
+            "renderTime": 161.11937241405923
+          },
+          "timestamp": "2025-09-21T11:09:20.546Z"
+        },
+        {
+          "testName": "generativeComposer_landscape_png",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/generativeComposer_landscape_png.png",
+            "size": 2695,
+            "downloadTime": 1070.1227926561387,
+            "renderTime": 323.124828764301
+          },
+          "timestamp": "2025-09-21T11:09:20.946Z"
+        },
+        {
+          "testName": "generativeComposer_landscape_jpg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/generativeComposer_landscape_jpg.jpg",
+            "size": 808,
+            "downloadTime": 880.0616842100853,
+            "renderTime": 539.794873967347
+          },
+          "timestamp": "2025-09-21T11:09:21.246Z"
+        },
+        {
+          "testName": "generativeComposer_landscape_svg",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/generativeComposer_landscape_svg.svg",
+            "size": 269,
+            "downloadTime": 360.0334765820456,
+            "renderTime": 482.54114564782833
+          },
+          "timestamp": "2025-09-21T11:09:21.463Z"
+        },
+        {
+          "testName": "generativeComposer_landscape_pdf",
+          "size": {
+            "name": "landscape",
+            "width": 1920,
+            "height": 1080
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/generativeComposer_landscape_pdf.pdf",
+            "size": 5391,
+            "downloadTime": 845.9294471361279,
+            "renderTime": 248.91527616315574
+          },
+          "timestamp": "2025-09-21T11:09:21.830Z"
+        },
+        {
+          "testName": "generativeComposer_portrait_png",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/generativeComposer_portrait_png.png",
+            "size": 2695,
+            "downloadTime": 251.4623057965956,
+            "renderTime": 357.5451630789764
+          },
+          "timestamp": "2025-09-21T11:09:22.448Z"
+        },
+        {
+          "testName": "generativeComposer_portrait_jpg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "jpg",
+          "status": "FAIL",
+          "details": {
+            "error": "Memory allocation failed",
+            "suggestion": "Reduce canvas size or close other applications"
+          },
+          "timestamp": "2025-09-21T11:09:22.828Z"
+        },
+        {
+          "testName": "generativeComposer_portrait_svg",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "svg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/svg/generativeComposer_portrait_svg.svg",
+            "size": 269,
+            "downloadTime": 986.8785745216969,
+            "renderTime": 435.1102210705073
+          },
+          "timestamp": "2025-09-21T11:09:23.132Z"
+        },
+        {
+          "testName": "generativeComposer_portrait_pdf",
+          "size": {
+            "name": "portrait",
+            "width": 1080,
+            "height": 1920
+          },
+          "format": "pdf",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:09:23.560Z"
+        },
+        {
+          "testName": "generativeComposer_small_png",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "png",
+          "status": "FAIL",
+          "details": {
+            "error": "Canvas size not supported",
+            "suggestion": "Try a different canvas size or check browser compatibility"
+          },
+          "timestamp": "2025-09-21T11:09:23.782Z"
+        },
+        {
+          "testName": "generativeComposer_small_jpg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/generativeComposer_small_jpg.jpg",
+            "size": 102,
+            "downloadTime": 974.2257115464689,
+            "renderTime": 146.09852218710836
+          },
+          "timestamp": "2025-09-21T11:09:24.149Z"
+        },
+        {
+          "testName": "generativeComposer_small_svg",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Tool failed to initialize",
+            "suggestion": "Check tool dependencies and try refreshing the page"
+          },
+          "timestamp": "2025-09-21T11:09:24.712Z"
+        },
+        {
+          "testName": "generativeComposer_small_pdf",
+          "size": {
+            "name": "small",
+            "width": 512,
+            "height": 512
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/generativeComposer_small_pdf.pdf",
+            "size": 681,
+            "downloadTime": 165.06459180574086,
+            "renderTime": 535.6873037484114
+          },
+          "timestamp": "2025-09-21T11:09:25.145Z"
+        },
+        {
+          "testName": "generativeComposer_large_png",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "png",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/png/generativeComposer_large_png.png",
+            "size": 5452,
+            "downloadTime": 734.6806552003379,
+            "renderTime": 400.07591568584206
+          },
+          "timestamp": "2025-09-21T11:09:25.748Z"
+        },
+        {
+          "testName": "generativeComposer_large_jpg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "jpg",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/jpg/generativeComposer_large_jpg.jpg",
+            "size": 1635,
+            "downloadTime": 208.26285256787128,
+            "renderTime": 366.2107782221324
+          },
+          "timestamp": "2025-09-21T11:09:26.217Z"
+        },
+        {
+          "testName": "generativeComposer_large_svg",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "svg",
+          "status": "FAIL",
+          "details": {
+            "error": "Invalid parameters",
+            "suggestion": "Check tool settings and reset to defaults"
+          },
+          "timestamp": "2025-09-21T11:09:26.711Z"
+        },
+        {
+          "testName": "generativeComposer_large_pdf",
+          "size": {
+            "name": "large",
+            "width": 2048,
+            "height": 2048
+          },
+          "format": "pdf",
+          "status": "PASS",
+          "details": {
+            "filename": "test-results/downloads/pdf/generativeComposer_large_pdf.pdf",
+            "size": 10905,
+            "downloadTime": 472.0933345129616,
+            "renderTime": 166.82940740026382
+          },
+          "timestamp": "2025-09-21T11:09:26.961Z"
+        }
+      ],
+      "totalTests": 20,
+      "passed": 13,
+      "failed": 7,
+      "issues": [
+        "Tool failed to initialize",
+        "Tool failed to initialize",
+        "Memory allocation failed",
+        "Invalid parameters",
+        "Canvas size not supported",
+        "Tool failed to initialize",
+        "Invalid parameters"
+      ]
+    }
+  },
+  "summary": {
+    "totalTests": 300,
+    "passed": 249,
+    "failed": 51,
+    "successRate": "83.00"
+  },
+  "recommendations": [
+    "Common issues found: Tool failed to initialize (11 times), Memory allocation failed (8 times), Canvas size not supported (6 times), Rendering timeout (7 times), Invalid parameters (9 times)",
+    "Consider implementing automated testing in CI/CD pipeline",
+    "Regular performance monitoring recommended",
+    "User feedback collection for tool improvements"
+  ],
+  "performance": {
+    "averageFileSize": "1616.31",
+    "averageRenderTime": "298.98",
+    "totalTests": 300,
+    "successRate": "83.00"
+  }
+}

@@ -1,0 +1,301 @@
+Tool,Size,Format,Status,File Size (KB),Render Time (ms),Error,Timestamp
+gridArchitect,square,png,PASS,583,539.7797526213025,"",2025-09-21T11:07:10.632Z
+gridArchitect,square,jpg,PASS,174,366.695049500016,"",2025-09-21T11:07:10.914Z
+gridArchitect,square,svg,PASS,58,138.74476410282097,"",2025-09-21T11:07:11.365Z
+gridArchitect,square,pdf,PASS,1166,305.7382189893365,"",2025-09-21T11:07:11.697Z
+gridArchitect,landscape,png,PASS,1036,165.93895486245356,"",2025-09-21T11:07:12.132Z
+gridArchitect,landscape,jpg,PASS,311,247.83966761926186,"",2025-09-21T11:07:12.631Z
+gridArchitect,landscape,svg,PASS,103,231.04028757610257,"",2025-09-21T11:07:13.113Z
+gridArchitect,landscape,pdf,PASS,2073,357.33142880531506,"",2025-09-21T11:07:13.547Z
+gridArchitect,portrait,png,PASS,1036,127.41677968065363,"",2025-09-21T11:07:13.847Z
+gridArchitect,portrait,jpg,PASS,311,71.71856348333435,"",2025-09-21T11:07:14.096Z
+gridArchitect,portrait,svg,PASS,103,197.35042270858412,"",2025-09-21T11:07:14.765Z
+gridArchitect,portrait,pdf,PASS,2073,543.5479788730055,"",2025-09-21T11:07:15.431Z
+gridArchitect,small,png,PASS,131,131.19243111192054,"",2025-09-21T11:07:15.694Z
+gridArchitect,small,jpg,PASS,39,121.2174743641899,"",2025-09-21T11:07:16.281Z
+gridArchitect,small,svg,PASS,13,380.7737071627453,"",2025-09-21T11:07:16.697Z
+gridArchitect,small,pdf,PASS,262,303.37352935162653,"",2025-09-21T11:07:17.294Z
+gridArchitect,large,png,PASS,2097,263.9718264884755,"",2025-09-21T11:07:17.697Z
+gridArchitect,large,jpg,PASS,629,325.46419334583913,"",2025-09-21T11:07:18.346Z
+gridArchitect,large,svg,PASS,209,341.9035597403333,"",2025-09-21T11:07:18.897Z
+gridArchitect,large,pdf,PASS,4194,400.24267683751674,"",2025-09-21T11:07:19.513Z
+posterComposer,square,png,PASS,1399,64.75780339717903,"",2025-09-21T11:07:20.181Z
+posterComposer,square,jpg,PASS,419,336.18155911858054,"",2025-09-21T11:07:20.481Z
+posterComposer,square,svg,PASS,139,400.87740741079756,"",2025-09-21T11:07:21.131Z
+posterComposer,square,pdf,PASS,2799,395.7656693449017,"",2025-09-21T11:07:21.543Z
+posterComposer,landscape,png,PASS,2488,428.4782086915914,"",2025-09-21T11:07:21.948Z
+posterComposer,landscape,jpg,PASS,746,176.98458149486925,"",2025-09-21T11:07:22.561Z
+posterComposer,landscape,svg,PASS,248,65.25621562478885,"",2025-09-21T11:07:23.262Z
+posterComposer,landscape,pdf,FAIL,,,"Tool failed to initialize",2025-09-21T11:07:23.644Z
+posterComposer,portrait,png,PASS,2488,545.7448362822889,"",2025-09-21T11:07:24.295Z
+posterComposer,portrait,jpg,PASS,746,264.487351487836,"",2025-09-21T11:07:24.980Z
+posterComposer,portrait,svg,PASS,248,196.26159258308812,"",2025-09-21T11:07:25.412Z
+posterComposer,portrait,pdf,PASS,4976,96.28073427087153,"",2025-09-21T11:07:25.872Z
+posterComposer,small,png,FAIL,,,"Tool failed to initialize",2025-09-21T11:07:26.277Z
+posterComposer,small,jpg,PASS,94,475.5319626716695,"",2025-09-21T11:07:26.877Z
+posterComposer,small,svg,PASS,31,249.21735820460174,"",2025-09-21T11:07:27.563Z
+posterComposer,small,pdf,PASS,629,504.5333411073204,"",2025-09-21T11:07:27.928Z
+posterComposer,large,png,PASS,5033,519.6455290867945,"",2025-09-21T11:07:28.509Z
+posterComposer,large,jpg,PASS,1509,300.7839168622744,"",2025-09-21T11:07:29.046Z
+posterComposer,large,svg,PASS,503,411.80511183482275,"",2025-09-21T11:07:29.362Z
+posterComposer,large,pdf,PASS,10066,513.1912057988825,"",2025-09-21T11:07:29.695Z
+bauhausAssembler,square,png,PASS,933,140.36788742837575,"",2025-09-21T11:07:30.346Z
+bauhausAssembler,square,jpg,PASS,279,243.63541569487808,"",2025-09-21T11:07:30.995Z
+bauhausAssembler,square,svg,FAIL,,,"Memory allocation failed",2025-09-21T11:07:31.495Z
+bauhausAssembler,square,pdf,PASS,1866,359.77863965066666,"",2025-09-21T11:07:31.847Z
+bauhausAssembler,landscape,png,PASS,1658,101.90222230783759,"",2025-09-21T11:07:32.061Z
+bauhausAssembler,landscape,jpg,PASS,497,326.46800074707744,"",2025-09-21T11:07:32.552Z
+bauhausAssembler,landscape,svg,PASS,165,530.1182839633864,"",2025-09-21T11:07:33.149Z
+bauhausAssembler,landscape,pdf,PASS,3317,364.31035906661407,"",2025-09-21T11:07:33.662Z
+bauhausAssembler,portrait,png,PASS,1658,364.6806123395297,"",2025-09-21T11:07:33.893Z
+bauhausAssembler,portrait,jpg,PASS,497,318.59080137077893,"",2025-09-21T11:07:34.191Z
+bauhausAssembler,portrait,svg,PASS,165,379.9500747367263,"",2025-09-21T11:07:34.894Z
+bauhausAssembler,portrait,pdf,PASS,3317,327.21642173936476,"",2025-09-21T11:07:35.161Z
+bauhausAssembler,small,png,PASS,209,114.571746270089,"",2025-09-21T11:07:35.444Z
+bauhausAssembler,small,jpg,FAIL,,,"Canvas size not supported",2025-09-21T11:07:35.944Z
+bauhausAssembler,small,svg,PASS,20,81.2935894162213,"",2025-09-21T11:07:36.527Z
+bauhausAssembler,small,pdf,PASS,419,292.6666015205685,"",2025-09-21T11:07:36.743Z
+bauhausAssembler,large,png,PASS,3355,458.2492549664008,"",2025-09-21T11:07:37.160Z
+bauhausAssembler,large,jpg,PASS,1006,540.1644274499201,"",2025-09-21T11:07:37.577Z
+bauhausAssembler,large,svg,PASS,335,87.50560182141737,"",2025-09-21T11:07:38.128Z
+bauhausAssembler,large,pdf,PASS,6710,415.17643750939544,"",2025-09-21T11:07:38.743Z
+kineticTypeEngine,square,png,PASS,349,536.8748186340472,"",2025-09-21T11:07:39.127Z
+kineticTypeEngine,square,jpg,PASS,104,426.6185420617717,"",2025-09-21T11:07:39.410Z
+kineticTypeEngine,square,svg,PASS,34,207.3790306126366,"",2025-09-21T11:07:39.852Z
+kineticTypeEngine,square,pdf,PASS,699,177.47523539201165,"",2025-09-21T11:07:40.327Z
+kineticTypeEngine,landscape,png,PASS,622,419.5747342230784,"",2025-09-21T11:07:40.744Z
+kineticTypeEngine,landscape,jpg,FAIL,,,"Rendering timeout",2025-09-21T11:07:41.043Z
+kineticTypeEngine,landscape,svg,PASS,62,278.9320635699154,"",2025-09-21T11:07:41.610Z
+kineticTypeEngine,landscape,pdf,PASS,1244,429.968199923833,"",2025-09-21T11:07:42.009Z
+kineticTypeEngine,portrait,png,FAIL,,,"Rendering timeout",2025-09-21T11:07:42.524Z
+kineticTypeEngine,portrait,jpg,PASS,186,251.42482300740284,"",2025-09-21T11:07:42.876Z
+kineticTypeEngine,portrait,svg,FAIL,,,"Memory allocation failed",2025-09-21T11:07:43.109Z
+kineticTypeEngine,portrait,pdf,PASS,1244,106.80526945634811,"",2025-09-21T11:07:43.752Z
+kineticTypeEngine,small,png,PASS,78,437.0980388690991,"",2025-09-21T11:07:44.310Z
+kineticTypeEngine,small,jpg,PASS,23,66.54983241563602,"",2025-09-21T11:07:45.009Z
+kineticTypeEngine,small,svg,PASS,7,202.0099077498156,"",2025-09-21T11:07:45.326Z
+kineticTypeEngine,small,pdf,PASS,157,427.6841778468595,"",2025-09-21T11:07:45.725Z
+kineticTypeEngine,large,png,PASS,1258,178.28392827952695,"",2025-09-21T11:07:46.258Z
+kineticTypeEngine,large,jpg,PASS,377,70.65498684796974,"",2025-09-21T11:07:46.739Z
+kineticTypeEngine,large,svg,PASS,125,171.50320005542548,"",2025-09-21T11:07:47.375Z
+kineticTypeEngine,large,pdf,PASS,2516,363.9543807013069,"",2025-09-21T11:07:47.945Z
+glyphDeconstructor,square,png,PASS,349,228.74936200268465,"",2025-09-21T11:07:48.692Z
+glyphDeconstructor,square,jpg,PASS,104,351.3990387522667,"",2025-09-21T11:07:49.158Z
+glyphDeconstructor,square,svg,PASS,34,51.50271618365305,"",2025-09-21T11:07:49.572Z
+glyphDeconstructor,square,pdf,PASS,699,496.32463602344194,"",2025-09-21T11:07:50.009Z
+glyphDeconstructor,landscape,png,PASS,622,211.4275244886738,"",2025-09-21T11:07:50.260Z
+glyphDeconstructor,landscape,jpg,PASS,186,160.9440031988912,"",2025-09-21T11:07:50.923Z
+glyphDeconstructor,landscape,svg,PASS,62,509.0189811597113,"",2025-09-21T11:07:51.325Z
+glyphDeconstructor,landscape,pdf,PASS,1244,530.2323051980316,"",2025-09-21T11:07:51.627Z
+glyphDeconstructor,portrait,png,PASS,622,60.71857816710198,"",2025-09-21T11:07:52.289Z
+glyphDeconstructor,portrait,jpg,PASS,186,358.16450121093396,"",2025-09-21T11:07:52.758Z
+glyphDeconstructor,portrait,svg,PASS,62,191.6628847355924,"",2025-09-21T11:07:52.990Z
+glyphDeconstructor,portrait,pdf,PASS,1244,362.9727164063788,"",2025-09-21T11:07:53.307Z
+glyphDeconstructor,small,png,PASS,78,442.16581016870134,"",2025-09-21T11:07:53.738Z
+glyphDeconstructor,small,jpg,PASS,23,414.44762551507847,"",2025-09-21T11:07:54.324Z
+glyphDeconstructor,small,svg,FAIL,,,"Canvas size not supported",2025-09-21T11:07:54.624Z
+glyphDeconstructor,small,pdf,PASS,157,159.7050089918189,"",2025-09-21T11:07:54.889Z
+glyphDeconstructor,large,png,PASS,1258,166.53927235422913,"",2025-09-21T11:07:55.474Z
+glyphDeconstructor,large,jpg,PASS,377,55.14007650081649,"",2025-09-21T11:07:55.707Z
+glyphDeconstructor,large,svg,PASS,125,349.8124402070829,"",2025-09-21T11:07:56.291Z
+glyphDeconstructor,large,pdf,PASS,2516,392.57001681003806,"",2025-09-21T11:07:56.571Z
+waveformSynthesizer,square,png,PASS,466,110.120033455347,"",2025-09-21T11:07:56.908Z
+waveformSynthesizer,square,jpg,PASS,139,177.61253573769426,"",2025-09-21T11:07:57.522Z
+waveformSynthesizer,square,svg,FAIL,,,"Memory allocation failed",2025-09-21T11:07:57.841Z
+waveformSynthesizer,square,pdf,PASS,933,469.67093811682753,"",2025-09-21T11:07:58.507Z
+waveformSynthesizer,landscape,png,PASS,829,114.61080094692184,"",2025-09-21T11:07:58.957Z
+waveformSynthesizer,landscape,jpg,PASS,248,316.02308638198656,"",2025-09-21T11:07:59.353Z
+waveformSynthesizer,landscape,svg,PASS,82,269.33792920116923,"",2025-09-21T11:07:59.690Z
+waveformSynthesizer,landscape,pdf,PASS,1658,363.82725963430033,"",2025-09-21T11:07:59.923Z
+waveformSynthesizer,portrait,png,PASS,829,450.95267370727714,"",2025-09-21T11:08:00.457Z
+waveformSynthesizer,portrait,jpg,PASS,248,274.2287783756042,"",2025-09-21T11:08:00.823Z
+waveformSynthesizer,portrait,svg,PASS,82,112.8907315554752,"",2025-09-21T11:08:01.141Z
+waveformSynthesizer,portrait,pdf,PASS,1658,173.71073464654637,"",2025-09-21T11:08:01.357Z
+waveformSynthesizer,small,png,FAIL,,,"Buffer underrun",2025-09-21T11:08:01.789Z
+waveformSynthesizer,small,jpg,PASS,31,406.6599549182515,"",2025-09-21T11:08:02.006Z
+waveformSynthesizer,small,svg,PASS,10,360.6623746654946,"",2025-09-21T11:08:02.441Z
+waveformSynthesizer,small,pdf,FAIL,,,"Audio context not available",2025-09-21T11:08:02.774Z
+waveformSynthesizer,large,png,FAIL,,,"Buffer underrun",2025-09-21T11:08:03.039Z
+waveformSynthesizer,large,jpg,PASS,503,469.4964467702059,"",2025-09-21T11:08:03.472Z
+waveformSynthesizer,large,svg,PASS,167,540.9722321902652,"",2025-09-21T11:08:03.689Z
+waveformSynthesizer,large,pdf,PASS,3355,371.6665927705537,"",2025-09-21T11:08:04.272Z
+universalRasterizer,square,png,FAIL,,,"Memory allocation failed",2025-09-21T11:08:04.506Z
+universalRasterizer,square,jpg,PASS,524,243.1312803120092,"",2025-09-21T11:08:04.951Z
+universalRasterizer,square,svg,FAIL,,,"Invalid parameters",2025-09-21T11:08:05.338Z
+universalRasterizer,square,pdf,PASS,3499,499.3599048619792,"",2025-09-21T11:08:05.672Z
+universalRasterizer,landscape,png,PASS,3110,355.8362992408719,"",2025-09-21T11:08:06.056Z
+universalRasterizer,landscape,jpg,PASS,933,129.69518476807724,"",2025-09-21T11:08:06.335Z
+universalRasterizer,landscape,svg,PASS,311,196.7843760201403,"",2025-09-21T11:08:06.589Z
+universalRasterizer,landscape,pdf,PASS,6220,298.03938049292015,"",2025-09-21T11:08:07.022Z
+universalRasterizer,portrait,png,PASS,3110,280.043804049506,"",2025-09-21T11:08:07.455Z
+universalRasterizer,portrait,jpg,PASS,933,295.469599547382,"",2025-09-21T11:08:07.972Z
+universalRasterizer,portrait,svg,PASS,311,375.09948538553124,"",2025-09-21T11:08:08.606Z
+universalRasterizer,portrait,pdf,PASS,6220,217.03430646750382,"",2025-09-21T11:08:09.055Z
+universalRasterizer,small,png,PASS,393,253.3335920393592,"",2025-09-21T11:08:09.638Z
+universalRasterizer,small,jpg,PASS,117,345.1283496688454,"",2025-09-21T11:08:10.039Z
+universalRasterizer,small,svg,PASS,39,83.03218236211747,"",2025-09-21T11:08:10.630Z
+universalRasterizer,small,pdf,PASS,786,526.0894066499077,"",2025-09-21T11:08:10.873Z
+universalRasterizer,large,png,FAIL,,,"Canvas size not supported",2025-09-21T11:08:11.339Z
+universalRasterizer,large,jpg,PASS,1887,530.8904148532995,"",2025-09-21T11:08:11.951Z
+universalRasterizer,large,svg,PASS,629,167.11918387599374,"",2025-09-21T11:08:12.288Z
+universalRasterizer,large,pdf,PASS,12582,387.0373943808748,"",2025-09-21T11:08:12.673Z
+videoSampler,square,png,PASS,2332,130.47988898389525,"",2025-09-21T11:08:13.319Z
+videoSampler,square,jpg,PASS,699,359.3719199535887,"",2025-09-21T11:08:13.689Z
+videoSampler,square,svg,FAIL,,,"Codec error",2025-09-21T11:08:13.990Z
+videoSampler,square,pdf,PASS,4665,406.60829497782265,"",2025-09-21T11:08:14.456Z
+videoSampler,landscape,png,FAIL,,,"Tool failed to initialize",2025-09-21T11:08:15.154Z
+videoSampler,landscape,jpg,FAIL,,,"Codec error",2025-09-21T11:08:15.755Z
+videoSampler,landscape,svg,PASS,414,325.7466183027224,"",2025-09-21T11:08:16.248Z
+videoSampler,landscape,pdf,PASS,8294,277.78670981307914,"",2025-09-21T11:08:16.554Z
+videoSampler,portrait,png,PASS,4147,247.96031237367762,"",2025-09-21T11:08:17.172Z
+videoSampler,portrait,jpg,PASS,1244,391.087476085639,"",2025-09-21T11:08:17.470Z
+videoSampler,portrait,svg,FAIL,,,"Invalid parameters",2025-09-21T11:08:17.905Z
+videoSampler,portrait,pdf,PASS,8294,257.546450087541,"",2025-09-21T11:08:18.604Z
+videoSampler,small,png,PASS,524,308.35782889349457,"",2025-09-21T11:08:18.887Z
+videoSampler,small,jpg,PASS,157,90.81297455811173,"",2025-09-21T11:08:19.504Z
+videoSampler,small,svg,PASS,52,369.5445543911245,"",2025-09-21T11:08:19.738Z
+videoSampler,small,pdf,PASS,1048,480.67788981185186,"",2025-09-21T11:08:20.403Z
+videoSampler,large,png,PASS,8388,474.71612901969837,"",2025-09-21T11:08:21.021Z
+videoSampler,large,jpg,PASS,2516,148.79697640270837,"",2025-09-21T11:08:21.288Z
+videoSampler,large,svg,FAIL,,,"Video format not supported",2025-09-21T11:08:21.734Z
+videoSampler,large,pdf,PASS,16777,437.8108839506732,"",2025-09-21T11:08:22.387Z
+colorSystemAnalyzer,square,png,PASS,1166,61.8774910871654,"",2025-09-21T11:08:22.737Z
+colorSystemAnalyzer,square,jpg,PASS,349,302.0818453065091,"",2025-09-21T11:08:23.134Z
+colorSystemAnalyzer,square,svg,PASS,116,106.56438570474819,"",2025-09-21T11:08:23.590Z
+colorSystemAnalyzer,square,pdf,PASS,2332,538.3155866804891,"",2025-09-21T11:08:23.904Z
+colorSystemAnalyzer,landscape,png,PASS,2073,108.86688644611925,"",2025-09-21T11:08:24.354Z
+colorSystemAnalyzer,landscape,jpg,PASS,622,534.584276187963,"",2025-09-21T11:08:25.021Z
+colorSystemAnalyzer,landscape,svg,PASS,207,106.63099711388696,"",2025-09-21T11:08:25.274Z
+colorSystemAnalyzer,landscape,pdf,PASS,4147,114.47804019101522,"",2025-09-21T11:08:25.951Z
+colorSystemAnalyzer,portrait,png,PASS,2073,54.70519079346254,"",2025-09-21T11:08:26.370Z
+colorSystemAnalyzer,portrait,jpg,PASS,622,476.05356049686725,"",2025-09-21T11:08:26.720Z
+colorSystemAnalyzer,portrait,svg,PASS,207,255.03519282853134,"",2025-09-21T11:08:27.136Z
+colorSystemAnalyzer,portrait,pdf,PASS,4147,260.35234018898564,"",2025-09-21T11:08:27.470Z
+colorSystemAnalyzer,small,png,PASS,262,372.9161276538788,"",2025-09-21T11:08:28.003Z
+colorSystemAnalyzer,small,jpg,PASS,78,207.69263853900074,"",2025-09-21T11:08:28.620Z
+colorSystemAnalyzer,small,svg,PASS,26,285.80823666431104,"",2025-09-21T11:08:29.136Z
+colorSystemAnalyzer,small,pdf,PASS,524,229.80777578391871,"",2025-09-21T11:08:29.769Z
+colorSystemAnalyzer,large,png,PASS,4194,488.86589774044546,"",2025-09-21T11:08:30.217Z
+colorSystemAnalyzer,large,jpg,PASS,1258,437.1598733911389,"",2025-09-21T11:08:30.786Z
+colorSystemAnalyzer,large,svg,FAIL,,,"Rendering timeout",2025-09-21T11:08:31.136Z
+colorSystemAnalyzer,large,pdf,PASS,8388,359.14659761877795,"",2025-09-21T11:08:31.402Z
+pixelSorter,square,png,PASS,1166,461.6917524676096,"",2025-09-21T11:08:31.685Z
+pixelSorter,square,jpg,PASS,349,260.1864152400252,"",2025-09-21T11:08:32.368Z
+pixelSorter,square,svg,PASS,116,229.50591629464952,"",2025-09-21T11:08:32.786Z
+pixelSorter,square,pdf,PASS,2332,316.21709983060305,"",2025-09-21T11:08:33.219Z
+pixelSorter,landscape,png,PASS,2073,489.26517497647075,"",2025-09-21T11:08:33.718Z
+pixelSorter,landscape,jpg,PASS,622,198.8570779404089,"",2025-09-21T11:08:34.394Z
+pixelSorter,landscape,svg,FAIL,,,"Canvas size not supported",2025-09-21T11:08:34.918Z
+pixelSorter,landscape,pdf,PASS,4147,346.3211112158097,"",2025-09-21T11:08:35.468Z
+pixelSorter,portrait,png,PASS,2073,484.716808649783,"",2025-09-21T11:08:35.951Z
+pixelSorter,portrait,jpg,PASS,622,354.7859168140853,"",2025-09-21T11:08:36.502Z
+pixelSorter,portrait,svg,FAIL,,,"Memory allocation failed",2025-09-21T11:08:37.066Z
+pixelSorter,portrait,pdf,FAIL,,,"Tool failed to initialize",2025-09-21T11:08:37.734Z
+pixelSorter,small,png,FAIL,,,"Invalid parameters",2025-09-21T11:08:38.251Z
+pixelSorter,small,jpg,PASS,78,141.06205366262765,"",2025-09-21T11:08:38.801Z
+pixelSorter,small,svg,PASS,26,396.2828296734544,"",2025-09-21T11:08:39.385Z
+pixelSorter,small,pdf,PASS,524,323.493676992666,"",2025-09-21T11:08:39.600Z
+pixelSorter,large,png,PASS,4194,516.3864497353426,"",2025-09-21T11:08:39.962Z
+pixelSorter,large,jpg,PASS,1258,345.227875782511,"",2025-09-21T11:08:40.469Z
+pixelSorter,large,svg,PASS,419,312.9116972418843,"",2025-09-21T11:08:41.100Z
+pixelSorter,large,pdf,PASS,8388,193.59575520331813,"",2025-09-21T11:08:41.331Z
+truchetTiler,square,png,PASS,699,390.11370220735137,"",2025-09-21T11:08:41.751Z
+truchetTiler,square,jpg,PASS,209,102.98885042415147,"",2025-09-21T11:08:42.367Z
+truchetTiler,square,svg,PASS,69,281.15824565471735,"",2025-09-21T11:08:42.951Z
+truchetTiler,square,pdf,PASS,1399,54.97980356143823,"",2025-09-21T11:08:43.500Z
+truchetTiler,landscape,png,PASS,1244,155.8063035539143,"",2025-09-21T11:08:44.129Z
+truchetTiler,landscape,jpg,PASS,373,415.9565940525682,"",2025-09-21T11:08:44.534Z
+truchetTiler,landscape,svg,PASS,124,478.36117233864735,"",2025-09-21T11:08:44.817Z
+truchetTiler,landscape,pdf,PASS,2488,394.8897538472844,"",2025-09-21T11:08:45.433Z
+truchetTiler,portrait,png,PASS,1244,183.93995585002094,"",2025-09-21T11:08:45.950Z
+truchetTiler,portrait,jpg,PASS,373,88.02960275963031,"",2025-09-21T11:08:46.401Z
+truchetTiler,portrait,svg,FAIL,,,"Invalid parameters",2025-09-21T11:08:46.666Z
+truchetTiler,portrait,pdf,PASS,2488,334.2457201755286,"",2025-09-21T11:08:47.250Z
+truchetTiler,small,png,PASS,157,168.09429284840223,"",2025-09-21T11:08:47.933Z
+truchetTiler,small,jpg,PASS,47,103.77356833116309,"",2025-09-21T11:08:48.237Z
+truchetTiler,small,svg,PASS,15,165.00448494396989,"",2025-09-21T11:08:48.883Z
+truchetTiler,small,pdf,FAIL,,,"Invalid parameters",2025-09-21T11:08:49.563Z
+truchetTiler,large,png,PASS,2516,366.0713312121132,"",2025-09-21T11:08:49.866Z
+truchetTiler,large,jpg,PASS,754,209.3833159539283,"",2025-09-21T11:08:50.383Z
+truchetTiler,large,svg,PASS,251,223.14952950234397,"",2025-09-21T11:08:50.647Z
+truchetTiler,large,pdf,PASS,5033,508.9871617589597,"",2025-09-21T11:08:51.284Z
+particleEngine,square,png,FAIL,,,"Rendering timeout",2025-09-21T11:08:51.766Z
+particleEngine,square,jpg,PASS,244,209.03308203047484,"",2025-09-21T11:08:52.399Z
+particleEngine,square,svg,PASS,81,311.46397006920097,"",2025-09-21T11:08:52.681Z
+particleEngine,square,pdf,PASS,1632,460.11360019715124,"",2025-09-21T11:08:53.395Z
+particleEngine,landscape,png,PASS,1451,407.5668606823554,"",2025-09-21T11:08:53.821Z
+particleEngine,landscape,jpg,PASS,435,80.75832993290362,"",2025-09-21T11:08:54.331Z
+particleEngine,landscape,svg,PASS,145,441.30037448849953,"",2025-09-21T11:08:54.599Z
+particleEngine,landscape,pdf,PASS,2903,275.9585324103874,"",2025-09-21T11:08:54.932Z
+particleEngine,portrait,png,PASS,1451,133.3673271483235,"",2025-09-21T11:08:55.530Z
+particleEngine,portrait,jpg,PASS,435,265.9654253753397,"",2025-09-21T11:08:56.181Z
+particleEngine,portrait,svg,PASS,145,80.38184290620427,"",2025-09-21T11:08:56.615Z
+particleEngine,portrait,pdf,PASS,2903,432.2063467674116,"",2025-09-21T11:08:56.965Z
+particleEngine,small,png,PASS,183,438.8344749940695,"",2025-09-21T11:08:57.415Z
+particleEngine,small,jpg,FAIL,,,"Particle limit exceeded",2025-09-21T11:08:57.881Z
+particleEngine,small,svg,FAIL,,,"Memory allocation failed",2025-09-21T11:08:58.531Z
+particleEngine,small,pdf,PASS,367,275.3702661770766,"",2025-09-21T11:08:58.859Z
+particleEngine,large,png,PASS,2936,116.0686955699995,"",2025-09-21T11:08:59.230Z
+particleEngine,large,jpg,PASS,880,210.79750347972964,"",2025-09-21T11:08:59.591Z
+particleEngine,large,svg,PASS,293,98.60844150806875,"",2025-09-21T11:09:00.246Z
+particleEngine,large,pdf,PASS,5872,98.99810060802778,"",2025-09-21T11:09:00.704Z
+rhythmSequencer,square,png,PASS,466,426.9751726773869,"",2025-09-21T11:09:01.236Z
+rhythmSequencer,square,jpg,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:01.676Z
+rhythmSequencer,square,svg,PASS,46,545.1178458360407,"",2025-09-21T11:09:02.048Z
+rhythmSequencer,square,pdf,PASS,933,382.04155878734696,"",2025-09-21T11:09:02.348Z
+rhythmSequencer,landscape,png,FAIL,,,"Rendering timeout",2025-09-21T11:09:02.814Z
+rhythmSequencer,landscape,jpg,PASS,248,215.1297971785398,"",2025-09-21T11:09:03.064Z
+rhythmSequencer,landscape,svg,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:03.744Z
+rhythmSequencer,landscape,pdf,FAIL,,,"Rendering timeout",2025-09-21T11:09:04.163Z
+rhythmSequencer,portrait,png,PASS,829,103.57182914241065,"",2025-09-21T11:09:04.697Z
+rhythmSequencer,portrait,jpg,FAIL,,,"Invalid parameters",2025-09-21T11:09:05.046Z
+rhythmSequencer,portrait,svg,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:05.747Z
+rhythmSequencer,portrait,pdf,PASS,1658,270.6810089143038,"",2025-09-21T11:09:06.430Z
+rhythmSequencer,small,png,PASS,104,511.7786961519864,"",2025-09-21T11:09:06.829Z
+rhythmSequencer,small,jpg,PASS,31,470.66943662185264,"",2025-09-21T11:09:07.363Z
+rhythmSequencer,small,svg,PASS,10,191.327606883198,"",2025-09-21T11:09:07.944Z
+rhythmSequencer,small,pdf,PASS,209,391.2199703996751,"",2025-09-21T11:09:08.346Z
+rhythmSequencer,large,png,PASS,1677,230.0038174714942,"",2025-09-21T11:09:08.579Z
+rhythmSequencer,large,jpg,FAIL,,,"Invalid parameters",2025-09-21T11:09:09.130Z
+rhythmSequencer,large,svg,PASS,167,216.43015522020133,"",2025-09-21T11:09:09.376Z
+rhythmSequencer,large,pdf,PASS,3355,446.03432095740976,"",2025-09-21T11:09:09.915Z
+objectRasterizer3D,square,png,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:10.213Z
+objectRasterizer3D,square,jpg,FAIL,,,"WEBGL context lost",2025-09-21T11:09:10.462Z
+objectRasterizer3D,square,svg,PASS,209,447.84527162137937,"",2025-09-21T11:09:11.097Z
+objectRasterizer3D,square,pdf,PASS,4199,223.15485536704966,"",2025-09-21T11:09:11.478Z
+objectRasterizer3D,landscape,png,PASS,3732,142.91390286870427,"",2025-09-21T11:09:12.175Z
+objectRasterizer3D,landscape,jpg,FAIL,,,"Memory allocation failed",2025-09-21T11:09:12.813Z
+objectRasterizer3D,landscape,svg,PASS,373,153.82332157391818,"",2025-09-21T11:09:13.462Z
+objectRasterizer3D,landscape,pdf,PASS,7464,269.20836143447275,"",2025-09-21T11:09:13.697Z
+objectRasterizer3D,portrait,png,PASS,3732,60.76212639356666,"",2025-09-21T11:09:13.968Z
+objectRasterizer3D,portrait,jpg,PASS,1119,537.929074226626,"",2025-09-21T11:09:14.648Z
+objectRasterizer3D,portrait,svg,PASS,373,245.76138493983265,"",2025-09-21T11:09:14.895Z
+objectRasterizer3D,portrait,pdf,FAIL,,,"Canvas size not supported",2025-09-21T11:09:15.312Z
+objectRasterizer3D,small,png,PASS,471,450.8606264760011,"",2025-09-21T11:09:15.564Z
+objectRasterizer3D,small,jpg,FAIL,,,"Rendering timeout",2025-09-21T11:09:15.895Z
+objectRasterizer3D,small,svg,PASS,47,474.2867027520121,"",2025-09-21T11:09:16.561Z
+objectRasterizer3D,small,pdf,FAIL,,,"Shader compilation error",2025-09-21T11:09:17.097Z
+objectRasterizer3D,large,png,PASS,7549,127.80742112191797,"",2025-09-21T11:09:17.563Z
+objectRasterizer3D,large,jpg,PASS,2264,220.97608064894342,"",2025-09-21T11:09:17.898Z
+objectRasterizer3D,large,svg,FAIL,,,"Shader compilation error",2025-09-21T11:09:18.149Z
+objectRasterizer3D,large,pdf,PASS,15099,292.85261677983993,"",2025-09-21T11:09:18.533Z
+generativeComposer,square,png,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:18.949Z
+generativeComposer,square,jpg,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:19.545Z
+generativeComposer,square,svg,PASS,151,527.7829235310247,"",2025-09-21T11:09:20.078Z
+generativeComposer,square,pdf,PASS,3032,161.11937241405923,"",2025-09-21T11:09:20.546Z
+generativeComposer,landscape,png,PASS,2695,323.124828764301,"",2025-09-21T11:09:20.946Z
+generativeComposer,landscape,jpg,PASS,808,539.794873967347,"",2025-09-21T11:09:21.246Z
+generativeComposer,landscape,svg,PASS,269,482.54114564782833,"",2025-09-21T11:09:21.463Z
+generativeComposer,landscape,pdf,PASS,5391,248.91527616315574,"",2025-09-21T11:09:21.830Z
+generativeComposer,portrait,png,PASS,2695,357.5451630789764,"",2025-09-21T11:09:22.448Z
+generativeComposer,portrait,jpg,FAIL,,,"Memory allocation failed",2025-09-21T11:09:22.828Z
+generativeComposer,portrait,svg,PASS,269,435.1102210705073,"",2025-09-21T11:09:23.132Z
+generativeComposer,portrait,pdf,FAIL,,,"Invalid parameters",2025-09-21T11:09:23.560Z
+generativeComposer,small,png,FAIL,,,"Canvas size not supported",2025-09-21T11:09:23.782Z
+generativeComposer,small,jpg,PASS,102,146.09852218710836,"",2025-09-21T11:09:24.149Z
+generativeComposer,small,svg,FAIL,,,"Tool failed to initialize",2025-09-21T11:09:24.712Z
+generativeComposer,small,pdf,PASS,681,535.6873037484114,"",2025-09-21T11:09:25.145Z
+generativeComposer,large,png,PASS,5452,400.07591568584206,"",2025-09-21T11:09:25.748Z
+generativeComposer,large,jpg,PASS,1635,366.2107782221324,"",2025-09-21T11:09:26.217Z
+generativeComposer,large,svg,FAIL,,,"Invalid parameters",2025-09-21T11:09:26.711Z
+generativeComposer,large,pdf,PASS,10905,166.82940740026382,"",2025-09-21T11:09:26.961Z

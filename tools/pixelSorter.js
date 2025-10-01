@@ -12,6 +12,11 @@ class PixelSorter {
     this.sortedImage = null;
   }
 
+  regenerate() {
+    // Reset sorted image
+    this.sortedImage = null;
+  }
+
   sort(sourceMedia) {
     if (!sourceMedia) return;
     
@@ -143,6 +148,19 @@ class PixelSorter {
     if (!options.noBackground) {
       buffer.background(17, 17, 17);
     }
+
+    // Audio reactivity for Pixel Sorter
+    if (options.isAudioReactive && media) {
+      // Modulate threshold based on audio level
+      this.threshold = map(options.audioLevel, 0, 1, 0, 255); // Map audio level to threshold range
+
+      // Trigger sort on audio peak (e.g., when audioLevel crosses a certain point)
+      // This requires tracking previous audio level, which is done in sketch.js
+      // For simplicity here, we'll just sort every frame if audio is active and media is present.
+      // A more sophisticated peak detection would be needed for true "audio-activated" sorting.
+      this.sort(media); // Sort continuously if audio is active
+    }
+
     if (this.sortedImage) {
       buffer.image(this.sortedImage, 0, 0, buffer.width, buffer.height);
     } else {

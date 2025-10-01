@@ -6,7 +6,7 @@ class ObjectRasterizer3D {
   constructor() {
     // Basic render properties
     this.renderMode = 'solid'; // 'solid' | 'wireframe' | 'points'
-    this.shape = 'text'; // 'box' | 'sphere' | 'torus' | 'text'
+    this.shape = 'text'; // 'box' | 'sphere' | 'torus' | 'text' | 'polar' | 'gol'
 
     // Colors / materials
     this.colorTheme = 'custom'; // 'custom' | 'monochrome' | 'complementary' | 'triadic' | 'pastel' | 'neon'
@@ -21,6 +21,7 @@ class ObjectRasterizer3D {
     this.font = null;
     this.textGeom = null;
     this.needsGeomUpdate = true;
+    this.needsRasterUpdate = true;
 
     // Camera / environment
     this.zoom = 800;
@@ -37,8 +38,15 @@ class ObjectRasterizer3D {
     this.pixelSize = 8; // For raster shader
     this.rasterPalette = 'famicube'; // For raster shader
     this.warpedShader = null;
-    this.rasterShader = null;
+    this.rasterTextureGfx = null;
     this.shinyShader = null;
+
+    // Palettes for the raster texture, defined once for efficiency.
+    this.shaderPalettes = {
+        famicube: ['#644125', '#D29464', '#FFFEF1', '#DE3910', '#7B1000', '#005310'],
+        gameboy: ['#0f380f', '#306230', '#8bac0f', '#9bbc0f'],
+        monochrome: ['#000000', '#444444', '#888888', '#CCCCCC', '#FFFFFF']
+    };
 
     // Internal buffer
     this.buffer3d = null;
@@ -58,16 +66,32 @@ class ObjectRasterizer3D {
     this.pulse = 1.0;
     this.lastBeat = -1;
     this.shadersInitialized = false;
+    this.audioTime = 0;
+    this.cellStates = {}; // To track GOL cell heights for animation
+  }
+
+  regenerate() {
+    // Regenerate 3D geometry
+    this.regenerateTextGeometry();
   }
 
   async init() {
     try {
       // Using Anton as it's a bold, classic choice for 3D.
-      this.font = await loadFont('https://fonts.gstatic.com/s/anton/v25/1Ptgg87LROyAm0K08i4gS7lu.ttf');
+      this.font = await loadFont('https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3Kz-Co.ttf');
+      console.log("Font loaded successfully for ObjectRasterizer3D.");
       this.regenerateTextGeometry();
     } catch (e) {
-      console.error("Failed to load font for 3D text:", e);
+      console.error("Failed to load font for 3D text in ObjectRasterizer3D:", e);
       this.font = null; // Ensure font is null on failure
+      // Try to use a fallback font or continue without 3D text
+      try {
+        this.font = await loadFont('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2');
+        console.log("Fallback font loaded successfully.");
+        this.regenerateTextGeometry();
+      } catch (fallbackError) {
+        console.warn("Fallback font also failed. 3D text will not be available.");
+      }
     }
   }
 
@@ -128,94 +152,6 @@ class ObjectRasterizer3D {
     this.warpedShader.setUniform('u_warp', this.warp);
     this.warpedShader.setUniform('u_time', millis());
 
-
-    const palettes = {
-        famicube: [
-            '#644125', '#D29464', '#FFFEF1', '#DE3910', '#7B1000', '#005310'
-        ].map(c => { const col = color(c); return [red(col)/255, green(col)/255, blue(col)/255]; }),
-        gameboy: [
-            '#0f380f', '#306230', '#8bac0f', '#9bbc0f'
-        ].map(c => { const col = color(c); return [red(col)/255, green(col)/255, blue(col)/255]; }),
-        monochrome: [
-            '#000000', '#444444', '#888888', '#CCCCCC', '#FFFFFF'
-        ].map(c => { const col = color(c); return [red(col)/255, green(col)/255, blue(col)/255]; })
-    };
-
-
-    this.rasterShader = createShader(
-      `
-      precision highp float;
-      attribute vec3 aPosition;
-      attribute vec3 aNormal;
-
-      uniform mat4 uProjectionMatrix;
-      uniform mat4 uModelViewMatrix;
-      uniform mat3 uNormalMatrix;
-
-      varying vec3 v_normal;
-      varying vec2 v_pos;
-
-      void main() {
-        gl_Position = uProjectionMatrix * uModelViewMatrix * vec4(aPosition, 1.0);
-        v_normal = uNormalMatrix * aNormal;
-        v_pos = gl_Position.xy;
-      }
-      `,
-      `
-      precision highp float;
-      uniform vec3 u_color;
-      uniform float u_pixel_size;
-      uniform vec3 u_palette[6];
-      uniform int u_palette_size;
-
-      varying vec3 v_normal;
-      varying vec2 v_pos;
-
-      mat4 dither = mat4(0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.)/16.;
-
-      float colorDistance(vec3 c1, vec3 c2) {
-          vec3 d = c1 - c2;
-          return dot(d, d);
-      }
-
-      void main() {
-        vec2 pix_coord = floor(gl_FragCoord.xy / u_pixel_size);
-        vec3 normal = normalize(v_normal);
-        vec3 lightDir = normalize(vec3(0.5, 0.5, 1.0));
-        float diff = max(dot(normal, lightDir), 0.0);
-        
-        float levels = 4.0;
-        float quantized_diff = floor(diff * levels) / levels;
-        float dither_factor = fract(diff * levels);
-        float dither_val = dither[int(mod(pix_coord.x, 4.0))][int(mod(pix_coord.y, 4.0))];
-        if (dither_factor > dither_val) { quantized_diff += 1.0 / levels; }
-        
-        vec3 lit_color = u_color * quantized_diff + vec3(0.1);
-
-        vec3 finalColor = u_palette[0];
-        float min_dist = colorDistance(lit_color, u_palette[0]);
-
-        for (int i = 1; i < 6; i++) {
-            if (i >= u_palette_size) break;
-            float dist = colorDistance(lit_color, u_palette[i]);
-            if (dist < min_dist) {
-                min_dist = dist;
-                finalColor = u_palette[i];
-            }
-        }
-        gl_FragColor = vec4(finalColor, 1.0);
-      }
-      `
-    );
-    this.rasterShader.setUniform('u_color', getColorVec());
-    this.rasterShader.setUniform('u_pixel_size', this.pixelSize);
-    const p = [...(palettes[this.rasterPalette] || palettes.famicube)];
-    while (p.length < 6) { p.push([0,0,0]); }
-    this.rasterShader.setUniform('u_palette', p.flat());
-    this.rasterShader.setUniform('u_palette_size', (palettes[this.rasterPalette] || palettes.famicube).length);
-
-
-
     this.shinyShader = createShader(
       `
       precision highp float;
@@ -275,6 +211,8 @@ class ObjectRasterizer3D {
     } catch (e) {
       console.error("Failed to generate text geometry:", e);
       this.textGeom = null;
+      // Add this line to prevent the error from being thrown on every frame
+      this.needsGeomUpdate = false;
     }
   }
 
@@ -292,8 +230,13 @@ class ObjectRasterizer3D {
 
   create3dBuffer(w, h) {
     try {
+      this.rasterTextureGfx = createGraphics(128, 128);
+      console.log("ObjectRasterizer3D: rasterTextureGfx created.", this.rasterTextureGfx);
       this.buffer3d = createGraphics(w, h, WEBGL);
       this.buffer3d.pixelDensity(1);
+      // Ensure the 3D buffer is properly sized and doesn't overflow
+      this.buffer3d.drawingContext.canvas.style.maxWidth = '100%';
+      this.buffer3d.drawingContext.canvas.style.maxHeight = '100%';
       this.initializeShaders();
     } catch (e) {
       console.error('ObjectRasterizer3D.create3dBuffer() failed:', e);
@@ -302,6 +245,10 @@ class ObjectRasterizer3D {
   }
 
   cleanup() {
+    if (this.rasterTextureGfx) { 
+      this.rasterTextureGfx.remove(); 
+      this.rasterTextureGfx = null; 
+    }
     if (this.buffer3d) { 
       this.buffer3d.remove(); 
       this.buffer3d = null; 
@@ -317,6 +264,10 @@ class ObjectRasterizer3D {
     }
     if (!this.buffer3d) return;
 
+    if (this.needsRasterUpdate) {
+      this.updateRasterTexture();
+    }
+
     if (this.shape === 'text' && this.needsGeomUpdate) {
       this.regenerateTextGeometry();
     }
@@ -325,14 +276,17 @@ class ObjectRasterizer3D {
     // Always react to audio if it's enabled globally for a direct pulse effect.
     if (options.isAudioReactive && options.audioLevel > 0.02) {
       this.pulse = 1.0 + options.audioLevel * 1.5; // Boosted multiplier for more impact
+      this.audioTime += options.audioLevel * 0.2; // Accumulate audio level for animation
     }
     // If global audio is not active, but the local "rhythm" checkbox is, use the internal metronome as a fallback.
     else if (this.rhythmEnabled) {
       const currentBeat = this.internalMetronome.getCurrentStep();
-      if (currentBeat !== this.lastBeat && this.lastBeat !== -1) {
+      if (currentBeat !== this.lastBeat) {
+          // A beat change occurred. Pulse the object.
+          // The previous logic missed the first beat; this ensures it pulses on every beat change.
           this.pulse = 1.2; // Set a fixed pulse strength for the metronome beat
+          this.lastBeat = currentBeat;
       }
-      this.lastBeat = currentBeat;
     }
 
     // Always decay the pulse back to 1.0 for a smooth animation
@@ -340,12 +294,26 @@ class ObjectRasterizer3D {
 
     this.applyColorTheme();
 
-    mainBuffer.background(17);
     // Use clear() for WEBGL buffer for performance and to handle depth buffer
-    this.buffer3d.clear();
+    this.buffer3d.clear(); // Clears the 3D buffer, including depth
 
     // Camera & Lighting
-    if (this.cameraType === 'perspective') this.buffer3d.perspective(); else this.buffer3d.ortho();
+    if (this.cameraType === 'perspective') {
+      this.buffer3d.perspective();
+    } else { // ortho
+      const w = this.buffer3d.width;
+      const h = this.buffer3d.height;
+      // In ortho mode, we simulate zoom by changing the projection volume.
+      // A larger zoom value should make the object appear smaller (zoomed out).
+      // We use 800 as a baseline, which is the default zoom value.
+      const orthoZoomFactor = this.zoom / 800.0;
+      this.buffer3d.ortho(
+        -w / 2 * orthoZoomFactor, w / 2 * orthoZoomFactor,
+        -h / 2 * orthoZoomFactor, h / 2 * orthoZoomFactor
+      );
+    }
+    // The camera's Z position is controlled by the zoom property.
+    // This is crucial for perspective zoom and for setting the view matrix in ortho.
     this.buffer3d.camera(0, 0, this.zoom, 0, 0, 0, 0, 1, 0);
     this.buffer3d.ambientLight(60);
     if (this.shadowsEnabled) this.buffer3d.directionalLight(255, 255, 255, 0.5, 0.5, -1);
@@ -364,7 +332,10 @@ class ObjectRasterizer3D {
     // Apply pulse scaling from rhythm integration
     this.buffer3d.scale(this.pulse);
 
-    if (this.shape === 'text') this.drawText3D(); else this.drawShape3D();
+    if (this.shape === 'text') this.drawText3D();
+    else if (this.shape === 'polar') this.drawPolarShape3D(options);
+    else if (this.shape === 'gol') this.drawGOL3D(golGrid, options);
+    else this.drawShape3D();
 
     this.buffer3d.pop();
 
@@ -382,6 +353,72 @@ class ObjectRasterizer3D {
     mainBuffer.image(this.buffer3d, 0, 0);
   }
 
+  drawGOL3D(golGrid, options) {
+    if (!golGrid) return;
+
+    this.applyMaterial();
+    this.buffer3d.push();
+    
+    const cols = golGrid.length;
+    const rows = golGrid[0].length;
+    const totalWidth = cols * 20;
+    const totalHeight = rows * 20;
+
+    this.buffer3d.translate(-totalWidth / 2, -totalHeight / 2);
+
+    for (let x = 0; x < cols; x++) {
+      for (let y = 0; y < rows; y++) {
+        const cellId = `${x}-${y}`;
+        const targetHeight = golGrid[x][y] === 1 ? 40 : 0;
+        
+        if (!this.cellStates[cellId]) {
+          this.cellStates[cellId] = 0;
+        }
+        
+        this.cellStates[cellId] = lerp(this.cellStates[cellId], targetHeight, 0.5);
+        const currentHeight = this.cellStates[cellId];
+
+        if (currentHeight > 1) {
+          this.buffer3d.push();
+          this.buffer3d.translate(x * 20, y * 20, currentHeight / 2);
+          this.buffer3d.box(18, 18, currentHeight);
+          this.buffer3d.pop();
+        }
+      }
+    }
+
+    this.buffer3d.pop();
+  }
+
+  drawPolarShape3D(options = {}) {
+    this.applyMaterial();
+    this.buffer3d.push();
+    this.buffer3d.scale(250); // Make it large enough to see    
+    const points = 120;
+
+    // If audio is reactive, use an accumulated value to drive animation. Otherwise, use frameCount.
+    const animationDriver = (options.isAudioReactive && options.audioLevel > 0)
+      ? this.audioTime
+      : frameCount * 0.05;
+
+    // Add a pulse effect to the base radius based on the current audio level
+    const audioPulse = (options.isAudioReactive && options.audioLevel > 0)
+      ? options.audioLevel * 2.5 // Multiplier for visual impact
+      : 0;
+
+    this.buffer3d.beginShape();
+    for (let i = 0; i < points; i++) {
+        const angle = map(i, 0, points, 0, TWO_PI);
+        // The radius now has a base component that pulses with audio, and the animated wave
+        const r = (1 + audioPulse) + 0.2 * sin(angle * 6 + animationDriver);
+        const x = r * cos(angle);
+        const y = r * sin(angle);
+        this.buffer3d.vertex(x, y, 0);
+    }
+    this.buffer3d.endShape(CLOSE);
+    this.buffer3d.pop();
+  }
+
   drawShape3D() {
     this.applyMaterial();
     if (this.shape === 'box') this.buffer3d.box(150);
@@ -391,8 +428,12 @@ class ObjectRasterizer3D {
 
   drawText3D() {
     if (!this.textGeom) {
+      console.log("ObjectRasterizer3D: textGeom is null. Font might not be loaded or geometry failed to generate.");
       this.buffer3d.push();
-      this.buffer3d.fill(255, 100, 100); this.buffer3d.textAlign(CENTER, CENTER); this.buffer3d.text('Font not loaded or 3D text not supported.', 0, 0);
+      this.buffer3d.fill(255, 100, 100); 
+      this.buffer3d.textAlign(CENTER, CENTER); 
+      this.buffer3d.textFont('sans-serif'); // Use a safe default font for the error message
+      this.buffer3d.text('Font not loaded or 3D text not supported.', 0, 0);
       this.buffer3d.pop();
       return;
     }
@@ -404,19 +445,30 @@ class ObjectRasterizer3D {
   }
 
   applyMaterial() {
-    this.buffer3d.resetShader(); // Reset first
+    console.log("ObjectRasterizer3D: applyMaterial - materialType:", this.materialType, "rasterTextureGfx valid:", !!this.rasterTextureGfx);
+    this.buffer3d.resetShader(); // Reset any active shader first
     const c = color(this.primaryColor);
+    const cVec = [red(c) / 255, green(c) / 255, blue(c) / 255];
 
     if (this.materialType === 'normal') {
       this.buffer3d.normalMaterial();
       this.buffer3d.noStroke();
     } else if (this.materialType === 'warped' && this.warpedShader) {
+      this.warpedShader.setUniform('u_color', cVec);
+      this.warpedShader.setUniform('u_warp', this.warp);
+      this.warpedShader.setUniform('u_time', millis());
       this.buffer3d.shader(this.warpedShader);
       this.buffer3d.noStroke();
-    } else if (this.materialType === 'raster' && this.rasterShader) {
-      this.buffer3d.shader(this.rasterShader);
+    } else if (this.materialType === 'raster' && this.rasterTextureGfx) {
+      // Use NEAREST filter for a crisp, pixelated look. The default LINEAR filter causes blurriness,
+      // which would make the pixelSize control seem ineffective. This makes the tool work as expected.
+      const gl = this.buffer3d.drawingContext;
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      this.buffer3d.texture(this.rasterTextureGfx);
       this.buffer3d.noStroke();
     } else if (this.materialType === 'shiny' && this.shinyShader) {
+      this.shinyShader.setUniform('u_color', cVec);
       this.buffer3d.shader(this.shinyShader);
       this.buffer3d.noStroke();
     } else { // 'basic' material
@@ -431,15 +483,81 @@ class ObjectRasterizer3D {
     }
   }
   drawGrid() {
-    // ... (implementation unchanged)
+    this.buffer3d.push();
+    this.buffer3d.stroke(100);
+    this.buffer3d.strokeWeight(0.5);
+    const size = this.gridSize;
+    const halfSize = size / 2;
+    const step = size / 10;
+
+    // The grid is on the XZ plane. Let's place it slightly below the object origin.
+    const gridY = -150;
+
+    for (let i = -halfSize; i <= halfSize; i += step) {
+      // Lines parallel to Z-axis (varying x)
+      this.buffer3d.line(i, gridY, -halfSize, i, gridY, halfSize);
+      // Lines parallel to X-axis (varying z)
+      this.buffer3d.line(-halfSize, gridY, i, halfSize, gridY, i);
+    }
+    this.buffer3d.pop();
   }
 
   applyColorTheme() {
-    const p = color(this.primaryColor);
-    if (this.colorTheme === 'monochrome') this.secondaryColor = color(red(p) * 0.8);
-    else if (this.colorTheme === 'complementary') this.secondaryColor = color(255 - red(p), 255 - green(p), 255 - blue(p));
-    else if (this.colorTheme === 'pastel') this.secondaryColor = color((red(p) + 255) / 2, (green(p) + 255) / 2, (blue(p) + 255) / 2);
-    else if (this.colorTheme === 'neon') this.secondaryColor = color(min(255, red(p) * 1.5), min(255, green(p) * 1.5), min(255, blue(p) * 1.5));
+    // If the theme is 'custom', the UI controls the primaryColor directly.
+    // For other themes, we override the primaryColor with a preset value.
+    switch (this.colorTheme) {
+      case 'monochrome':
+        this.primaryColor = '#E0E0E0';
+        this.secondaryColor = '#616161';
+        break;
+      case 'complementary':
+        this.primaryColor = '#ff6f00'; // Orange
+        this.secondaryColor = '#0091ea'; // Blue
+        break;
+      case 'triadic':
+        this.primaryColor = '#fdd835'; // Yellow
+        this.secondaryColor = '#03a9f4'; // Blue
+        break;
+      case 'pastel':
+        this.primaryColor = '#f48fb1'; // Pink
+        this.secondaryColor = '#80cbc4'; // Teal
+        break;
+      case 'neon':
+        this.primaryColor = '#00e676'; // Green
+        this.secondaryColor = '#ff4081'; // Pink
+        break;
+      case 'custom':
+      default:
+        // In 'custom' mode, primaryColor is set from the UI.
+        const p = color(this.primaryColor);
+        this.secondaryColor = color(255 - red(p), 255 - green(p), 255 - blue(p));
+        break;
+    }
+  }
+
+  updateRasterTexture() {
+    console.log("ObjectRasterizer3D: updateRasterTexture called. rasterTextureGfx valid:", !!this.rasterTextureGfx);
+    if (!this.rasterTextureGfx) return;
+
+    const gfx = this.rasterTextureGfx;
+    const paletteName = this.rasterPalette || 'famicube';
+    const hexColors = this.shaderPalettes[paletteName] || this.shaderPalettes.famicube;
+    const pal = hexColors.map(c => color(c)); // Parse colors for p5
+
+    gfx.background(pal[0]);
+    gfx.noStroke();
+    const s = this.pixelSize; // Use the existing UI control for pattern size
+    const texSize = gfx.width;
+
+    for (let y = 0; y < texSize; y += s) {
+        for (let x = 0; x < texSize; x += s) {
+            // A simple checkerboard pattern, like your example
+            const colorIndex = (floor(x / s) + floor(y / s)) % pal.length;
+            gfx.fill(pal[colorIndex]);
+            gfx.rect(x, y, s, s);
+        }
+    }
+    this.needsRasterUpdate = false; // Reset the flag
   }
 }
 
@@ -499,6 +617,7 @@ class ParticleSystem3D {
   }
 
   draw(buffer) {
+    buffer.resetShader(); // Ensure particles are not drawn with the main object's shader
     buffer.noStroke();
     const baseColor = color(this.particleColor);
     for (const p of this.particles) {

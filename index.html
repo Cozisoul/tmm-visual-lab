@@ -8,7 +8,8 @@
   <style>
     /* Fix for media bus preview to ensure content fits the container */
     #media-bus-preview img, 
-    #media-bus-preview video {
+    #media-bus-preview video,
+    #media-bus-preview canvas {
       width: 100%;
       height: 100%;
       object-fit: contain;
@@ -20,8 +21,20 @@
   
   <!-- Main libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script>
+    // mute the broken RingBuffer
+    window.RingBuffer = class{};
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.svg.min.js"></script>
   <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ccapture.js@latest/dist/CCapture.all.min.js"></script>
+
+
+  <!-- Core Utilities (must be loaded before tools that use them) -->
+  <script src="audioAnalyzer.js"></script>
+  <script src="tools/toolBase.js"></script>
+  <script src="tools/exporter.js"></script>
 
   <!-- Tool modules -->
   <script src="tools/gridArchitect.js"></script>
@@ -115,11 +128,35 @@
             <span class="tutorial-title">The Generative Composer</span>
             <span class="tutorial-meta">Composition, Random, Aesthetic</span>
           </button>
+          <button class="tutorial-item" data-tool="generativeCompositionLab">
+            <span class="tutorial-title">Generative Composition Lab</span>
+            <span class="tutorial-meta">Experimental, Layout, Design</span>
+          </button>
+          <button class="tutorial-item" data-tool="vectorFieldModulator">
+            <span class="tutorial-title">Vector Field Modulator</span>
+            <span class="tutorial-meta">Fields, Flow, Dynamics</span>
+          </button>
+          <button class="tutorial-item" data-tool="ideaGenerator">
+            <span class="tutorial-title">Idea Generator</span>
+            <span class="tutorial-meta">Creative, Prompts, Inspiration</span>
+          </button>
 
           <h4 class="tool-category-header">WEBGL</h4>
           <button class="tutorial-item" data-tool="objectRasterizer3D">
             <span class="tutorial-title">The 3D Object Rasterizer</span>
             <span class="tutorial-meta">3D, WEBGL, Render</span>
+          </button>
+          <button class="tutorial-item" data-tool="lSystemArchitect">
+            <span class="tutorial-title">L-System Architect</span>
+            <span class="tutorial-meta">Fractals, Recursion, Growth</span>
+          </button>
+          <button class="tutorial-item" data-tool="designOffice">
+            <span class="tutorial-title">Design Office</span>
+            <span class="tutorial-meta">Professional, Layout, Typography</span>
+          </button>
+          <button class="tutorial-item" data-tool="generativeGraphicsEngine">
+            <span class="tutorial-title">Generative Graphics Engine</span>
+            <span class="tutorial-meta">Advanced, Graphics, Rendering</span>
           </button>
         </nav>
         <div class="notes-panel">
@@ -137,6 +174,7 @@
       <div id="canvas-overlay" style="position:absolute;top:8px;left:8px;z-index:20;color:#fff;font-family:monospace;font-size:12px;">
         <div id="canvas-size-display">[ARTBOARD: 1080x1080px]</div>
         <div id="canvas-framerate-display">[FRAMERATE: -- FPS]</div>
+        <div id="joystick-status" style="color:#00ff00;display:none;">[JOYSTICK: ON - WASD/Arrows to move, Space to reset]</div>
       </div>
     </main>
 
@@ -167,7 +205,7 @@
             <h4 class="control-group-header">GLOBAL VIEW CONTROLS</h4>
             <div class="control-group">
                 <label for="global-view-zoom">GLOBAL ZOOM</label>
-                <input type="range" id="global-view-zoom" min="0.2" max="5" value="1" step="0.1">
+                <input type="range" id="global-view-zoom" min="0.2" max="2" value="0.8" step="0.1">
                 <p class="control-hint">Affects 2D isometric views (Grid, Waveform).</p>
             </div>
         </div>
@@ -182,14 +220,6 @@
                 <option value="isometric">Isometric</option>
                 <option value="polar">Polar</option>
               </select>
-            </div>
-            <div class="control-group">
-              <label for="ga-cols">COLUMNS</label>
-              <input type="range" id="ga-cols" min="1" max="200" value="10">
-            </div>
-            <div class="control-group">
-              <label for="ga-rows">ROWS</label>
-              <input type="range" id="ga-rows" min="1" max="200" value="10">
             </div>
             <h4 class="control-group-header">SPACING</h4>
             <div class="control-group horizontal">
@@ -251,6 +281,26 @@
             <div class="control-group checkbox-group">
               <input type="checkbox" id="ga-show-grid" checked>
               <label for="ga-show-grid">SHOW GRID</label>
+            </div>
+            <h4 class="control-group-header">BACKGROUND</h4>
+            <div class="control-group checkbox-group">
+                <input type="checkbox" id="ga-showBackground" checked>
+                <label for="ga-showBackground">SHOW BACKGROUND</label>
+            </div>
+            <div class="control-group">
+                <label for="ga-backgroundColor">BACKGROUND COLOR</label>
+                <input type="color" id="ga-backgroundColor" value="#000000">
+            </div>
+            <h4 class="control-group-header">GRID SIZE</h4>
+            <div class="control-group horizontal">
+              <div class="input-group">
+                <label for="ga-cols">COLUMNS</label>
+                <input type="range" id="ga-cols" min="1" max="200" value="10">
+              </div>
+              <div class="input-group">
+                <label for="ga-rows">ROWS</label>
+                <input type="range" id="ga-rows" min="1" max="200" value="10">
+              </div>
             </div>
           </div>
 
@@ -403,7 +453,41 @@
                 <option value="line" selected>Line</option>
                 <option value="field">Isometric Field</option>
                 <option value="isometric-line">Isometric Line</option>
+                <option value="plan-view">Plan View (Top-down)</option>
+                <option value="isometric-container">Isometric Container</option>
               </select>
+            </div>
+            <!-- New Isometric Container Controls -->
+            <div id="ws-isometric-container-controls" style="display: none;">
+              <h4 class="control-group-header">CONTAINER</h4>
+              <div class="control-group">
+                <label for="ws-container-shape">SHAPE</label>
+                <select id="ws-container-shape">
+                  <option value="box">Box</option>
+                  <option value="cylinder">Cylinder</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label for="ws-container-size">SIZE</label>
+                <input type="range" id="ws-container-size" min="50" max="500" value="200">
+              </div>
+              <div class="control-group">
+                <label for="ws-wave-detail">WAVE DETAIL</label>
+                <input type="range" id="ws-wave-detail" min="5" max="50" value="20">
+              </div>
+              <h4 class="control-group-header">3D ROTATION</h4>
+              <div class="control-group">
+                <label for="ws-rotation-x">ROTATION X</label>
+                <input type="range" id="ws-rotation-x" min="-1.57" max="1.57" value="-0.5" step="0.01">
+              </div>
+              <div class="control-group">
+                <label for="ws-rotation-y">ROTATION Y</label>
+                <input type="range" id="ws-rotation-y" min="-1.57" max="1.57" value="-0.5" step="0.01">
+              </div>
+              <div class="control-group">
+                <label for="ws-rotation-z">ROTATION Z</label>
+                <input type="range" id="ws-rotation-z" min="-1.57" max="1.57" value="0" step="0.01">
+              </div>
             </div>
             <div class="control-group">
               <label for="ws-waveform">WAVEFORM</label>
@@ -575,6 +659,10 @@
             <div class="control-group">
               <label for="tt-stroke-color">STROKE COLOR</label>
               <input type="color" id="tt-stroke-color" value="#FFF8E7">
+            </div>
+            <div class="control-group">
+              <label for="tt-bg-color">BACKGROUND COLOR</label>
+              <input type="color" id="tt-bg-color" value="#111111">
             </div>
             <h4 class="control-group-header">ACTION</h4>
             <button id="tt-regenerate-btn" class="action-button">REGENERATE</button>
@@ -825,6 +913,96 @@
             <button id="gc-regenerate-btn" class="action-button">REGENERATE</button>
           </div>
 
+          <div id="generativeCompositionLab-controls" class="tool-controls">
+            <h4 class="control-group-header">GENERATIVE COMPOSITION LAB</h4>
+            <div class="control-group">
+              <label for="gcl-experiment-type">EXPERIMENT TYPE</label>
+              <select id="gcl-experiment-type">
+                <option value="layout">Layout</option>
+                <option value="typography">Typography</option>
+                <option value="color">Color</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <button id="gcl-regenerate" class="action-button">REGENERATE</button>
+            </div>
+          </div>
+
+          <div id="vectorFieldModulator-controls" class="tool-controls">
+            <h4 class="control-group-header">VECTOR FIELD MODULATOR</h4>
+            <div class="control-group">
+              <label for="vfm-field-type">FIELD TYPE</label>
+              <select id="vfm-field-type">
+                <option value="flow">Flow</option>
+                <option value="turbulence">Turbulence</option>
+                <option value="attraction">Attraction</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <button id="vfm-regenerate" class="action-button">REGENERATE</button>
+            </div>
+          </div>
+
+          <div id="ideaGenerator-controls" class="tool-controls">
+            <h4 class="control-group-header">IDEA GENERATOR</h4>
+            <div class="control-group">
+              <label for="ig-category">CATEGORY</label>
+              <select id="ig-category">
+                <option value="design">Design</option>
+                <option value="art">Art</option>
+                <option value="technology">Technology</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <button id="ig-generate" class="action-button">GENERATE IDEA</button>
+            </div>
+          </div>
+
+          <div id="lSystemArchitect-controls" class="tool-controls">
+            <h4 class="control-group-header">L-SYSTEM ARCHITECT</h4>
+            <div class="control-group">
+              <label for="lsa-axiom">AXIOM</label>
+              <input type="text" id="lsa-axiom" value="F">
+            </div>
+            <div class="control-group">
+              <label for="lsa-rules">RULES</label>
+              <textarea id="lsa-rules" rows="3">F -> F[+F]F[-F]F</textarea>
+            </div>
+            <div class="control-group">
+              <button id="lsa-generate" class="action-button">GENERATE</button>
+            </div>
+          </div>
+
+          <div id="designOffice-controls" class="tool-controls">
+            <h4 class="control-group-header">DESIGN OFFICE</h4>
+            <div class="control-group">
+              <label for="do-template">TEMPLATE</label>
+              <select id="do-template">
+                <option value="business-card">Business Card</option>
+                <option value="poster">Poster</option>
+                <option value="letterhead">Letterhead</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <button id="do-generate" class="action-button">GENERATE</button>
+            </div>
+          </div>
+
+          <div id="generativeGraphicsEngine-controls" class="tool-controls">
+            <h4 class="control-group-header">GENERATIVE GRAPHICS ENGINE</h4>
+            <div class="control-group">
+              <label for="gge-render-mode">RENDER MODE</label>
+              <select id="gge-render-mode">
+                <option value="2d">2D</option>
+                <option value="3d">3D</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <button id="gge-render" class="action-button">RENDER</button>
+            </div>
+          </div>
+
         <div class="media-bus-panel">
           <h4 class="control-group-header">MEDIA BUS</h4>
           <div id="media-bus-preview">
@@ -914,10 +1092,27 @@
             <button class="action-button" id="global-export-gif">RECORD GIF</button>
             <button class="action-button" id="global-export-svg">SVG</button>
           </div>
+          
+          <div class="control-group horizontal">
+            <button class="action-button secondary" id="global-export-highres">HIGH-RES PNG</button>
+            <button class="action-button secondary" id="global-export-jpg">JPG</button>
+            <button class="action-button secondary" id="global-export-all">EXPORT ALL</button>
+          </div>
 
           <div class="control-group checkbox-group">
             <input type="checkbox" id="global-export-transparent-bg">
             <label for="global-export-transparent-bg">TRANSPARENT BACKGROUND (PNG)</label>
+          </div>
+          
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="global-export-include-overlays" checked>
+            <label for="global-export-include-overlays">INCLUDE OVERLAYS</label>
+          </div>
+          
+          <div class="control-group">
+            <label for="global-export-scale">EXPORT SCALE</label>
+            <input type="range" id="global-export-scale" min="0.5" max="4.0" value="1.0" step="0.1">
+            <p class="control-hint">Higher values create larger, higher resolution exports</p>
           </div>
           <div class="control-group">
             <button class="action-button" id="global-export-video">RECORD VIDEO</button>
@@ -948,7 +1143,37 @@
     </aside>
   </div>
   
+  <!-- Test Suite Panel -->
+  <div id="test-suite-panel" style="position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.9); color: white; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 12px; z-index: 1000; max-width: 300px; display: none;">
+    <h3 style="margin: 0 0 10px 0; color: #4CAF50;">🧪 Test Suite</h3>
+    <div id="test-progress" style="background: #333; height: 20px; border-radius: 10px; overflow: hidden; margin: 10px 0;">
+      <div id="test-progress-fill" style="height: 100%; background: #4CAF50; width: 0%; transition: width 0.3s ease;"></div>
+    </div>
+    <div id="test-status" style="margin: 10px 0;">Ready to test...</div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button onclick="testSuite.runAllTests()" class="action-button" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Run All</button>
+      <button onclick="testSuite.runSizeTests()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test Sizes</button>
+      <button onclick="testSuite.runExportTests()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test Exports</button>
+      <button onclick="testSuite.runMovementTests()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test Movement</button>
+      <button onclick="testSuite.runShortcutTests()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test Shortcuts</button>
+      <button onclick="testSuite.runCSSTests()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test CSS</button>
+      <button onclick="testDownloadSystem()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test Downloads</button>
+      <button onclick="testExportFunctions()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Test Exports</button>
+      <button onclick="toggleTestPanel()" class="action-button secondary" style="padding: 8px 12px; font-size: 0.8rem; min-width: auto;">Close</button>
+    </div>
+    <div id="test-results" style="max-height: 200px; overflow-y: auto; margin-top: 10px; font-size: 10px; background: #111; padding: 5px; border-radius: 3px;"></div>
+  </div>
+  
+  <!-- Test Toggle Button -->
+  <button id="test-toggle-btn" onclick="toggleTestPanel()" class="action-button" style="position: fixed; top: 10px; right: 10px; z-index: 1001; padding: 8px 12px; font-size: 0.8rem; min-width: auto;">🧪 Test</button>
+  
   <!-- Core application scripts (load last) -->
+  <script src="comprehensive-test.js"></script>
+  <script src="comprehensive-test-suite.js"></script>
+  <script src="test-canvas-exports.js"></script>
+  <script src="test-download-system.js"></script>
+  
+  <!-- Legacy scripts for compatibility -->
   <script src="sketch.js"></script>
   <script src="script.js"></script>
 </body>

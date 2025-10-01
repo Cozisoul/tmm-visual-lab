@@ -160,6 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Audio Reactivity
     const audioReactivityToggle = document.getElementById('global-audio-reactivity-toggle');
+    const audioSensitivitySlider = document.getElementById('global-audio-sensitivity');
+
     audioReactivityToggle?.addEventListener('change', async () => {
       isAudioReactive = audioReactivityToggle.checked;
       if (isAudioReactive) {
@@ -168,48 +170,131 @@ document.addEventListener('DOMContentLoaded', () => {
       audioAnalyzer.setEnabled(isAudioReactive);
     });
 
+    audioSensitivitySlider?.addEventListener('input', () => {
+      audioSensitivity = parseFloat(audioSensitivitySlider.value);
+      audioAnalyzer.setSensitivity(audioSensitivity);
+    });
+
     // Persistent Export Panel Setup
     const filenameInput = document.getElementById('global-export-filename');
     const exportPngBtn = document.getElementById('global-export-png');
     const exportSvgBtn = document.getElementById('global-export-svg');
     const exportGifBtn = document.getElementById('global-export-gif');
     const exportVideoBtn = document.getElementById('global-export-video');
+    const exportHighResBtn = document.getElementById('global-export-highres');
+    const exportJpgBtn = document.getElementById('global-export-jpg');
+    const exportAllBtn = document.getElementById('global-export-all');
     const transparentBgInput = document.getElementById('global-export-transparent-bg');
+    const includeOverlaysInput = document.getElementById('global-export-include-overlays');
+    const exportScaleInput = document.getElementById('global-export-scale');
     const durationInput = document.getElementById('global-export-duration');
     const qualitySelect = document.getElementById('global-export-quality');
-    const allExportInputs = [filenameInput, exportPngBtn, exportSvgBtn, exportGifBtn, transparentBgInput, durationInput, qualitySelect];
     const statusEl = document.getElementById('global-export-status');
+    const allExportControls = [filenameInput, exportPngBtn, exportSvgBtn, exportGifBtn, exportVideoBtn, exportHighResBtn, exportJpgBtn, exportAllBtn, transparentBgInput, includeOverlaysInput, exportScaleInput, durationInput, qualitySelect];
     let videoRecordInterval = null;
 
     exportPngBtn?.addEventListener('click', () => {
       const filename = filenameInput.value || 'artwork';
       if (!artboard) return;
+      
       const isTransparent = transparentBgInput.checked;
-      if (isTransparent) {
-        const tempBuffer = createGraphics(artboard.width, artboard.height);
-        if (activeTool && typeof activeTool.draw === 'function') {
-          activeTool.draw(tempBuffer, mediaBusContent, gameOfLifeEnabled ? gameOfLifeGrid : null, { noBackground: true });
-        }
-        saveCanvas(tempBuffer, filename, 'png');
-        tempBuffer.remove();
-      } else {
-        saveCanvas(artboard, filename, 'png');
-      }
+      const includeOverlays = includeOverlaysInput.checked;
+      const scale = parseFloat(exportScaleInput.value);
+      const exporter = new Exporter();
+
+      // Use the new comprehensive export system
+      exporter.saveAsPng(null, filename, {
+        includeOverlays: includeOverlays,
+        transparent: isTransparent,
+        scale: scale,
+        backgroundColor: artboardBackgroundColor
+      });
     });
 
     exportSvgBtn?.addEventListener('click', () => {
       const filename = filenameInput.value || 'artwork';
-      if (activeTool && artboard) {
-        try {
-          const svg = createGraphics(artboard.width, artboard.height, SVG);
-          if (typeof activeTool.draw === 'function') {
-            activeTool.draw(svg, null, null, { noBackground: true });
-          }
-          save(svg, `${filename}.svg`);
-          svg.remove();
-          statusEl.textContent = 'SVG saved successfully.'; statusEl.style.display = 'block'; setTimeout(() => { statusEl.style.display = 'none'; }, 2000);
-        } catch (e) { console.error('SVG Export failed:', e); statusEl.textContent = 'ERROR: SVG export failed. See console.'; statusEl.style.display = 'block'; }
+      if (!artboard) return;
+      
+      const isTransparent = transparentBgInput.checked;
+      const includeOverlays = includeOverlaysInput.checked;
+      const exporter = new Exporter();
+
+      try {
+        // Use the new comprehensive SVG export system
+        exporter.saveAsSvg(filename, {
+          includeOverlays: includeOverlays,
+          transparent: isTransparent,
+          backgroundColor: artboardBackgroundColor
+        });
+        
+        statusEl.textContent = 'SVG saved successfully.';
+        statusEl.style.display = 'block';
+        setTimeout(() => { statusEl.style.display = 'none'; }, 2000);
+      } catch (e) {
+        console.error('SVG Export failed:', e);
+        statusEl.textContent = 'ERROR: SVG export failed. See console.';
+        statusEl.style.display = 'block';
       }
+    });
+
+    // High-resolution PNG export
+    exportHighResBtn?.addEventListener('click', () => {
+      const filename = filenameInput.value || 'artwork';
+      if (!artboard) return;
+      
+      const isTransparent = transparentBgInput.checked;
+      const includeOverlays = includeOverlaysInput.checked;
+      const scale = parseFloat(exportScaleInput.value) * 2.0; // Double the scale for high-res
+      const exporter = new Exporter();
+
+      exporter.saveAsHighResPng(filename, scale, {
+        includeOverlays: includeOverlays,
+        transparent: isTransparent,
+        backgroundColor: artboardBackgroundColor
+      });
+    });
+
+    // JPG export
+    exportJpgBtn?.addEventListener('click', () => {
+      const filename = filenameInput.value || 'artwork';
+      if (!artboard) return;
+      
+      const includeOverlays = includeOverlaysInput.checked;
+      const scale = parseFloat(exportScaleInput.value);
+      const exporter = new Exporter();
+
+      exporter.saveAsJpg(null, filename, {
+        includeOverlays: includeOverlays,
+        scale: scale,
+        backgroundColor: artboardBackgroundColor
+      });
+    });
+
+    // Export all formats
+    exportAllBtn?.addEventListener('click', () => {
+      const filename = filenameInput.value || 'artwork';
+      if (!artboard) return;
+      
+      const isTransparent = transparentBgInput.checked;
+      const includeOverlays = includeOverlaysInput.checked;
+      const scale = parseFloat(exportScaleInput.value);
+      const exporter = new Exporter();
+
+      statusEl.textContent = 'Exporting all formats...';
+      statusEl.style.display = 'block';
+
+      // Export all formats
+      exporter.saveMultipleFormats(filename, ['png', 'jpg', 'svg'], {
+        includeOverlays: includeOverlays,
+        transparent: isTransparent,
+        scale: scale,
+        backgroundColor: artboardBackgroundColor
+      });
+
+      setTimeout(() => {
+        statusEl.textContent = 'All formats exported successfully!';
+        setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+      }, 1000);
     });
     
     const stopRecording = (format) => {
@@ -250,12 +335,22 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.disabled = false;
 
           statusEl.style.display = 'none';
-          [...allExportInputs, exportVideoBtn].forEach(i => { if(i) i.disabled = false; });
+          allExportControls.forEach(i => { if(i) i.disabled = false; });
+
+          // Restore canvas size and scaling
+          isDisplayScaled = true;
+          const wrapper = document.getElementById('canvas-wrapper');
+          if (wrapper) resizeCanvas(wrapper.offsetWidth, wrapper.offsetHeight);
         });
       } catch (e) {
         console.error('Error while saving capture:', e);
         statusEl.textContent = 'ERROR: saving video failed.';
-        [...allExportInputs, exportVideoBtn].forEach(i => { if(i) i.disabled = false; });
+        allExportControls.forEach(i => { if(i) i.disabled = false; });
+        
+        // Restore canvas size and scaling even on error
+        isDisplayScaled = true;
+        const wrapper = document.getElementById('canvas-wrapper');
+        if (wrapper) resizeCanvas(wrapper.offsetWidth, wrapper.offsetHeight);
       }
     };
 
@@ -273,7 +368,9 @@ document.addEventListener('DOMContentLoaded', () => {
         framerate: fps,
         name: filename,
         quality: quality,
-        verbose: false
+        verbose: false,
+        width: artboard.width,
+        height: artboard.height
       };
 
       try {
@@ -288,16 +385,17 @@ document.addEventListener('DOMContentLoaded', () => {
       isRecording = true;
       capturer.start();
 
-      const btn = format === 'webm' ? exportVideoBtn : exportGifBtn;
-      btn.textContent = `STOP (0/${duration}s)`;
+      const currentBtn = format === 'webm' ? exportVideoBtn : exportGifBtn;
+      currentBtn.textContent = `STOP (0/${duration}s)`;
       statusEl.textContent = `RECORDING...`;
       statusEl.style.display = 'block';
-      [...allExportInputs, exportVideoBtn, exportGifBtn].forEach(i => { if(i) i.disabled = true; });
+      // Disable all other export controls, but keep the stop button active.
+      allExportControls.forEach(i => { if(i && i !== currentBtn) i.disabled = true; });
 
       const startTime = Date.now();
       videoRecordInterval = setInterval(() => {
         const elapsed = Math.floor((Date.now() - startTime) / 1000);
-        btn.textContent = `STOP (${elapsed}/${duration}s)`;
+        currentBtn.textContent = `STOP (${elapsed}/${duration}s)`;
         if (elapsed >= duration) {
           stopRecording(format);
         }
@@ -345,26 +443,38 @@ document.addEventListener('DOMContentLoaded', () => {
         lineColor: document.getElementById('ga-line-color'),
         fillColor: document.getElementById('ga-fill-color'),
         showGrid: document.getElementById('ga-show-grid'),
+        showBackground: document.getElementById('ga-showBackground'),
+        backgroundColor: document.getElementById('ga-backgroundColor'),
       };
 
       const update = () => {
         if (activeTool?.constructor.name !== 'GridArchitect') return;
         const tool = activeTool;
-        tool.layoutType = inputs.layoutType.value;
-        tool.cols = parseInt(inputs.cols.value, 10);
-        tool.rows = parseInt(inputs.rows.value, 10);
-        tool.marginX = parseInt(inputs.marginX.value, 10);
-        tool.marginY = parseInt(inputs.marginY.value, 10);
-        tool.gutterX = parseInt(inputs.gutterX.value, 10);
-        tool.gutterY = parseInt(inputs.gutterY.value, 10);
-        tool.cellShape = inputs.cellShape.value;
-        tool.cellText = inputs.cellText.value;
-        tool.textColor = inputs.textColor.value;
-        tool.textSizeRatio = parseInt(inputs.textSize.value, 10) / 100;
-        tool.lineWeight = parseFloat(inputs.lineWeight.value);
-        tool.lineColor = inputs.lineColor.value;
-        tool.fillColor = inputs.fillColor.value;
-        tool.showGrid = inputs.showGrid.checked;
+        
+        // Debug logging to check if controls are working
+        console.log('GridArchitect controls updating:', {
+          layoutType: inputs.layoutType?.value,
+          cols: inputs.cols?.value,
+          rows: inputs.rows?.value
+        });
+        
+        tool.layoutType = inputs.layoutType?.value || 'cartesian';
+        tool.cols = parseInt(inputs.cols?.value || 10, 10);
+        tool.rows = parseInt(inputs.rows?.value || 10, 10);
+        tool.marginX = parseInt(inputs.marginX?.value || 50, 10);
+        tool.marginY = parseInt(inputs.marginY?.value || 50, 10);
+        tool.gutterX = parseInt(inputs.gutterX?.value || 0, 10);
+        tool.gutterY = parseInt(inputs.gutterY?.value || 0, 10);
+        tool.cellShape = inputs.cellShape?.value || 'rectangle';
+        tool.cellText = inputs.cellText?.value || '';
+        tool.textColor = inputs.textColor?.value || '#FFF8E7';
+        tool.textSizeRatio = parseInt(inputs.textSize?.value || 80, 10) / 100;
+        tool.lineWeight = parseFloat(inputs.lineWeight?.value || 1);
+        tool.lineColor = inputs.lineColor?.value || '#333333';
+        tool.fillColor = inputs.fillColor?.value || '#111111';
+        tool.showGrid = inputs.showGrid?.checked !== false;
+        tool.showBackground = inputs.showBackground?.checked !== false;
+        tool.backgroundColor = inputs.backgroundColor?.value || '#000000';
       };
 
       Object.values(inputs).forEach(input => {
@@ -392,14 +502,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeTool?.constructor.name !== 'PosterComposer') return;
         const tool = activeTool;
         const oldPreset = tool.preset;
-        tool.preset = inputs.preset.value;
-        tool.imageBlocks = parseInt(inputs.imageBlocks.value, 10);
-        tool.textBlocks = parseInt(inputs.textBlocks.value, 10);
-        tool.imageColor = inputs.imageColor.value;
-        tool.textColor = inputs.textColor.value;
-        tool.blockScale = parseFloat(inputs.blockScale.value);
+        
+        console.log('PosterComposer controls updating:', {
+          preset: inputs.preset?.value,
+          imageBlocks: inputs.imageBlocks?.value,
+          textBlocks: inputs.textBlocks?.value
+        });
+        
+        tool.preset = inputs.preset?.value || 'generative';
+        tool.imageBlocks = parseInt(inputs.imageBlocks?.value || 2, 10);
+        tool.textBlocks = parseInt(inputs.textBlocks?.value || 3, 10);
+        tool.imageColor = inputs.imageColor?.value || '#232323';
+        tool.textColor = inputs.textColor?.value || '#3C3C3C';
+        tool.blockScale = parseFloat(inputs.blockScale?.value || 1.0);
         if (tool.preset !== oldPreset) {
-          tool.regenerate();
+          tool.regenerate(artboard.width, artboard.height);
         }
       };
 
@@ -412,11 +529,20 @@ document.addEventListener('DOMContentLoaded', () => {
       
       inputs.regenerateBtn?.addEventListener('click', () => {
         if (activeTool?.constructor.name === 'PosterComposer') {
-          activeTool.regenerate();
+          activeTool.regenerate(artboard.width, artboard.height);
         }
       });
 
-      return update;
+      // This function is called on tool switch to sync state.
+      // We'll use it to trigger the initial regeneration.
+      return () => {
+        if (activeTool?.constructor.name === 'PosterComposer') {
+            update(); // Sync sliders first
+            if (activeTool.layout.length === 0) {
+                activeTool.regenerate(artboard.width, artboard.height);
+            }
+        }
+      };
     });
 
     bindControls('bauhausAssembler', () => {
@@ -431,12 +557,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const updateAndRegenerate = () => {
         if (activeTool?.constructor.name !== 'BauhausAssembler') return;
         const tool = activeTool;
-        tool.elementCount = parseInt(inputs.elementCount.value, 10);
-        tool.maxSize = parseInt(inputs.maxSize.value, 10);
-        tool.colorPalette = inputs.colorPalette.value;
-        tool.allowOverlap = inputs.allowOverlap.checked;
+        
+        console.log('BauhausAssembler controls updating:', {
+          elementCount: inputs.elementCount?.value,
+          maxSize: inputs.maxSize?.value,
+          colorPalette: inputs.colorPalette?.value
+        });
+        
+        tool.elementCount = parseInt(inputs.elementCount?.value || 15, 10);
+        tool.maxSize = parseInt(inputs.maxSize?.value || 20, 10);
+        tool.colorPalette = inputs.colorPalette?.value || 'primary';
+        tool.allowOverlap = inputs.allowOverlap?.checked !== false;
         if (typeof tool.regenerate === 'function') {
-          tool.regenerate();
+          tool.regenerate(artboard.width, artboard.height);
         }
       };
 
@@ -466,16 +599,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const update = () => {
         if (activeTool?.constructor.name !== 'KineticTypeEngine') return;
         const tool = activeTool;
-        tool.text = inputs.text.value;
-        tool.repetitions = parseInt(inputs.repetitions.value, 10);
-        tool.lineCount = parseInt(inputs.lineCount.value, 10);
-        tool.fontSize = parseInt(inputs.fontSize.value, 10);
-        tool.isUppercase = inputs.uppercase.checked;
-        tool.algorithm = inputs.algorithm.value;
-        tool.speed = parseFloat(inputs.speed.value);
-        tool.amplitude = parseInt(inputs.amplitude.value, 10);
-        tool.tracking = parseInt(inputs.tracking.value, 10);
-        tool.color = inputs.color.value;
+        
+        console.log('KineticTypeEngine controls updating:', {
+          text: inputs.text?.value,
+          algorithm: inputs.algorithm?.value,
+          speed: inputs.speed?.value
+        });
+        
+        tool.text = inputs.text?.value || 'KINETIC TYPE ENGINE';
+        tool.repetitions = parseInt(inputs.repetitions?.value || 1, 10);
+        tool.lineCount = parseInt(inputs.lineCount?.value || 1, 10);
+        tool.fontSize = parseInt(inputs.fontSize?.value || 64, 10);
+        tool.isUppercase = inputs.uppercase?.checked !== false;
+        tool.algorithm = inputs.algorithm?.value || 'ticker';
+        tool.speed = parseFloat(inputs.speed?.value || 2.0);
+        tool.amplitude = parseInt(inputs.amplitude?.value || 50, 10);
+        tool.tracking = parseInt(inputs.tracking?.value || 0, 10);
+        tool.color = inputs.color?.value || '#FFF8E7';
       };
 
       Object.values(inputs).forEach(input => {
@@ -502,12 +642,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const updateAndRegenerate = () => {
         if (activeTool?.constructor.name !== 'GlyphDeconstructor') return;
         const tool = activeTool;
-        tool.text = inputs.text.value;
-        tool.lineCount = parseInt(inputs.lineCount.value, 10);
-        tool.scale = parseFloat(inputs.scale.value);
-        tool.jitter = parseInt(inputs.jitter.value, 10);
-        tool.rotation = parseInt(inputs.rotation.value, 10);
-        tool.color = inputs.color.value;
+        
+        console.log('GlyphDeconstructor controls updating:', {
+          text: inputs.text?.value,
+          scale: inputs.scale?.value,
+          jitter: inputs.jitter?.value
+        });
+        
+        tool.text = inputs.text?.value || 'GLYPH';
+        tool.lineCount = parseInt(inputs.lineCount?.value || 1, 10);
+        tool.scale = parseFloat(inputs.scale?.value || 1.0);
+        tool.jitter = parseInt(inputs.jitter?.value || 20, 10);
+        tool.rotation = parseInt(inputs.rotation?.value || 10, 10);
+        tool.color = inputs.color?.value || '#FFF8E7';
         if (typeof tool.regenerate === 'function') {
           tool.regenerate();
         }
@@ -536,26 +683,56 @@ document.addEventListener('DOMContentLoaded', () => {
         noiseAmount: document.getElementById('ws-noise-amount'),
         color: document.getElementById('ws-color'),
         lineWeight: document.getElementById('ws-line-weight'),
+        
+        // New container controls
+        containerControls: document.getElementById('ws-isometric-container-controls'),
+        containerShape: document.getElementById('ws-container-shape'),
+        containerSize: document.getElementById('ws-container-size'),
+        waveDetail: document.getElementById('ws-wave-detail'),
+        rotationX: document.getElementById('ws-rotation-x'),
+        rotationY: document.getElementById('ws-rotation-y'),
+        rotationZ: document.getElementById('ws-rotation-z'),
       };
 
       const update = () => {
         if (activeTool?.constructor.name !== 'WaveformSynthesizer') return;
         const tool = activeTool;
-        tool.mode = inputs.mode.value;
-        tool.waveform = inputs.waveform.value;
-        tool.amp = parseInt(inputs.amp.value, 10);
-        tool.freq = parseInt(inputs.freq.value, 10);
-        tool.lineCount = parseInt(inputs.lineCount.value, 10);
-        tool.timeSpeed = parseFloat(inputs.timeSpeed.value);
-        tool.phase = parseInt(inputs.phase.value, 10);
-        tool.noiseAmount = parseInt(inputs.noiseAmount.value, 10);
-        tool.color = inputs.color.value;
-        tool.lineWeight = parseInt(inputs.lineWeight.value, 10);
+        
+        // Debug logging
+        console.log('WaveformSynthesizer controls updating:', {
+          mode: inputs.mode?.value,
+          waveform: inputs.waveform?.value,
+          amp: inputs.amp?.value
+        });
+        
+        tool.mode = inputs.mode?.value || 'line';
+        tool.waveform = inputs.waveform?.value || 'sine';
+        tool.amp = parseInt(inputs.amp?.value || 100, 10);
+        tool.freq = parseInt(inputs.freq?.value || 4, 10);
+        tool.lineCount = parseInt(inputs.lineCount?.value || 1, 10);
+        tool.timeSpeed = parseFloat(inputs.timeSpeed?.value || 0.05);
+        tool.phase = parseInt(inputs.phase?.value || 0, 10);
+        tool.noiseAmount = parseInt(inputs.noiseAmount?.value || 0, 10);
+        tool.color = inputs.color?.value || '#FFF8E7';
+        tool.lineWeight = parseInt(inputs.lineWeight?.value || 3, 10);
+
+        // Update new properties with null checks
+        if (inputs.containerShape) tool.containerShape = inputs.containerShape.value;
+        if (inputs.containerSize) tool.containerSize = parseInt(inputs.containerSize.value, 10);
+        if (inputs.waveDetail) tool.waveDetail = parseInt(inputs.waveDetail.value, 10);
+        if (inputs.rotationX) tool.rotationX = parseFloat(inputs.rotationX.value);
+        if (inputs.rotationY) tool.rotationY = parseFloat(inputs.rotationY.value);
+        if (inputs.rotationZ) tool.rotationZ = parseFloat(inputs.rotationZ.value);
+
+        // Show/hide container controls
+        if (inputs.containerControls) {
+            inputs.containerControls.style.display = tool.mode === 'isometric-container' ? 'block' : 'none';
+        }
       };
 
       Object.values(inputs).forEach(input => {
         if (input) {
-          const eventType = input.tagName === 'SELECT' ? 'change' : 'input';
+          const eventType = input.tagName === 'SELECT' || input.type === 'checkbox' ? 'change' : 'input';
           input.addEventListener(eventType, update);
         }
       });
@@ -578,14 +755,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const update = () => {
         if (activeTool?.constructor.name !== 'UniversalRasterizer') return;
         const tool = activeTool;
-        tool.cellSize = parseInt(inputs.cellSize.value, 10);
-        tool.mode = inputs.mode.value;
-        tool.shape = inputs.shape.value;
-        tool.threshold = parseInt(inputs.threshold.value, 10);
-        tool.invert = inputs.invert.checked;
-        tool.rasterColor = inputs.rasterColor.value;
-        tool.text = inputs.text.value;
-        tool.textColor = inputs.textColor.value;
+        
+        console.log('UniversalRasterizer controls updating:', {
+          cellSize: inputs.cellSize?.value,
+          mode: inputs.mode?.value,
+          shape: inputs.shape?.value
+        });
+        
+        tool.cellSize = parseInt(inputs.cellSize?.value || 10, 10);
+        tool.mode = inputs.mode?.value || 'shape';
+        tool.shape = inputs.shape?.value || 'ellipse';
+        tool.threshold = parseInt(inputs.threshold?.value || 128, 10);
+        tool.invert = inputs.invert?.checked !== false;
+        tool.rasterColor = inputs.rasterColor?.value || '#FFF8E7';
+        tool.text = inputs.text?.value || 'A';
+        tool.textColor = inputs.textColor?.value || '#111111';
       };
 
       Object.values(inputs).forEach(input => {
@@ -612,10 +796,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeTool?.constructor.name !== 'VideoSampler') return;
         const tool = activeTool;
         const oldMode = tool.mode;
-        tool.mode = inputs.mode.value;
-        tool.slitPosition = parseInt(inputs.slitPosition.value, 10);
-        tool.slitDirection = inputs.slitDirection.value;
-        tool.cols = parseInt(inputs.cols.value, 10);
+        const oldDirection = tool.slitDirection;
+
+        console.log('VideoSampler controls updating:', {
+          mode: inputs.mode?.value,
+          slitPosition: inputs.slitPosition?.value,
+          cols: inputs.cols?.value
+        });
+
+        tool.mode = inputs.mode?.value || 'grid';
+        tool.slitPosition = parseInt(inputs.slitPosition?.value || 50, 10);
+        tool.slitDirection = inputs.slitDirection?.value || 'horizontal';
+        tool.cols = parseInt(inputs.cols?.value || 16, 10);
+
+        // Reset the slit-scan buffer if the mode or direction changes to prevent artifacts
+        if ((tool.mode === 'slit-scan' && oldMode !== 'slit-scan') || (tool.slitDirection !== oldDirection)) {
+            if (typeof tool.reset === 'function') {
+                tool.reset();
+            }
+        }
 
         // Special handling for transparent BG based on mode
         if (transparentBgInput && transparentBgLabel) {
@@ -630,10 +829,6 @@ document.addEventListener('DOMContentLoaded', () => {
             transparentBgInput.title = '';
           }
         }
-
-        if (tool.mode !== oldMode && typeof tool.regenerate === 'function') {
-          tool.regenerate();
-        }
       };
 
       Object.values(inputs).forEach(input => {
@@ -643,7 +838,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      return update;
+      // This function is called on tool switch.
+      return () => {
+        if (activeTool?.constructor.name === 'VideoSampler') {
+            update(); // Sync sliders
+            // Ensure buffer is created on first load
+            if (!activeTool.slitScanBuffer) {
+                activeTool.regenerate(artboard.width, artboard.height);
+            }
+        }
+      };
     });
 
     bindControls('colorSystemAnalyzer', () => {
@@ -654,7 +858,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const update = () => {
         if (activeTool?.constructor.name !== 'ColorSystemAnalyzer') return;
-        activeTool.paletteSize = parseInt(inputs.paletteSize.value, 10);
+        
+        console.log('ColorSystemAnalyzer controls updating:', {
+          paletteSize: inputs.paletteSize?.value
+        });
+        
+        activeTool.paletteSize = parseInt(inputs.paletteSize?.value || 8, 10);
       };
 
       inputs.paletteSize.addEventListener('input', update);
@@ -677,13 +886,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const updateLive = () => {
         if (activeTool?.constructor.name !== 'GenerativeComposer') return;
-        activeTool.brushSize = parseInt(inputs.brushSize.value, 10);
-        activeTool.stepSize = parseFloat(inputs.stepSize.value);
+        
+        console.log('GenerativeComposer live controls updating:', {
+          brushSize: inputs.brushSize?.value,
+          stepSize: inputs.stepSize?.value
+        });
+        
+        activeTool.brushSize = parseInt(inputs.brushSize?.value || 10, 10);
+        activeTool.stepSize = parseFloat(inputs.stepSize?.value || 2.0);
       };
 
       const updateAndRegenerate = () => {
         if (activeTool?.constructor.name !== 'GenerativeComposer') return;
-        activeTool.elementCount = parseInt(inputs.elements.value, 10);
+        
+        console.log('GenerativeComposer regenerate controls updating:', {
+          elements: inputs.elements?.value
+        });
+        
+        activeTool.elementCount = parseInt(inputs.elements?.value || 100, 10);
         if (typeof activeTool.regenerate === 'function') {
           activeTool.regenerate();
         }
@@ -709,9 +929,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const update = () => {
         if (activeTool?.constructor.name !== 'PixelSorter') return;
         const tool = activeTool;
-        tool.sortMode = inputs.sortMode.value;
-        tool.direction = inputs.direction.value;
-        tool.threshold = parseInt(inputs.threshold.value, 10);
+        
+        console.log('PixelSorter controls updating:', {
+          sortMode: inputs.sortMode?.value,
+          direction: inputs.direction?.value,
+          threshold: inputs.threshold?.value
+        });
+        
+        tool.sortMode = inputs.sortMode?.value || 'brightness';
+        tool.direction = inputs.direction?.value || 'horizontal';
+        tool.threshold = parseInt(inputs.threshold?.value || 80, 10);
       };
 
       inputs.sortMode.addEventListener('change', update);
@@ -745,12 +972,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const oldTileSize = tool.tileSize;
         const oldDensity = tool.density;
 
-        tool.tileSize = parseInt(inputs.tileSize.value, 10);
-        tool.density = parseInt(inputs.density.value, 10);
-        tool.animSpeed = parseInt(inputs.animSpeed.value, 10);
-        tool.lineWeight = parseFloat(inputs.lineWeight.value);
-        tool.strokeColor = inputs.strokeColor.value;
-        tool.backgroundColor = inputs.backgroundColor.value;
+        console.log('TruchetTiler controls updating:', {
+          tileSize: inputs.tileSize?.value,
+          density: inputs.density?.value,
+          animSpeed: inputs.animSpeed?.value
+        });
+
+        tool.tileSize = parseInt(inputs.tileSize?.value || 80, 10);
+        tool.density = parseInt(inputs.density?.value || 1, 10);
+        tool.animSpeed = parseInt(inputs.animSpeed?.value || 0, 10);
+        tool.lineWeight = parseFloat(inputs.lineWeight?.value || 2.0);
+        tool.strokeColor = inputs.strokeColor?.value || '#FFF8E7';
+        tool.backgroundColor = inputs.backgroundColor?.value || '#111111';
         
         if (tool.tileSize !== oldTileSize || tool.density !== oldDensity) {
             tool.regenerate();
@@ -937,6 +1170,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const oldText = tool.text;
         const oldFontSize = tool.fontSize;
         const oldExtrude = tool.extrude;
+        const oldPixelSize = tool.pixelSize;
+        const oldRasterPalette = tool.rasterPalette;
 
         tool.shape = inputs.shape.value;
         tool.text = inputs.text.value;
@@ -952,7 +1187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tool.particlesEnabled = inputs.particlesEnabled.checked;
         tool.particleRate = parseInt(inputs.particleRate.value, 10);
         tool.particleGravity = parseFloat(inputs.particleGravity.value);
-        tool.particleColor = inputs.color.value;
+        tool.particleColor = inputs.particleColor.value;
         tool.rhythmEnabled = inputs.rhythmEnabled.checked;
         tool.cameraType = inputs.camera.value;
         tool.zoom = parseInt(inputs.zoom.value, 10);
@@ -966,6 +1201,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (tool.text !== oldText || tool.fontSize !== oldFontSize || tool.extrude !== oldExtrude) {
           tool.needsGeomUpdate = true;
+        }
+
+        if (tool.pixelSize !== oldPixelSize || tool.rasterPalette !== oldRasterPalette) {
+          tool.needsRasterUpdate = true;
         }
 
         // Update UI visibility based on new state
@@ -983,8 +1222,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  const setupCollapsibleSections = () => {
+    const panels = document.querySelectorAll('.artboard-settings-panel, .global-view-panel, .tool-controls, .media-bus-panel, .global-fx-panel, .export-panel');
+    panels.forEach(panel => {
+        const headers = panel.querySelectorAll('.control-group-header');
+        headers.forEach((header, index) => {
+            let contents = [];
+            let nextEl = header.nextElementSibling;
+            while (nextEl && !nextEl.classList.contains('control-group-header')) {
+                contents.push(nextEl);
+                nextEl = nextEl.nextElementSibling;
+            }
+
+            if (index !== 0) {
+                header.classList.add('active');
+                contents.forEach(content => {
+                    content.style.display = 'none';
+                });
+            }
+
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+                contents.forEach(content => {
+                    if (content.style.display === 'none') {
+                        if(content.classList.contains('control-group')) {
+                            content.style.display = 'flex';
+                        } else {
+                            content.style.display = 'block';
+                        }
+                    } else {
+                        content.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+  };
+
   // Initialize all functionalities
   setupToolSelection();
   setupGlobalControls();
   setupToolControls();
+  setupCollapsibleSections();
 });

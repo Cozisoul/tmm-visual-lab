@@ -14,18 +14,33 @@ This project is a browser-based creative coding environment built with p5.js. It
 
 Because this project uses features (like video exporting) that are restricted by browser security when running from a local `file://` path, you need to run it from a local web server.
 
+### Quick Start
+1. **Test the setup first**: Open `test.html` in your browser to verify all dependencies are working
+2. **Start the server**: Run one of the methods below
+3. **Open the app**: Navigate to `http://localhost:8000` in your browser
+
+### Using Python (Recommended)
+1. Open a terminal or command prompt in the project's root directory.
+2. Run the following command:
+   ```bash
+   python -m http.server 8000
+   ```
+3. Open your web browser and navigate to `http://localhost:8000`.
+
+### Using Node.js (if you have it installed)
+1. Install a simple HTTP server: `npm install -g http-server`
+2. Run: `http-server -p 8000`
+3. Open your web browser and navigate to `http://localhost:8000`.
+
 ### Using VS Code Live Server
 1. Install the Live Server extension in Visual Studio Code.
 2. Open the project folder in VS Code.
 3. Right-click on `index.html` in the file explorer and select "Open with Live Server".
 
-### Using Python
-1. Open a terminal or command prompt in the project's root directory.
-2. Run the following command:
-   ```bash
-   python -m http.server
-   ```
-3. Open your web browser and navigate to `http://localhost:8000`.
+### Troubleshooting
+- If you see errors, check the browser console (F12) for details
+- Make sure you're accessing the app via `http://localhost:8000`, not `file://`
+- Some features require HTTPS in production environments
 
 ## Project Structure
 

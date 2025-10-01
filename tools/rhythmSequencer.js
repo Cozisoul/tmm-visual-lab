@@ -29,6 +29,12 @@ class RhythmSequencer {
     this.updatePatternFromUI();
   }
 
+  regenerate() {
+    // Reset sequencer state
+    this.currentStep = 0;
+    this.beatHistory = [];
+  }
+
   toggleAudio(enabled) {
     this.audioEnabled = enabled;
     if (this.audioEnabled && !this.audioInitialized) {
@@ -146,6 +152,10 @@ class RhythmSequencer {
       el.classList.toggle('current', (i % this.steps) === this.currentStep);
     });
 
+    // Get proper canvas dimensions for centering
+    const canvasWidth = options.canvasWidth || buffer.width;
+    const canvasHeight = options.canvasHeight || buffer.height;
+
     if (this.showVisualizer) {
       if (!options.noBackground) {
         // Clear background only for visualizer mode to see bars clearly
@@ -153,11 +163,11 @@ class RhythmSequencer {
       }
       // Draw visualizer based on pattern
       buffer.noStroke();
-      const barWidth = buffer.width / 4;
+      const barWidth = canvasWidth / 4;
       for (let i = 0; i < 4; i++) {
         if (this.pattern[i][this.currentStep]) {
           buffer.fill(255, 248, 231, 150);
-          buffer.rect(i * barWidth, 0, barWidth, buffer.height);
+          buffer.rect(i * barWidth, 0, barWidth, canvasHeight);
         }
       }
     } else {
@@ -169,7 +179,7 @@ class RhythmSequencer {
       buffer.noFill();
       buffer.stroke(255, 248, 231, alpha);
       buffer.strokeWeight(4);
-      buffer.ellipse(buffer.width / 2, buffer.height / 2, size, size);
+      buffer.ellipse(canvasWidth / 2, canvasHeight / 2, size, size);
     }
     } catch (e) {
       console.error("Error in RhythmSequencer draw:", e);

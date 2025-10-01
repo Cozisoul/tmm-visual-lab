@@ -16,10 +16,14 @@ class GenerativeComposer {
 
   regenerate() {
     this.walkers = [];
+    // Use a default size if no buffer is available yet
+    const bufferWidth = 1080; // Use fixed default size
+    const bufferHeight = 1080; // Use fixed default size
+    
     for (let i = 0; i < this.elementCount; i++) {
       this.walkers.push({
-        x: random(artboard.width),
-        y: random(artboard.height),
+        x: random(bufferWidth),
+        y: random(bufferHeight),
         color: color(random(100, 255), random(100, 255), random(100, 255), 10)
       });
     }

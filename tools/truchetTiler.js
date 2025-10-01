@@ -19,15 +19,16 @@ class TruchetTiler {
   regenerate() {
     this.tiles = [];
     const step = this.tileSize / this.density;
-    for (let x = 0; x < artboard.width; x += step) {
-      for (let y = 0; y < artboard.height; y += step) {
-        if (x + step <= artboard.width && y + step <= artboard.height) {
-          this.tiles.push({
-            x: x,
-            y: y,
-            type: random() > 0.5
-          });
-        }
+    // Use default size if no buffer is available yet
+    const bufferWidth = 1080; // Use fixed default size
+    const bufferHeight = 1080; // Use fixed default size
+    for (let x = 0; x < bufferWidth + step; x += step) {
+      for (let y = 0; y < bufferHeight + step; y += step) {
+        this.tiles.push({
+          x: x,
+          y: y,
+          type: random() > 0.5
+        });
       }
     }
   }

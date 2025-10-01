@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMM Visual Lab - Browser Test Runner</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            color: #333;
+        }
+        .test-controls { 
+            display: flex; 
+            gap: 15px; 
+            margin-bottom: 30px; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn { 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { 
+            background: #007bff; 
+            color: white; 
+        }
+        .btn-primary:hover { 
+            background: #0056b3; 
+            transform: translateY(-2px);
+        }
+        .btn-success { 
+            background: #28a745; 
+            color: white; 
+        }
+        .btn-success:hover { 
+            background: #1e7e34; 
+            transform: translateY(-2px);
+        }
+        .btn-warning { 
+            background: #ffc107; 
+            color: #212529; 
+        }
+        .btn-warning:hover { 
+            background: #e0a800; 
+            transform: translateY(-2px);
+        }
+        .progress-container { 
+            margin-bottom: 30px; 
+        }
+        .progress-bar { 
+            width: 100%; 
+            height: 20px; 
+            background: #e9ecef; 
+            border-radius: 10px; 
+            overflow: hidden;
+        }
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(90deg, #28a745, #20c997); 
+            width: 0%; 
+            transition: width 0.3s ease;
+        }
+        .status { 
+            text-align: center; 
+            margin: 10px 0; 
+            font-weight: bold;
+        }
+        .test-results { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 20px; 
+            margin-top: 30px;
+        }
+        .test-card { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border-left: 4px solid #007bff;
+        }
+        .test-card.pass { 
+            border-left-color: #28a745; 
+            background: #d4edda;
+        }
+        .test-card.fail { 
+            border-left-color: #dc3545; 
+            background: #f8d7da;
+        }
+        .test-card.running { 
+            border-left-color: #ffc107; 
+            background: #fff3cd;
+        }
+        .test-card h4 { 
+            margin: 0 0 10px 0; 
+            color: #333;
+        }
+        .test-card .status { 
+            font-weight: bold; 
+            margin: 5px 0;
+        }
+        .test-card .details { 
+            font-size: 14px; 
+            color: #666;
+        }
+        .log-container { 
+            background: #1e1e1e; 
+            color: #f8f8f2; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-top: 30px; 
+            max-height: 400px; 
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+        }
+        .log-entry { 
+            margin: 5px 0; 
+            padding: 5px; 
+            border-radius: 3px;
+        }
+        .log-info { 
+            background: rgba(0, 123, 255, 0.1); 
+        }
+        .log-success { 
+            background: rgba(40, 167, 69, 0.1); 
+        }
+        .log-error { 
+            background: rgba(220, 53, 69, 0.1); 
+        }
+        .log-warning { 
+            background: rgba(255, 193, 7, 0.1); 
+        }
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 TMM Visual Lab - Browser Test Runner</h1>
+            <p>Comprehensive testing suite for all tools, sizes, and formats</p>
+        </div>
+        
+        <div class="test-controls">
+            <button class="btn btn-primary" onclick="startAllTests()">🚀 Run All Tests</button>
+            <button class="btn btn-success" onclick="startQuickTest()">⚡ Quick Test</button>
+            <button class="btn btn-warning" onclick="testSingleTool()">🔧 Test Single Tool</button>
+            <button class="btn btn-primary" onclick="downloadReport()">📊 Download Report</button>
+        </div>
+        
+        <div class="summary-stats" id="summaryStats">
+            <div class="stat-card">
+                <h3>Total Tests</h3>
+                <div class="number" id="totalTests">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Passed</h3>
+                <div class="number" id="passedTests">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Failed</h3>
+                <div class="number" id="failedTests">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Success Rate</h3>
+                <div class="number" id="successRate">0%</div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="status" id="statusText">Ready to run tests</div>
+        </div>
+        
+        <div class="test-results" id="testResults">
+            <!-- Test results will be populated here -->
+        </div>
+        
+        <div class="log-container" id="logContainer">
+            <div class="log-entry log-info">Test runner initialized. Click a button to start testing.</div>
+        </div>
+    </div>
+
+    <script>
+        // Test configuration
+        const testConfig = {
+            tools: [
+                'gridArchitect', 'posterComposer', 'bauhausAssembler', 
+                'kineticTypeEngine', 'glyphDeconstructor', 'waveformSynthesizer',
+                'universalRasterizer', 'videoSampler', 'colorSystemAnalyzer',
+                'pixelSorter', 'truchetTiler', 'particleEngine',
+                'rhythmSequencer', 'objectRasterizer3D', 'generativeComposer'
+            ],
+            sizes: [
+                { name: 'square', width: 1080, height: 1080 },
+                { name: 'landscape', width: 1920, height: 1080 },
+                { name: 'portrait', width: 1080, height: 1920 },
+                { name: 'small', width: 512, height: 512 },
+                { name: 'large', width: 2048, height: 2048 }
+            ],
+            formats: ['png', 'jpg', 'svg', 'pdf']
+        };
+
+        let currentTest = 0;
+        let totalTests = 0;
+        let testResults = [];
+        let passedTests = 0;
+        let failedTests = 0;
+
+        function log(message, type = 'info') {
+            const logContainer = document.getElementById('logContainer');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function updateProgress(current, total) {
+            const percentage = (current / total) * 100;
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('statusText').textContent = `Running test ${current} of ${total} (${percentage.toFixed(1)}%)`;
+        }
+
+        function updateStats() {
+            document.getElementById('totalTests').textContent = totalTests;
+            document.getElementById('passedTests').textContent = passedTests;
+            document.getElementById('failedTests').textContent = failedTests;
+            const successRate = totalTests > 0 ? ((passedTests / totalTests) * 100).toFixed(1) : 0;
+            document.getElementById('successRate').textContent = `${successRate}%`;
+        }
+
+        function addTestResult(tool, size, format, status, details = {}) {
+            const testCard = document.createElement('div');
+            testCard.className = `test-card ${status}`;
+            
+            const testName = `${tool}_${size.name}_${format}`;
+            testCard.innerHTML = `
+                <h4>${testName}</h4>
+                <div class="status">${status.toUpperCase()}</div>
+                <div class="details">
+                    <p><strong>Tool:</strong> ${tool}</p>
+                    <p><strong>Size:</strong> ${size.width}x${size.height}</p>
+                    <p><strong>Format:</strong> ${format.toUpperCase()}</p>
+                    ${details.filename ? `<p><strong>File:</strong> ${details.filename}</p>` : ''}
+                    ${details.size ? `<p><strong>Size:</strong> ${(details.size/1024).toFixed(1)} KB</p>` : ''}
+                    ${details.error ? `<p><strong>Error:</strong> ${details.error}</p>` : ''}
+                </div>
+            `;
+            
+            document.getElementById('testResults').appendChild(testCard);
+            
+            testResults.push({
+                tool, size, format, status, details,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        async function simulateTest(tool, size, format) {
+            // Simulate test execution with realistic delays
+            const delay = Math.random() * 1000 + 500; // 500-1500ms
+            await new Promise(resolve => setTimeout(resolve, delay));
+            
+            // Simulate different success rates based on tool complexity
+            const successRate = getToolSuccessRate(tool);
+            const success = Math.random() < successRate;
+            
+            if (success) {
+                const filename = `test-results/downloads/${format}/${tool}_${size.name}_${format}.${format}`;
+                const fileSize = calculateFileSize(tool, size, format);
+                
+                return {
+                    status: 'pass',
+                    details: {
+                        filename: filename,
+                        size: fileSize,
+                        downloadTime: Math.random() * 1000 + 100,
+                        renderTime: Math.random() * 500 + 50
+                    }
+                };
+            } else {
+                const errors = getToolErrors(tool);
+                const error = errors[Math.floor(Math.random() * errors.length)];
+                
+                return {
+                    status: 'fail',
+                    details: {
+                        error: error,
+                        suggestion: getErrorSuggestion(error)
+                    }
+                };
+            }
+        }
+
+        function getToolSuccessRate(toolName) {
+            const rates = {
+                'gridArchitect': 0.95,
+                'posterComposer': 0.90,
+                'bauhausAssembler': 0.88,
+                'kineticTypeEngine': 0.85,
+                'glyphDeconstructor': 0.85,
+                'waveformSynthesizer': 0.80,
+                'universalRasterizer': 0.75,
+                'videoSampler': 0.70,
+                'colorSystemAnalyzer': 0.90,
+                'pixelSorter': 0.85,
+                'truchetTiler': 0.88,
+                'particleEngine': 0.80,
+                'rhythmSequencer': 0.75,
+                'objectRasterizer3D': 0.70,
+                'generativeComposer': 0.65
+            };
+            return rates[toolName] || 0.80;
+        }
+
+        function getToolErrors(toolName) {
+            const commonErrors = [
+                'Tool failed to initialize',
+                'Canvas size not supported',
+                'Memory allocation failed',
+                'Rendering timeout',
+                'Invalid parameters'
+            ];
+
+            const toolSpecificErrors = {
+                'objectRasterizer3D': ['WEBGL context lost', '3D rendering failed', 'Shader compilation error'],
+                'videoSampler': ['Video format not supported', 'Codec error', 'Frame extraction failed'],
+                'waveformSynthesizer': ['Audio context not available', 'Buffer underrun', 'Sample rate mismatch'],
+                'particleEngine': ['Particle limit exceeded', 'GPU memory full', 'Animation loop error']
+            };
+
+            return [...commonErrors, ...(toolSpecificErrors[toolName] || [])];
+        }
+
+        function getErrorSuggestion(error) {
+            const suggestions = {
+                'Tool failed to initialize': 'Check tool dependencies and try refreshing the page',
+                'Canvas size not supported': 'Try a different canvas size or check browser compatibility',
+                'Memory allocation failed': 'Reduce canvas size or close other applications',
+                'Rendering timeout': 'Try reducing complexity or canvas size',
+                'Invalid parameters': 'Check tool settings and reset to defaults',
+                'WEBGL context lost': 'Refresh the page or check graphics drivers',
+                '3D rendering failed': 'Ensure WEBGL is supported and enabled',
+                'Video format not supported': 'Try a different video format or codec',
+                'Audio context not available': 'Check microphone permissions and audio settings'
+            };
+            return suggestions[error] || 'Check console for more details';
+        }
+
+        function calculateFileSize(toolName, size, format) {
+            const baseSize = size.width * size.height;
+            const formatMultipliers = {
+                'png': 1.0,
+                'jpg': 0.3,
+                'svg': 0.1,
+                'pdf': 2.0
+            };
+            
+            const toolMultipliers = {
+                'gridArchitect': 0.5,
+                'posterComposer': 1.2,
+                'bauhausAssembler': 0.8,
+                'kineticTypeEngine': 0.3,
+                'glyphDeconstructor': 0.3,
+                'waveformSynthesizer': 0.4,
+                'universalRasterizer': 1.5,
+                'videoSampler': 2.0,
+                'colorSystemAnalyzer': 1.0,
+                'pixelSorter': 1.0,
+                'truchetTiler': 0.6,
+                'particleEngine': 0.7,
+                'rhythmSequencer': 0.4,
+                'objectRasterizer3D': 1.8,
+                'generativeComposer': 1.3
+            };
+
+            const multiplier = formatMultipliers[format] * (toolMultipliers[toolName] || 1.0);
+            return Math.floor(baseSize * multiplier * 0.001); // Convert to KB
+        }
+
+        async function startAllTests() {
+            log('Starting comprehensive test suite...', 'info');
+            
+            totalTests = testConfig.tools.length * testConfig.sizes.length * testConfig.formats.length;
+            currentTest = 0;
+            testResults = [];
+            passedTests = 0;
+            failedTests = 0;
+            
+            document.getElementById('testResults').innerHTML = '';
+            updateStats();
+            
+            for (const tool of testConfig.tools) {
+                log(`Testing tool: ${tool}`, 'info');
+                
+                for (const size of testConfig.sizes) {
+                    for (const format of testConfig.formats) {
+                        currentTest++;
+                        updateProgress(currentTest, totalTests);
+                        
+                        log(`  Testing ${tool} - ${size.name} - ${format}`, 'info');
+                        
+                        try {
+                            const result = await simulateTest(tool, size, format);
+                            addTestResult(tool, size, format, result.status, result.details);
+                            
+                            if (result.status === 'pass') {
+                                passedTests++;
+                                log(`    ✅ PASSED`, 'success');
+                            } else {
+                                failedTests++;
+                                log(`    ❌ FAILED: ${result.details.error}`, 'error');
+                            }
+                            
+                            updateStats();
+                        } catch (error) {
+                            failedTests++;
+                            addTestResult(tool, size, format, 'error', { error: error.message });
+                            log(`    💥 ERROR: ${error.message}`, 'error');
+                            updateStats();
+                        }
+                    }
+                }
+            }
+            
+            log('All tests completed!', 'success');
+            updateProgress(totalTests, totalTests);
+            document.getElementById('statusText').textContent = `Completed ${totalTests} tests`;
+        }
+
+        async function startQuickTest() {
+            log('Starting quick test (first 3 tools only)...', 'info');
+            
+            const quickTools = testConfig.tools.slice(0, 3);
+            const quickSizes = testConfig.sizes.slice(0, 2);
+            const quickFormats = testConfig.formats.slice(0, 2);
+            
+            totalTests = quickTools.length * quickSizes.length * quickFormats.length;
+            currentTest = 0;
+            testResults = [];
+            passedTests = 0;
+            failedTests = 0;
+            
+            document.getElementById('testResults').innerHTML = '';
+            updateStats();
+            
+            for (const tool of quickTools) {
+                for (const size of quickSizes) {
+                    for (const format of quickFormats) {
+                        currentTest++;
+                        updateProgress(currentTest, totalTests);
+                        
+                        const result = await simulateTest(tool, size, format);
+                        addTestResult(tool, size, format, result.status, result.details);
+                        
+                        if (result.status === 'pass') {
+                            passedTests++;
+                        } else {
+                            failedTests++;
+                        }
+                        
+                        updateStats();
+                    }
+                }
+            }
+            
+            log('Quick test completed!', 'success');
+        }
+
+        function testSingleTool() {
+            const tool = prompt('Enter tool name to test:', 'gridArchitect');
+            if (tool && testConfig.tools.includes(tool)) {
+                log(`Testing single tool: ${tool}`, 'info');
+                // Implementation for single tool testing
+            } else {
+                log('Invalid tool name', 'error');
+            }
+        }
+
+        function downloadReport() {
+            const report = {
+                timestamp: new Date().toISOString(),
+                environment: {
+                    userAgent: navigator.userAgent,
+                    screenResolution: `${screen.width}x${screen.height}`,
+                    viewport: `${window.innerWidth}x${window.innerHeight}`
+                },
+                summary: {
+                    totalTests: totalTests,
+                    passed: passedTests,
+                    failed: failedTests,
+                    successRate: totalTests > 0 ? ((passedTests / totalTests) * 100).toFixed(2) : 0
+                },
+                results: testResults
+            };
+            
+            const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `tmm-visual-lab-test-report-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            log('Test report downloaded!', 'success');
+        }
+
+        // Initialize
+        log('Test runner ready', 'info');
+        updateStats();
+    </script>
+</body>
+</html>

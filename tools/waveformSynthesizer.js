@@ -17,21 +17,38 @@ class WaveformSynthesizer {
     this.noiseAmount = 0;
     this.lineWeight = 3;
     this.pulse = 1.0;
+
+    // New properties for the isometric container
+    this.containerShape = 'box';
+    this.containerSize = 200;
+    this.waveDetail = 20;
+    this.rotationX = -0.5;
+    this.rotationY = -0.5;
+    this.rotationZ = 0;
+  }
+
+  regenerate() {
+    // Reset any animation state if needed
+    this.phase = 0;
+    this.pulse = 1.0;
   }
 
   draw(buffer, media = null, golGrid = null, options = {}) {
+    // Ensure proper canvas sizing for tools
+    const canvasWidth = options.canvasWidth || buffer.width;
+    const canvasHeight = options.canvasHeight || buffer.height;
+    
     if (!options.noBackground) {
       buffer.background(options.backgroundColor || '#111111');
     }
 
-    if (options.isAudioReactive && options.audioLevel > 0.02) {
-      // When audio is detected, boost the pulse. A higher multiplier gives a more dramatic "kick".
-      this.pulse = 1.0 + options.audioLevel * 3.0;
+    if (options.isAudioReactive) {
+      // A more direct, impactful modulation for the "popping" effect
+      this.pulse = 1.0 + options.audioLevel * 5.0; 
     }
 
     // For a smooth animation, always decay the pulse back to its resting state of 1.0.
-    // The lerp function creates a nice, organic decay.
-    this.pulse = lerp(this.pulse, 1.0, 0.1);
+    this.pulse = lerp(this.pulse, 1.0, 0.15); // A slightly faster decay
 
     // The current amplitude is now the base amplitude multiplied by the audio-driven pulse.
     const currentAmp = this.amp * this.pulse;
@@ -40,23 +57,30 @@ class WaveformSynthesizer {
       this.drawIsometricField(buffer, currentAmp, options);
     } else if (this.mode === 'isometric-line') {
       this.drawIsometricLine(buffer, currentAmp, options);
+    } else if (this.mode === 'plan-view') {
+      this.drawPlanView(buffer, currentAmp, options);
+    } else if (this.mode === 'isometric-container') {
+      this.drawIsometricContainer(buffer, currentAmp, options);
     } else { // 'line' mode
+      buffer.push();
+      // Center the waveform properly in WEBGL mode
+      buffer.translate(0, 0);
       const baseColor = color(this.color);
-      const alpha = this.lineCount > 1 ? 255 / this.lineCount : 255;
-      buffer.stroke(red(baseColor), green(baseColor), blue(baseColor), alpha);
+      // Ensure lines are always opaque unless explicitly set otherwise
+      buffer.stroke(red(baseColor), green(baseColor), blue(baseColor), 255);
       buffer.noFill();
       buffer.strokeWeight(this.lineWeight);
 
-      const totalLineHeight = buffer.height * 0.8;
-      const startY = buffer.height / 2 - totalLineHeight / 2;
+      const totalLineHeight = canvasHeight * 0.6; // Reduced for better centering
+      const startY = -totalLineHeight / 2; // Start from center and go up/down
       const lineSpacing = this.lineCount > 1 ? totalLineHeight / (this.lineCount - 1) : 0;
 
       for (let line = 0; line < this.lineCount; line++) {
-        const yBase = this.lineCount === 1 ? buffer.height / 2 : startY + line * lineSpacing;
+        const yBase = this.lineCount === 1 ? 0 : startY + line * lineSpacing; // Center on 0
 
         buffer.beginShape();
-        for (let x = 0; x < buffer.width; x++) {
-          const angle = map(x, 0, buffer.width, 0, TWO_PI * this.freq) + radians(this.phase);
+        for (let x = -canvasWidth / 2; x < canvasWidth / 2; x += 2) { // Center horizontally
+          const angle = map(x, -canvasWidth / 2, canvasWidth / 2, 0, TWO_PI * this.freq) + radians(this.phase);
           let yOffset = 0;
           const t = frameCount * this.timeSpeed + line * 0.5; // Offset time for each line
           const noiseVal = noise(x * 0.01, t) * 2 - 1; // Noise between -1 and 1
@@ -72,6 +96,7 @@ class WaveformSynthesizer {
         }
         buffer.endShape();
       }
+      buffer.pop();
     }
   }
 
@@ -84,12 +109,14 @@ class WaveformSynthesizer {
     buffer.noFill();
     buffer.strokeWeight(this.lineWeight);
     buffer.push();
-    buffer.scale(options.zoom || 1.0);
-    buffer.translate(buffer.width / 2, buffer.height / 2);
+    // Center the waveform within the buffer - WEBGL mode uses center as origin
+    buffer.translate(0, 0);
+    // Don't apply zoom scaling here as it's handled by the main canvas scaling
+    // buffer.scale(options.zoom || 1.0);
 
     // Use frequency to determine line density, with a minimum.
     const numLines = max(4, this.freq * 2);
-    const gridSpan = min(buffer.width, buffer.height);
+    const gridSpan = min(buffer.width, buffer.height) * 0.6; // Reduced from 0.8 to 0.6 for better fitting
     const lineSpacing = gridSpan / numLines;
 
     const t = frameCount * this.timeSpeed;
@@ -139,19 +166,19 @@ class WaveformSynthesizer {
    */
   drawIsometricLine(buffer, currentAmp, options) {
     const baseColor = color(this.color);
-    // Make lines more transparent as more are added
-    const alpha = this.lineCount > 1 ? 150 / this.lineCount : 255;
-    buffer.stroke(red(baseColor), green(baseColor), blue(baseColor), alpha);
+    // Ensure lines are always opaque unless explicitly set otherwise
+    buffer.stroke(red(baseColor), green(baseColor), blue(baseColor), 255);
     buffer.noFill();
     buffer.strokeWeight(this.lineWeight);
     buffer.push();
-    buffer.scale(options.zoom || 1.0);
-    buffer.translate(buffer.width / 2, buffer.height / 4); // Start higher up to leave room for the wave
+    buffer.translate(0, 0); // Properly centered in WEBGL
+    // Don't apply zoom scaling here as it's handled by the main canvas scaling
+    // buffer.scale(options.zoom || 1.0);
 
     // Draw a grid on the "floor" to give a sense of space and make the wave "float"
     this._drawIsometricFloorGrid(buffer);
 
-    const totalLineHeight = buffer.height * 0.7;
+    const totalLineHeight = buffer.height * 0.5; // Reduced from 0.7 to 0.5 for better fitting
     const lineSpacing = this.lineCount > 1 ? totalLineHeight / (this.lineCount - 1) : 0;
     const isoAngle = radians(30);
     const cosAngle = cos(isoAngle);
@@ -209,7 +236,7 @@ class WaveformSynthesizer {
     const sinAngle = sin(isoAngle);
 
     // Translate down to create the floor effect, placing it below the wave's origin
-    buffer.translate(0, buffer.height / 2.5);
+    buffer.translate(0, buffer.height / 4);
 
     for (let i = -numLines / 2; i <= numLines / 2; i++) {
       const offset = i * lineSpacing;
@@ -228,6 +255,130 @@ class WaveformSynthesizer {
       y2 = ((gridSize / 2) + offset) * sinAngle;
       buffer.line(x1, y1, x2, y2);
     }
+    buffer.pop();
+  }
+
+  /**
+   * Draws waves from a top-down, plan view perspective.
+   */
+  drawPlanView(buffer, currentAmp, options) {
+    const baseColor = color(this.color);
+    buffer.stroke(red(baseColor), green(baseColor), blue(baseColor), 255);
+    buffer.noFill();
+    buffer.strokeWeight(this.lineWeight);
+    buffer.push();
+    // Center the view properly in WEBGL mode
+    buffer.translate(0, 0);
+    // Don't apply zoom scaling here as it's handled by the main canvas scaling
+    // buffer.scale(options.zoom || 1.0);
+
+    const totalLineHeight = buffer.height * 0.6; // Reduced for better centering
+    const lineSpacing = this.lineCount > 1 ? totalLineHeight / (this.lineCount - 1) : 0;
+
+    for (let line = 0; line < this.lineCount; line++) {
+      const yBase = this.lineCount === 1 ? 0 : map(line, 0, this.lineCount - 1, -totalLineHeight / 2, totalLineHeight / 2);
+
+      buffer.beginShape();
+      for (let x = -buffer.width / 2; x < buffer.width / 2; x += 5) {
+        const waveAngle = map(x, -buffer.width / 2, buffer.width / 2, 0, TWO_PI * this.freq) + radians(this.phase);
+        let yOffset = 0;
+        const t = frameCount * this.timeSpeed + line * 0.5; // Offset time for each line
+        const noiseVal = noise(x * 0.01, t) * 2 - 1;
+        const noiseEffect = noiseVal * this.noiseAmount;
+
+        if (this.waveform === 'sine') yOffset = sin(waveAngle + t) * currentAmp;
+        else if (this.waveform === 'square') yOffset = (sin(waveAngle + t) > 0 ? 1 : -1) * currentAmp;
+        else if (this.waveform === 'sawtooth') yOffset = (((waveAngle + t) % TWO_PI) / PI - 1) * currentAmp;
+        else if (this.waveform === 'triangle') yOffset = (abs(((waveAngle + t) % TWO_PI) - PI) / PI * 2 - 1) * -currentAmp;
+
+        const finalY = yBase + yOffset + noiseEffect;
+
+        buffer.vertex(x, finalY);
+      }
+      buffer.endShape();
+    }
+
+    buffer.pop();
+  }
+
+  /**
+   * Draws waves inside a 3D isometric container.
+   */
+  drawIsometricContainer(buffer, currentAmp, options) {
+    buffer.push();
+    // Center the scene and apply rotations - WEBGL mode uses center as origin
+    buffer.translate(0, 0);
+    buffer.rotateX(this.rotationX);
+    buffer.rotateY(this.rotationY);
+    buffer.rotateZ(this.rotationZ);
+
+    // Set up material properties
+    buffer.noFill();
+    buffer.stroke(this.color);
+    buffer.strokeWeight(this.lineWeight);
+
+    // Draw the container
+    if (this.containerShape === 'box') {
+      buffer.box(this.containerSize);
+    } else if (this.containerShape === 'cylinder') {
+      buffer.cylinder(this.containerSize / 2, this.containerSize);
+    }
+
+    // Draw the wave surface
+    buffer.push();
+    buffer.translate(0, 0, -this.containerSize / 2); // Move to the bottom of the container
+
+    const t = frameCount * this.timeSpeed;
+    const halfSize = this.containerSize / 2;
+    const detail = this.waveDetail;
+    const step = this.containerSize / detail;
+
+    // Move the wave surface up to be visible
+    buffer.translate(0, 0, this.containerSize / 4);
+
+    for (let y = 0; y < detail; y++) {
+      buffer.beginShape(TRIANGLE_STRIP);
+      for (let x = 0; x <= detail; x++) {
+        for (let i = 0; i < 2; i++) {
+          const u = x + i;
+          const v = y + (i === 0 ? 0 : 1);
+          const xPos = -halfSize + u * step;
+          const yPos = -halfSize + v * step;
+
+          const d = dist(xPos, yPos, 0, 0);
+          const angle = atan2(yPos, xPos);
+          const waveAngle = d * this.freq * 0.1 + t;
+
+          let zOffset = 0;
+          if (this.waveform === 'sine') {
+            zOffset = sin(waveAngle) * currentAmp;
+          } else if (this.waveform === 'square') {
+            zOffset = (sin(waveAngle) > 0 ? 1 : -1) * currentAmp;
+          } else if (this.waveform === 'sawtooth') {
+            zOffset = (((waveAngle) % TWO_PI) / PI - 1) * currentAmp;
+          } else if (this.waveform === 'triangle') {
+            zOffset = (abs(((waveAngle) % TWO_PI) - PI) / PI * 2 - 1) * -currentAmp;
+          }
+          
+          const noiseVal = noise(xPos * 0.05, yPos * 0.05, t) * 2 - 1;
+          const noiseEffect = noiseVal * this.noiseAmount;
+
+          let z = zOffset + noiseEffect;
+
+          // Constrain the wave to the container
+          if (this.containerShape === 'cylinder') {
+            if (d > halfSize) {
+              z = 0;
+            }
+          }
+
+          buffer.vertex(xPos, yPos, z);
+        }
+      }
+      buffer.endShape();
+    }
+
+    buffer.pop();
     buffer.pop();
   }
 }

@@ -17,20 +17,29 @@ class UniversalRasterizer {
     this.asciiRamp = ' .:-=+*#%@';
   }
 
+  regenerate() {
+    // Reset any cached data if needed
+    this.lastProcessedImage = null;
+  }
+
   draw(buffer, media = null, golGrid = null, options = {}) {
+    // Ensure proper canvas sizing for tools
+    const canvasWidth = options.canvasWidth || buffer.width;
+    const canvasHeight = options.canvasHeight || buffer.height;
+    
     if (!options.noBackground) {
-      buffer.background(17, 17, 17);
+      buffer.background(options.backgroundColor || color(17, 17, 17));
     }
-    buffer.rectMode(CORNER); // Ensure rect mode is consistent
+    buffer.rectMode(CORNER);
 
     if (media && media.width > 0 && media.height > 0) {
       media.loadPixels();
       if (media.pixels.length === 0) return;
 
-      for (let y = 0; y < buffer.height; y += this.cellSize) {
-        for (let x = 0; x < buffer.width; x += this.cellSize) {
-          const imgX = floor(map(x, 0, buffer.width, 0, media.width));
-          const imgY = floor(map(y, 0, buffer.height, 0, media.height));
+      for (let y = 0; y < canvasHeight; y += this.cellSize) {
+        for (let x = 0; x < canvasWidth; x += this.cellSize) {
+          const imgX = floor(map(x, 0, canvasWidth, 0, media.width));
+          const imgY = floor(map(y, 0, canvasHeight, 0, media.height));
           const index = (imgY * media.width + imgX) * 4;
           const c = color(media.pixels[index], media.pixels[index+1], media.pixels[index+2]);
 
@@ -68,7 +77,8 @@ class UniversalRasterizer {
             buffer.textSize(this.cellSize);
             buffer.text(char, x + this.cellSize / 2, y + this.cellSize / 2);
           } else if (this.mode === 'bitmap') {
-            if (brightness(c) > this.threshold) {
+            const isAboveThreshold = brightness(c) > this.threshold;
+            if (this.invert ? !isAboveThreshold : isAboveThreshold) {
               buffer.fill(this.rasterColor);
               buffer.noStroke();
               buffer.rect(x, y, this.cellSize, this.cellSize);
@@ -80,7 +90,7 @@ class UniversalRasterizer {
       buffer.fill(128);
       buffer.textAlign(CENTER, CENTER);
       buffer.textSize(12);
-      buffer.text('UPLOAD AN IMAGE VIA THE MEDIA BUS', buffer.width / 2, buffer.height / 2);
+      buffer.text('UPLOAD AN IMAGE VIA THE MEDIA BUS', canvasWidth / 2, canvasHeight / 2);
     }
   }
 }

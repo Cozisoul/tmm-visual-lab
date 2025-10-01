@@ -21,16 +21,25 @@ class ParticleEngine {
     this.particles = [];
   }
 
+  regenerate() {
+    // Clear all particles
+    this.particles = [];
+  }
+
   draw(buffer, media = null, golGrid = null, options = {}) {
     if (!options.noBackground) {
       buffer.background(17, 17, 17, 25); // Use a low-alpha background for a trail effect
     }
     buffer.noStroke();
 
+    // Get proper canvas dimensions for centering
+    const canvasWidth = options.canvasWidth || canvasWidth;
+    const canvasHeight = options.canvasHeight || canvasHeight;
+
     // Add new particles each frame based on rate
     for (let i = 0; i < this.rate; i++) {
-      const emitX = this.emitFromMouse ? artboardMouseX : buffer.width / 2;
-      const emitY = this.emitFromMouse ? artboardMouseY : buffer.height / 2;
+      const emitX = this.emitFromMouse ? artboardMouseX : canvasWidth / 2;
+      const emitY = this.emitFromMouse ? artboardMouseY : canvasHeight / 2;
 
       let vx = random(-2, 2);
       let vy = random(-2, 2);
@@ -61,10 +70,10 @@ class ParticleEngine {
       buffer.ellipse(p.x, p.y, this.size, this.size);
 
       if (this.bounce) {
-        if (p.x <= 0 || p.x >= buffer.width) {
+        if (p.x <= 0 || p.x >= canvasWidth) {
           p.vx *= -1;
         }
-        if (p.y <= 0 || p.y >= buffer.height) {
+        if (p.y <= 0 || p.y >= canvasHeight) {
           p.vy *= -1;
         }
       }

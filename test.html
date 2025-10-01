@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMM Visual Lab - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #111;
+            color: #fff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 3px;
+        }
+        .pass { background: #0a4; }
+        .fail { background: #a40; }
+        .info { background: #333; }
+    </style>
+</head>
+<body>
+    <h1>TMM Visual Lab - System Test</h1>
+    
+    <div class="test-section">
+        <h2>Dependency Check</h2>
+        <div id="p5-test" class="test-result info">Testing p5.js...</div>
+        <div id="ccapture-test" class="test-result info">Testing CCapture.js...</div>
+        <div id="fonts-test" class="test-result info">Testing Google Fonts...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Tool Classes Check</h2>
+        <div id="toolbase-test" class="test-result info">Testing ToolBase...</div>
+        <div id="tools-test" class="test-result info">Testing tool classes...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Canvas Test</h2>
+        <div id="canvas-test" class="test-result info">Testing canvas creation...</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+    <script src="tools/toolBase.js"></script>
+    <script src="tools/gridArchitect.js"></script>
+    <script src="tools/posterComposer.js"></script>
+    <script src="tools/bauhausAssembler.js"></script>
+    <script src="tools/kineticTypeEngine.js"></script>
+    
+    <script>
+        function updateTest(testId, status, message) {
+            const element = document.getElementById(testId);
+            element.className = `test-result ${status}`;
+            element.textContent = message;
+        }
+
+        // Wait for all scripts to load before running tests
+        window.addEventListener('load', function() {
+            // Test p5.js
+            if (typeof p5 !== 'undefined') {
+                updateTest('p5-test', 'pass', '✓ p5.js loaded successfully');
+            } else {
+                updateTest('p5-test', 'fail', '✗ p5.js failed to load');
+            }
+
+            // Test CCapture
+            if (typeof CCapture !== 'undefined') {
+                updateTest('ccapture-test', 'pass', '✓ CCapture.js loaded successfully');
+            } else {
+                updateTest('ccapture-test', 'fail', '✗ CCapture.js failed to load');
+            }
+
+            // Test Google Fonts
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(() => {
+                    updateTest('fonts-test', 'pass', '✓ Google Fonts loaded successfully');
+                });
+            } else {
+                updateTest('fonts-test', 'pass', '✓ Google Fonts available');
+            }
+
+            // Test ToolBase
+            if (typeof ToolBase !== 'undefined') {
+                updateTest('toolbase-test', 'pass', '✓ ToolBase class loaded');
+            } else {
+                updateTest('toolbase-test', 'fail', '✗ ToolBase class not found');
+            }
+
+            // Test tool classes
+            const toolClasses = ['GridArchitect', 'PosterComposer', 'BauhausAssembler', 'KineticTypeEngine'];
+            const loadedTools = toolClasses.filter(cls => typeof window[cls] !== 'undefined');
+            if (loadedTools.length === toolClasses.length) {
+                updateTest('tools-test', 'pass', `✓ All ${toolClasses.length} tool classes loaded`);
+            } else {
+                updateTest('tools-test', 'fail', `✗ Only ${loadedTools.length}/${toolClasses.length} tool classes loaded`);
+            }
+
+            // Test canvas creation using p5.js instance mode
+            updateTest('canvas-test', 'info', 'Testing canvas creation...');
+            
+            try {
+                // Create a p5.js instance for testing
+                const p5Instance = new p5((p) => {
+                    p.setup = () => {
+                        const testCanvas = p.createCanvas(100, 100);
+                        testCanvas.remove();
+                        updateTest('canvas-test', 'pass', '✓ Canvas creation successful');
+                    };
+                });
+                
+                // Clean up the instance after a short delay
+                setTimeout(() => {
+                    if (p5Instance && p5Instance.remove) {
+                        p5Instance.remove();
+                    }
+                }, 1000);
+                
+            } catch (e) {
+                updateTest('canvas-test', 'fail', `✗ Canvas creation failed: ${e.message}`);
+            }
+        });
+    </script>
+</body>
+</html>
