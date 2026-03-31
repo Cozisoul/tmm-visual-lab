@@ -108,6 +108,18 @@ const golRules = {
   maze: {
     birth: [3],
     survival: [1, 2, 3, 4, 5]
+  },
+  coral: {
+    birth: [3],
+    survival: [4, 5, 6, 7, 8]
+  },
+  diamoeba: {
+    birth: [3, 5, 6, 7, 8],
+    survival: [5, 6, 7, 8]
+  },
+  replicator: {
+    birth: [1, 3, 5, 7],
+    survival: [1, 3, 5, 7]
   }
 };
 
@@ -403,20 +415,40 @@ function updateGOLGrid() {
 function modulateActiveToolWithGOL() {
   if (!activeTool || !golLinkEnabled) return;
   const tool = activeTool;
+  
+  // Universal modulation based on tool properties
+  // We check if the tool has these properties exposed
+  
+  // Density -> Count/Amount/Cols
   if (typeof tool.cols !== 'undefined') tool.cols = floor(map(golMetrics.density, 0, 0.5, 4, 50));
+  if (typeof tool.elementCount !== 'undefined') tool.elementCount = floor(map(golMetrics.density, 0, 0.5, 10, 200));
+  if (typeof tool.particleCount !== 'undefined') tool.particleCount = floor(map(golMetrics.density, 0, 0.5, 50, 500));
+  
+  // Chaos -> Movement/Jitter/Speed
   if (typeof tool.jitter !== 'undefined') tool.jitter = map(golMetrics.chaos, 0, 0.1, 0, 100);
   if (typeof tool.speed !== 'undefined') tool.speed = map(golMetrics.chaos, 0, 0.1, 0.5, 10);
+  if (typeof tool.rotationSpeed !== 'undefined') tool.rotationSpeed = map(golMetrics.chaos, 0, 0.1, 0, 0.2);
+  if (typeof tool.noiseAmount !== 'undefined') tool.noiseAmount = map(golMetrics.chaos, 0, 0.2, 0, 100);
+  
+  // Position -> Margins/Focus
   if (typeof tool.marginX !== 'undefined') tool.marginX = map(golMetrics.averagePosition.x, 0, 1, 0, 200);
+  if (typeof tool.marginY !== 'undefined') tool.marginY = map(golMetrics.averagePosition.y, 0, 1, 0, 200);
 
+  // Specific Tool Overrides
   if (tool.constructor.name === 'ObjectRasterizer3D') {
     if (golMetrics.density > 0.01) {
-      tool.shape = 'gol';
-      tool.cameraType = 'ortho';
-      tool.rotationX = 35;
-      tool.rotationY = -45;
-      tool.autoRotate = false;
-      tool.gridEnabled = true;
+      // Modulate 3D properties
+      if (golMetrics.chaos > 0.05) {
+         tool.rotationX += 0.05;
+         tool.rotationY += 0.05;
+      }
+      tool.pixelSize = floor(map(golMetrics.density, 0, 0.4, 2, 16));
     }
+  }
+  
+  if (tool.constructor.name === 'WaveformSynthesizer') {
+      tool.amplitude = map(golMetrics.density, 0, 0.5, 50, 300);
+      tool.frequency = map(golMetrics.chaos, 0, 0.1, 1, 10);
   }
 }
 

@@ -52,6 +52,15 @@
   <script src="tools/rhythmSequencer.js"></script>
   <script src="tools/objectRasterizer3D.js"></script>
   <script src="tools/generativeComposer.js"></script>
+  <script src="tools/generativeCompositionLab.js"></script>
+  <script src="tools/vectorFieldModulator.js"></script>
+  <script src="tools/ideaGenerator.js"></script>
+  <script src="tools/lSystemArchitect.js"></script>
+  <script src="tools/designOffice.js"></script>
+  <script src="tools/generativeGraphicsEngine.js"></script>
+  <script src="tools/creativeCodingWorkbench.js"></script>
+  <script src="tools/brandSystemTool.js"></script>
+  <script src="tools/libraryNotes.js"></script>
 
 </head>
 <body>
@@ -1031,57 +1040,6 @@
           <h4 class="control-group-header">SIMULATION</h4>
           <div class="control-group">
             <label for="fx-game-of-life-mode">MODE</label>
-            <select id="fx-game-of-life-mode">
-              <option value="classic">Classic (Conway)</option>
-              <option value="highlife">HighLife</option>
-              <option value="daynight">Day & Night</option>
-              <option value="seeds">Seeds</option>
-              <option value="maze">Maze</option>
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="fx-game-of-life-cell-size">SIMULATION RESOLUTION (CELL SIZE)</label>
-            <input type="range" id="fx-game-of-life-cell-size" min="5" max="40" value="10">
-          </div>
-          <div class="control-group">
-            <label for="fx-game-of-life-speed">UPDATE SPEED (FRAMES)</label>
-            <input type="range" id="fx-game-of-life-speed" min="1" max="30" value="5">
-          </div>
-
-          <h4 class="control-group-header">SEEDING (PATTERN GENERATION)</h4>
-          <div class="control-group">
-            <label for="fx-game-of-life-threshold">BRIGHTNESS THRESHOLD</label>
-            <input type="range" id="fx-game-of-life-threshold" min="0" max="255" value="128">
-          </div>
-          <div class="control-group checkbox-group">
-            <input type="checkbox" id="fx-game-of-life-audio-seed-toggle">
-            <label for="fx-game-of-life-audio-seed-toggle">RE-SEED ON AUDIO PEAK</label>
-          </div>
-          <div class="control-group">
-            <button id="fx-game-of-life-clear" class="action-button secondary">CLEAR GRID</button>
-            <button id="fx-game-of-life-random" class="action-button secondary">RANDOM FILL</button>
-          </div>
-
-          <h4 class="control-group-header">INTEGRATION</h4>
-          <div class="control-group checkbox-group">
-            <input type="checkbox" id="fx-game-of-life-link-toggle">
-            <label for="fx-game-of-life-link-toggle">LINK CONTROLS TO GOL</label>
-          </div>
-
-          <h4 class="control-group-header">AUDIO REACTIVITY</h4>
-          <div class="control-group checkbox-group">
-            <input type="checkbox" id="global-audio-reactivity-toggle">
-            <label for="global-audio-reactivity-toggle">ENABLE MIC INPUT</label>
-          </div>
-          <div class="control-group">
-            <label for="global-audio-sensitivity">MIC SENSITIVITY</label>
-            <input type="range" id="global-audio-sensitivity" min="1" max="20" value="1" step="0.5">
-          </div>
-        </div>
-
-        <!-- Persistent Export Panel -->
-        <div class="export-panel">
-          <h4 class="control-group-header">EXPORT</h4>
           <div class="control-group">
             <label for="global-export-filename">FILENAME</label>
             <input type="text" id="global-export-filename" placeholder="artwork">

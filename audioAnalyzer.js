@@ -63,10 +63,43 @@ class AudioAnalyzer {
 
   // FFT and other methods are not directly supported with this basic AnalyserNode setup
   // They would require more complex processing of the dataArray or a different node setup.
-  getSpectrum() { return []; }
-  getBass() { return 0; }
-  getMid() { return 0; }
-  getTreble() { return 0; }
+  getSpectrum() {
+    if (this.enabled && this.analyser && this.dataArray) {
+      this.analyser.getByteFrequencyData(this.dataArray);
+      return Array.from(this.dataArray);
+    }
+    return [];
+  }
+
+  getEnergy(lowFreq, highFreq) {
+    if (!this.enabled || !this.analyser || !this.dataArray) return 0;
+    
+    const nyquist = this.audioContext.sampleRate / 2;
+    const lowIndex = Math.round((lowFreq / nyquist) * this.dataArray.length);
+    const highIndex = Math.round((highFreq / nyquist) * this.dataArray.length);
+    
+    let sum = 0;
+    let count = 0;
+    
+    for (let i = lowIndex; i <= highIndex && i < this.dataArray.length; i++) {
+      sum += this.dataArray[i];
+      count++;
+    }
+    
+    return count > 0 ? (sum / count) / 255 : 0;
+  }
+
+  getBass() {
+    return this.getEnergy(20, 250);
+  }
+
+  getMid() {
+    return this.getEnergy(250, 4000);
+  }
+
+  getTreble() {
+    return this.getEnergy(4000, 16000);
+  }
 
   setSensitivity(sensitivity) {
     this.sensitivity = sensitivity;

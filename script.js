@@ -154,22 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
     golThreshold?.addEventListener('input', () => { gameOfLifeThreshold = parseInt(golThreshold.value, 10); if (gameOfLifeEnabled && typeof seedGameOfLifeFromArtboard === 'function') seedGameOfLifeFromArtboard(); });
     golCellSize?.addEventListener('input', () => { gameOfLifeCellSize = parseInt(golCellSize.value, 10); if (typeof reinitializeGOLGrid === 'function') { reinitializeGOLGrid(); if (gameOfLifeEnabled && typeof seedGameOfLifeFromArtboard === 'function') seedGameOfLifeFromArtboard(); } });
     golSpeed?.addEventListener('input', () => { gameOfLifeSpeed = parseInt(golSpeed.value, 10); });
-    golClear?.addEventListener('click', () => { if (typeof clearGOLGrid === 'function') clearGOLGrid(); });
-    golRandom?.addEventListener('click', () => { if (typeof randomizeGOLGrid === 'function') randomizeGOLGrid(); });
-    golLinkToggle?.addEventListener('change', () => { golLinkEnabled = golLinkToggle.checked; });
-
-    // Audio Reactivity
-    const audioReactivityToggle = document.getElementById('global-audio-reactivity-toggle');
-    const audioSensitivitySlider = document.getElementById('global-audio-sensitivity');
-
-    audioReactivityToggle?.addEventListener('change', async () => {
-      isAudioReactive = audioReactivityToggle.checked;
-      if (isAudioReactive) {
-        await audioAnalyzer.init();
-      }
-      audioAnalyzer.setEnabled(isAudioReactive);
-    });
-
     audioSensitivitySlider?.addEventListener('input', () => {
       audioSensitivity = parseFloat(audioSensitivitySlider.value);
       audioAnalyzer.setSensitivity(audioSensitivity);
