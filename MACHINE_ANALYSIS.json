@@ -1,0 +1,378 @@
+[
+  {
+    "id": "modular-gridder",
+    "name": "Modular Gridder",
+    "currentAudio": ["volume", "bass"],
+    "hasAnimation": false,
+    "animationElements": "Static grid that responds to audio - no inherent animation over time",
+    "enhancementOpportunities": "Could add treble for grid rotation/skew, mid for color cycling, raw for individual cell animations"
+  },
+  {
+    "id": "geometric-circles",
+    "name": "Geometric Circles",
+    "currentAudio": ["volume", "bass"],
+    "hasAnimation": true,
+    "animationElements": "Sine/cosine wave animation of circle positions and sizes",
+    "enhancementOpportunities": "Treble could drive frequency oscillations, mid for scale variations, raw for per-circle data mapping"
+  },
+  {
+    "id": "truchet-tiler",
+    "name": "Truchet Tiler",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Pattern flipping animation driven by anim parameter",
+    "enhancementOpportunities": "Bass for flip speed, treble for line thickness, mid for pattern density shifts"
+  },
+  {
+    "id": "maze-generator",
+    "name": "Maze Generator",
+    "currentAudio": ["volume", "treble"],
+    "hasAnimation": false,
+    "animationElements": "Static maze with static walls, bias shifts based on audio",
+    "enhancementOpportunities": "Mid for maze complexity changes, raw for dynamic maze regeneration, bass for wall patterns"
+  },
+  {
+    "id": "moire-interference",
+    "name": "Moiré Interference",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Rotating concentric patterns with center offset layers",
+    "enhancementOpportunities": "Volume for ring count, treble for pattern density, mid for color shifts, raw for per-ring animation"
+  },
+  {
+    "id": "layout-engine",
+    "name": "Layout Engine",
+    "currentAudio": ["mid"],
+    "hasAnimation": false,
+    "animationElements": "Static layout generation - no animation",
+    "enhancementOpportunities": "Volume for block size pulsing, bass for density shifts, treble for corner radius animation, raw for color mapping"
+  },
+  {
+    "id": "recursive-partition",
+    "name": "Recursive Partition",
+    "currentAudio": ["bass"],
+    "hasAnimation": false,
+    "animationElements": "Static recursive subdivision - no animation",
+    "enhancementOpportunities": "Volume for recursion depth changes, treble for line weight pulsing, mid for split probability shifts"
+  },
+  {
+    "id": "bauhaus-constructor",
+    "name": "Bauhaus Constructor",
+    "currentAudio": ["volume"],
+    "hasAnimation": false,
+    "animationElements": "Static geometric composition - no animation",
+    "enhancementOpportunities": "Bass for shape rotation, treble for opacity pulsing, mid for size variations, raw for per-shape data"
+  },
+  {
+    "id": "poster-architect",
+    "name": "Poster Architect",
+    "currentAudio": ["bass", "volume"],
+    "hasAnimation": true,
+    "animationElements": "Text rotation and echo spread animation",
+    "enhancementOpportunities": "Treble for echo count changes, mid for skew effects, raw for character-level animation"
+  },
+  {
+    "id": "isometric-city",
+    "name": "Isometric City",
+    "currentAudio": ["volume"],
+    "hasAnimation": false,
+    "animationElements": "Static isometric buildings - no animation",
+    "enhancementOpportunities": "Bass for building height pulsing, treble for density shifts, mid for rotation, raw for per-building size mapping"
+  },
+  {
+    "id": "glyph-swarm",
+    "name": "Glyph Swarm",
+    "currentAudio": ["treble"],
+    "hasAnimation": true,
+    "animationElements": "Characters following Perlin noise paths with mouse repulsion",
+    "enhancementOpportunities": "Volume for swarm speed, bass for noise field scale changes, mid for character size, raw for per-glyph animation"
+  },
+  {
+    "id": "type-stacker",
+    "name": "Type Stacker",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Vertical text stack with wave distortion animation",
+    "enhancementOpportunities": "Volume for vertical scrolling speed, treble for wave amplitude, mid for text scale, raw for line-level animation"
+  },
+  {
+    "id": "kinetic-scroller",
+    "name": "Kinetic Scroller",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Horizontal scrolling text with sine wave distortion",
+    "enhancementOpportunities": "Bass for scroll speed, treble for wave frequency, mid for line height variations, raw for character-level effects"
+  },
+  {
+    "id": "liquid-data-type",
+    "name": "Liquid Data Type",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Grid of characters with noise-driven flow distortion",
+    "enhancementOpportunities": "Volume for flow speed, treble for flow direction changes, mid for cell scale, raw for per-cell character mapping"
+  },
+  {
+    "id": "signal-break",
+    "name": "Signal Break",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Text slices with glitch offset and shake animation",
+    "enhancementOpportunities": "Bass for glitch intensity, treble for shake frequency, mid for slice count, raw for per-slice offsets"
+  },
+  {
+    "id": "webcam-ascii",
+    "name": "Webcam ASCII",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Live camera feed converted to ASCII characters",
+    "enhancementOpportunities": "Volume for scale changes (zoom), treble for contrast shifts, mid for character set cycling"
+  },
+  {
+    "id": "signal-oscillator",
+    "name": "Signal Oscillator",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Multiple sine waves with frequency modulation animation",
+    "enhancementOpportunities": "Bass for frequency shifts, treble for amplitude modulation, mid for hue cycling, raw for per-line animation"
+  },
+  {
+    "id": "audio-reactor",
+    "name": "Audio Reactor",
+    "currentAudio": ["bass", "mid", "treble"],
+    "hasAnimation": true,
+    "animationElements": "Rings responding to different frequency bands",
+    "enhancementOpportunities": "Raw data for finer ring control, volume for total radius scaling, more bands for independent ring control"
+  },
+  {
+    "id": "flow-field",
+    "name": "Flow Field",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Particles following noise field with continuous flow",
+    "enhancementOpportunities": "Bass for noise scale changes, treble for particle size pulsing, mid for trail length shifts, raw for per-particle data"
+  },
+  {
+    "id": "particle-analyzer",
+    "name": "Particle Analyzer",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Physics particles with noise-driven positioning and connections",
+    "enhancementOpportunities": "Bass for connection distance, treble for particle size, mid for velocity, raw for per-particle animation"
+  },
+  {
+    "id": "spectrogram-history",
+    "name": "Spectrogram History",
+    "currentAudio": ["volume", "raw"],
+    "hasAnimation": true,
+    "animationElements": "Scrolling frequency spectrum with color mapping",
+    "enhancementOpportunities": "Bass for scroll acceleration, treble for color saturation shifts, mid for bin width changes"
+  },
+  {
+    "id": "sonic-terrain",
+    "name": "Sonic Terrain",
+    "currentAudio": ["raw"],
+    "hasAnimation": true,
+    "animationElements": "3D wireframe terrain driven by raw audio frequency data",
+    "enhancementOpportunities": "Volume for terrain height scaling, bass for wave speed, treble for perspective changes, mid for grid density"
+  },
+  {
+    "id": "blob-generator",
+    "name": "Blob Generator",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Morphing blobs with noise-driven position and size",
+    "enhancementOpportunities": "Bass for morph speed, treble for blob count changes, mid for size range shifts, raw for per-blob animation"
+  },
+  {
+    "id": "charcoal-animator",
+    "name": "Charcoal Animator",
+    "currentAudio": ["treble"],
+    "hasAnimation": true,
+    "animationElements": "Animated charcoal trails with continuous particle generation",
+    "enhancementOpportunities": "Volume for chaos amplitude, bass for decay rate, mid for stroke width pulsing, raw for drawing path control"
+  },
+  {
+    "id": "raymarch-sdf",
+    "name": "Raymarch SDF",
+    "currentAudio": ["bass"],
+    "hasAnimation": false,
+    "animationElements": "Static SDF visualization - no animation",
+    "enhancementOpportunities": "Volume for complexity increases, treble for zoom transitions, mid for edge softness pulsing"
+  },
+  {
+    "id": "raymarch-construct",
+    "name": "Raymarch Construct",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Rotating 3D CSG shapes with lighting",
+    "enhancementOpportunities": "Bass for rotation speed, treble for shape separation, mid for blend amount changes, raw for per-frame geometry control"
+  },
+  {
+    "id": "slit-scan",
+    "name": "Slit Scan",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Time-displaced camera scan with jitter",
+    "enhancementOpportunities": "Volume for scan speed, treble for temporal distortion, mid for direction changes, raw for per-pixel time mapping"
+  },
+  {
+    "id": "motion-heatmap",
+    "name": "Motion Heatmap",
+    "currentAudio": ["volume", "bass"],
+    "hasAnimation": true,
+    "animationElements": "Motion detection visualization with trail decay",
+    "enhancementOpportunities": "Treble for threshold shifts, mid for scale changes, raw for per-pixel motion sensitivity"
+  },
+  {
+    "id": "edge-glitch",
+    "name": "Edge Glitch",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Edge detection with RGB channel shifting",
+    "enhancementOpportunities": "Bass for edge threshold, treble for RGB shift amount, mid for pixel size changes"
+  },
+  {
+    "id": "kaleido-cam",
+    "name": "Kaleido-Cam",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Rotating kaleidoscopic camera reflection",
+    "enhancementOpportunities": "Bass for rotation speed, treble for segment count, mid for zoom changes, raw for per-segment animation"
+  },
+  {
+    "id": "poor-image",
+    "name": "Poor Image Glitch",
+    "currentAudio": ["volume"],
+    "hasAnimation": false,
+    "animationElements": "Static compression artifact effects - no animation",
+    "enhancementOpportunities": "Bass for glitch intensity, treble for channel shift amounts, mid for block size, raw for per-block corruption"
+  },
+  {
+    "id": "pixel-sorter",
+    "name": "Pixel Sorter",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Bars growing/shrinking with noise-driven brightness",
+    "enhancementOpportunities": "Volume for sort speed, treble for bar count, mid for direction cycling, raw for per-bar value mapping"
+  },
+  {
+    "id": "halftone-raster",
+    "name": "Halftone Raster",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Animated CMYK halftone dots with noise-driven sizing",
+    "enhancementOpportunities": "Bass for angle rotation, treble for dot shape changes, mid for contrast shifts"
+  },
+  {
+    "id": "dither-field",
+    "name": "Dither Field",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Noise-driven dither point placement",
+    "enhancementOpportunities": "Bass for density changes, treble for threshold shifts, mid for pixel size"
+  },
+  {
+    "id": "reaction-diffusion",
+    "name": "Reaction Diffusion",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Noise-driven chemical pattern animation",
+    "enhancementOpportunities": "Volume for feed rate, treble for kill rate, mid for cutoff changes"
+  },
+  {
+    "id": "voronoi-systems",
+    "name": "Voronoi Systems",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Moving Voronoi cell centers with animated connections",
+    "enhancementOpportunities": "Bass for movement speed, treble for cell count, mid for connection distance, raw for per-cell animation"
+  },
+  {
+    "id": "latent-fluidity",
+    "name": "Latent Fluidity",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Large particle system with noise-driven flow field",
+    "enhancementOpportunities": "Bass for flow speed, treble for particle count changes, mid for noise complexity, raw for per-particle data"
+  },
+  {
+    "id": "quantum-strobe",
+    "name": "Quantum Strobe",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Strobe effect with frame flipping animation",
+    "enhancementOpportunities": "Volume for strobe frequency, treble for bar density, mid for pattern type cycling, raw for binary data mapping"
+  },
+  {
+    "id": "lidar-scan",
+    "name": "Lidar Reconstruction",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Rotating 3D point cloud with scanline animation",
+    "enhancementOpportunities": "Bass for rotation speed, treble for point scatter, mid for zoom changes, raw for per-point depth mapping"
+  },
+  {
+    "id": "atmospheric-sun",
+    "name": "The Atmospheric Sun",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Mist/fog animation with noise-driven tiles",
+    "enhancementOpportunities": "Volume for mist density pulsing, treble for grain amount, mid for color gradation shifts"
+  },
+  {
+    "id": "mirror-box",
+    "name": "Mirror Box",
+    "currentAudio": [],
+    "hasAnimation": true,
+    "animationElements": "Rotating kaleidoscopic mirror segments",
+    "enhancementOpportunities": "NEEDS AUDIO: Volume for zoom pulsing, bass for rotation speed, treble for segment count, mid for shatter intensity"
+  },
+  {
+    "id": "organic-lattice",
+    "name": "Organic Lattice",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Multi-layer cellular structure with noise-driven growth",
+    "enhancementOpportunities": "Volume for growth rate, treble for distortion, mid for layer depth, raw for per-cell animation"
+  },
+  {
+    "id": "industrial-brutalism",
+    "name": "Industrial Brutalism",
+    "currentAudio": ["volume"],
+    "hasAnimation": false,
+    "animationElements": "Static concrete block composition - no animation",
+    "enhancementOpportunities": "Bass for erosion amount, treble for grunge texture shifts, mid for block count/size"
+  },
+  {
+    "id": "soil-strata",
+    "name": "Soil Strata",
+    "currentAudio": ["bass"],
+    "hasAnimation": true,
+    "animationElements": "Geological strata layers with noise-driven boundaries",
+    "enhancementOpportunities": "Volume for roughness, treble for slope angle, mid for layer count, raw for per-layer boundary control"
+  },
+  {
+    "id": "woven-path",
+    "name": "Woven Path",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Animated thread lines with weave chaos and wave distortion",
+    "enhancementOpportunities": "Bass for thread count, treble for fray amount, mid for wave frequency, raw for per-thread path control"
+  },
+  {
+    "id": "robotic-mimicry",
+    "name": "Robotic Mimicry",
+    "currentAudio": ["volume"],
+    "hasAnimation": true,
+    "animationElements": "Multiple robotic arms drawing with noise-driven paths",
+    "enhancementOpportunities": "Bass for arm speed, treble for tremor intensity, mid for reach radius, raw for per-arm trajectory control"
+  },
+  {
+    "id": "voice-print",
+    "name": "Voice Print",
+    "currentAudio": ["raw"],
+    "hasAnimation": true,
+    "animationElements": "Radial frequency spectrum with multi-loop animation",
+    "enhancementOpportunities": "Volume for radius pulsing, bass for frequency scale, treble for loop count, mid for interference patterns"
+  }
+]

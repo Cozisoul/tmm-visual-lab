@@ -1,0 +1,8 @@
+{
+  "name": "TMM-OS Visual Lab",
+  "description": "A high-contrast, industrial generative art workstation. 'The Studio as an Instrument'.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
